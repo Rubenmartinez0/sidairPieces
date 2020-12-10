@@ -15,6 +15,7 @@ class CreatePiecesTable extends Migration
     {
         Schema::create('pieces', function (Blueprint $table) {
             $table->id();
+            $table->mediumText('measurements');
             $table->unsignedBigInteger('image_id');
             $table->index('image_id');
             $table->unsignedBigInteger('material_id');
@@ -26,11 +27,13 @@ class CreatePiecesTable extends Migration
             $table->unsignedBigInteger('ordered_by');
             $table->index('ordered_by');
             $table->timestamp("ordered_at");
-            $table->unsignedBigInteger('manufactured_by');
-            $table->index('manufactured_by');
-            $table->timestamp("manufactured_at");
+            $table->unsignedBigInteger('manufactured_by')->nullable();
+            $table->index('manufactured_by')->nullable();
+            $table->timestamp("manufactured_at")->nullable();
             $table->timestamps();
         });
+        
+
     }
 
     /**

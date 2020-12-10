@@ -13,12 +13,14 @@ class CreateMaterialsTable extends Migration
      */
     public function up()
     {
+        
         Schema::create('materials', function (Blueprint $table) {
             $table->id();
             $table->string('material');
             $table->boolean('visible')->default(1);
-            $table->timestamps();
+            //$table->timestamps();
         });
+        
     }
 
     /**

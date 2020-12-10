@@ -32,4 +32,6 @@ class Role extends Model
      */
     protected $casts = [
     ];
+
+    public $timestamps = false;
 }

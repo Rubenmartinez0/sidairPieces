@@ -34,4 +34,6 @@ class Image extends Model
      */
     protected $casts = [
     ];
+
+    public $timestamps = false;
 }

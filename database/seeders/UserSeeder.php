@@ -17,11 +17,11 @@ class UserSeeder extends Seeder
     public function run()
     {
         $users = [
-            ['username' => 'ruben', 'password' => Hash::make('1'), 'role_id' => '0', 'active' => True],
-            ['username' => 'carlos', 'password' => Hash::make('1'), 'role_id' => '0', 'active' => True],
-            ['username' => 'admin', 'password' => Hash::make('1'), 'role_id' => '1', 'active' => True],
-            ['username' => 'user', 'password' => Hash::make('1'), 'role_id' => '2', 'active' => True],
-            ['username' => 'user2', 'password' => Hash::make('1'), 'role_id' => '2', 'active' => False],
+            ['username' => 'ruben', 'password' => Hash::make('1'), 'role_id' => '1', 'active' => True],
+            ['username' => 'carlos', 'password' => Hash::make('1'), 'role_id' => '1', 'active' => True],
+            ['username' => 'admin', 'password' => Hash::make('1'), 'role_id' => '2', 'active' => True],
+            ['username' => 'user', 'password' => Hash::make('1'), 'role_id' => '3', 'active' => True],
+            ['username' => 'user2', 'password' => Hash::make('1'), 'role_id' => '3', 'active' => False],
         ];
 
         foreach($users as $user){

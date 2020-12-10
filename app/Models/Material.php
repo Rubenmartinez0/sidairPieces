@@ -32,4 +32,6 @@ class Material extends Model
      */
     protected $casts = [
     ];
+
+    public $timestamps = false;
 }

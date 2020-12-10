@@ -21,7 +21,7 @@ class CreateProjectsTable extends Migration
             $table->unsignedBigInteger('state_id');
             $table->index('state_id');
             $table->timestamp('started_at');
-            $table->timestamp('finished_at');
+            $table->timestamp('finished_at')->nullable();
             $table->timestamps();
             
         });

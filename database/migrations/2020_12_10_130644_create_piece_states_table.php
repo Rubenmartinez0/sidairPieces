@@ -16,7 +16,7 @@ class CreatePieceStatesTable extends Migration
         Schema::create('piece_states', function (Blueprint $table) {
             $table->id();
             $table->string('state');
-            $table->timestamps();
+            //$table->timestamps();
         });
     }
 

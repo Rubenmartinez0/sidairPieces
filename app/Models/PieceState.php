@@ -32,4 +32,6 @@ class PieceState extends Model
      */
     protected $casts = [
     ];
+
+    public $timestamps = false;
 }

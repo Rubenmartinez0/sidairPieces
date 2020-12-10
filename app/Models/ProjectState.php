@@ -32,4 +32,6 @@ class ProjectState extends Model
      */
     protected $casts = [
     ];
+
+    public $timestamps = false;
 }
