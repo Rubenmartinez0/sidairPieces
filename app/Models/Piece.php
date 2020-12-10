@@ -41,4 +41,29 @@ class Piece extends Model
      */
     protected $casts = [
     ];
+
+    public function project()
+    {
+    return $this->belongsTo(Project::class);
+    }
+
+    public function state()
+    {
+        return $this->hasOne(PieceState::class);
+    }
+
+    public function type()
+    {
+        return $this->hasOne(PieceType::class);
+    }
+
+    public function material()
+    {
+        return $this->hasOne(Material::class);
+    }
+
+    public function image()
+    {
+        return $this->hasOne(Image::class);
+    }
 }

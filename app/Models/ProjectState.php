@@ -34,4 +34,9 @@ class ProjectState extends Model
     ];
 
     public $timestamps = false;
+
+    public function project()
+    {
+        return $this->hasMany(Project::class);
+    }
 }

@@ -33,7 +33,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        'role_id'
     ];
 
     /**
@@ -43,4 +42,12 @@ class User extends Authenticatable
      */
     protected $casts = [
     ];
+
+    /**
+     * Get the role associated with the user.
+     */
+    public function role()
+    {
+        return $this->hasOne(Role::class);
+    }
 }

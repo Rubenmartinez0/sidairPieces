@@ -32,4 +32,9 @@ class Client extends Model
      */
     protected $casts = [
     ];
+
+    public function project()
+    {
+        return $this->hasMany(Project::class);
+    }
 }

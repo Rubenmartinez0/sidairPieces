@@ -34,4 +34,9 @@ class PieceState extends Model
     ];
 
     public $timestamps = false;
+
+    public function piece()
+    {
+        return $this->hasMany(Piece::class);
+    }
 }

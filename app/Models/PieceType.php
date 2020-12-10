@@ -33,4 +33,9 @@ class PieceType extends Model
     protected $casts = [
         'measurements',
     ];
+
+    public function piece()
+    {
+        return $this->hasMany(Piece::class);
+    }
 }

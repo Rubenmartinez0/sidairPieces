@@ -15,10 +15,10 @@ class Project extends Model
      */
     protected $fillable = [
         'name',
-        'client_id',
+        //'client_id',
         'started_at',
         'finished_at',
-        'state_id',
+        //'state_id',
     ];
 
     /**
@@ -36,4 +36,14 @@ class Project extends Model
      */
     protected $casts = [
     ];
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    public function state()
+    {
+        return $this->hasOne(ProjectState::class);
+    }
 }
