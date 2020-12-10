@@ -19,8 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('name')->nullable();
             $table->string('surname')->nullable();
-            //$table->index('role_id');
+            $table->unsignedBigInteger('role_id');
+            $table->index('role_id');
             $table->boolean('active')->default(0);
+            $table->integer('favorite_tab')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
