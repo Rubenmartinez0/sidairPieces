@@ -31,7 +31,7 @@ class PieceType extends Model
      * @var array
      */
     protected $casts = [
-        'measurements',
+        'measurements' => 'array',
     ];
 
     public function piece()

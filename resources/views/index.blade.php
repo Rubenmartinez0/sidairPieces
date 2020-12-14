@@ -2,32 +2,14 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
 
-                    <div class="row justify-content-center">Nueva pieza</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <div class="row justify-content-center">Piezas pendientes</div>
-                </div>
-            </div>
+    <div class="row col-md-10 justify-content-center">
+        <div class="card">
+            <!-- <div class="card-header d-flex"></div> -->
+        <div class="card-body m-3 justify-content-center">
+            <a class="btn btn-primary mb-3" href="{{ url('/piece') }}">Encargar nueva pieza</a>            
+            <br>
+            <a class="btn btn-warning" href="#">Mis piezas encargadas</a>
         </div>
     </div>
 </div>

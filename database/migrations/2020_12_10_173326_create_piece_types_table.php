@@ -16,7 +16,7 @@ class CreatePieceTypesTable extends Migration
         Schema::create('piece_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->mediumText('measurements');
+            $table->json('measurements');
             $table->timestamps();
         });
     }
