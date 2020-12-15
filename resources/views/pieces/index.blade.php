@@ -88,7 +88,10 @@
                             <button type="submit" class="btn btn-primary">Introducir medidas</button>
                         </div>
                     </form>
+                    
                 </div>
+
+                
                 <!--
                 <hr style="width: 75%; margin: auto">
                 
@@ -104,4 +107,23 @@
         </div>
     </div>
 </div>
+<div class="container">
+        <div class="row justify-content-center">
+@foreach($piecesImages as $pieceImage)
+    <div class="col-4">
+        <div class="card mb-4">
+            <div class="card-header d-flex">
+                <h4 class="mr-auto">{{ $pieceImage->name }}</h4>
+            </div>
+            <div class="card-body">
+                <a href="{{ $pieceImage->id }}">
+                    <img src="{{ $pieceImage->path }}" class="pr-2" style="height:8em; width:8em;" alt="ddds">
+                </a>
+            </div>
+        </div>
+    </div>
+
+@endforeach
+</div>
+    </div>
 @endsection

@@ -7,6 +7,7 @@ use App\Models\PieceType;
 use App\Models\Project;
 use App\Models\Material;
 use App\Models\Client;
+use App\Models\Image;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,8 +37,25 @@ class PieceController extends Controller
         foreach($materials as $material){
             $material->material = ucfirst($material->material);
         }
-        return view('pieces/index', compact('piecesTypes', 'projects', 'materials', 'clients'));
+
+        $piecesImages = Image::where('visible', '=', 1)->get();
+        
+        return view('pieces/index', compact('piecesImages','piecesTypes', 'projects', 'materials', 'clients'));
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function choosePiece()
+    {
+        //dd($request->all());
+    
+        $piecesImages = Image::where('visible', '=', 1)->get();
+        return view('pieces/index', compact('piecesImages','piecesTypes', 'projects', 'materials', 'clients'));
+    }
+
     /**
      * Display a listing of the resource.
      *
