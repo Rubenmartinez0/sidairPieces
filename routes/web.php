@@ -24,5 +24,8 @@ Route::get('/index', [App\Http\Controllers\IndexController::class, 'index'])->na
 Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('index');
 
 
-Route::get('/piece', 'App\Http\Controllers\PieceController@index')->name('piece.index');
-Route::get('/piece/new', 'App\Http\Controllers\PieceController@create')->name('piece.create');
+Route::get('/piece', 'App\Http\Controllers\PieceController@choosePiece')->name('piece.index');
+Route::get('/piece/{pieceType}', 'App\Http\Controllers\PieceController@create')->name('piece.create');
+Route::post('/piece', 'App\Http\Controllers\PieceController@store')->name('piece.store');
+
+Route::get('/projects/{client}', 'App\Http\Controllers\ProjectController@getProjectsByClient')->name('projects.getByClient');

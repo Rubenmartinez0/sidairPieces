@@ -17,6 +17,9 @@ class CreatePieceTypesTable extends Migration
             $table->id();
             $table->string('name');
             $table->json('measurements');
+            $table->string('image_path');
+
+            $table->string('visible')->default(1);
             $table->timestamps();
         });
     }

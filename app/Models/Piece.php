@@ -62,8 +62,8 @@ class Piece extends Model
         return $this->hasOne(Material::class);
     }
 
-    public function image()
+    public function pieceType()
     {
-        return $this->hasOne(Image::class);
+        return $this->hasOne(PieceType::class);
     }
 }

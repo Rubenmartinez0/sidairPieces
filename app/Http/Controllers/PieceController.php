@@ -22,25 +22,7 @@ class PieceController extends Controller
      */
     public function index()
     {
-        $piecesTypes = PieceType::all();
-    
-
-        //$projects = Project::where('finished_at', '=', NULL)->with("client")->get();
-        $projects = Project::where('finished_at', '=', NULL)->get();
-        
-        foreach($projects as $project){
-            $project->client->name = ucfirst($project->client->name);
-        }
-        $clients = Client::where('visible', '=', 1)->get(); 
-
-        $materials = Material::where('visible', '=', 1)->get();
-        foreach($materials as $material){
-            $material->material = ucfirst($material->material);
-        }
-
-        $piecesImages = Image::where('visible', '=', 1)->get();
-        
-        return view('pieces/index', compact('piecesImages','piecesTypes', 'projects', 'materials', 'clients'));
+        //
     }
 
     /**
@@ -52,8 +34,9 @@ class PieceController extends Controller
     {
         //dd($request->all());
     
-        $piecesImages = Image::where('visible', '=', 1)->get();
-        return view('pieces/index', compact('piecesImages','piecesTypes', 'projects', 'materials', 'clients'));
+        $pieceTypes = PieceType::where('visible', '=', 1)->get();
+       
+        return view('pieces/choosePiece', compact('pieceTypes'));
     }
 
     /**
@@ -61,25 +44,39 @@ class PieceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(Request $request, PieceType $pieceType)
     {
-        //dd($request->all());
-    
-        $data = request()->validate([
-            'pieceType_id' => ['required'],
-            'quantity' => ['required', 'int'],
-            'material_id' => ['required'],
-            'project_id' => ['required'],
-        ]);
-     
+        
+        //$projects = Project::where('finished_at', '=', NULL)->with("client")->get();
+        $projects = Project::where('finished_at', '=', NULL)->get();
+        
+        $clients = Client::where('visible', '=', 1)->get(); 
+        foreach($clients as $client){
+            $client->name = ucfirst($client->name);
+        }
+        $materials = Material::where('visible', '=', 1)->get();
+        foreach($materials as $material){
+            $material->material = ucfirst($material->material);
+        }
+
+        $measurements = $pieceType->measurements;
+        //dd($measurements);
+        return view('pieces/create', compact('pieceType', 'measurements' , 'projects', 'materials', 'clients'));
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
+        dd($request->all());
+        //     $data = request()->validate([
+        //     'pieceType_id' => ['required'],
+        //     'quantity' => ['required', 'int'],
+        //     'material_id' => ['required'],
+        //     'project_id' => ['required'],
+        // ]);
+
     }
 }
