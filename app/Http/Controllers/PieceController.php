@@ -46,7 +46,6 @@ class PieceController extends Controller
      */
     public function create(Request $request, PieceType $pieceType)
     {
-        
         //$projects = Project::where('finished_at', '=', NULL)->with("client")->get();
         $projects = Project::where('finished_at', '=', NULL)->get();
         

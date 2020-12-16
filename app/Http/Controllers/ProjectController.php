@@ -24,7 +24,7 @@ class ProjectController extends Controller
     }
 
     public function getProjectsByClient(Request $request, Client $client){
-        if($client->visible == 1){
+        if($client !== null && $client->visible == 1){
             $projects = Project::where('client_id', '=', $client->id)
             ->where('finished_at', '=', NULL)->get();
             return response()->json($projects);

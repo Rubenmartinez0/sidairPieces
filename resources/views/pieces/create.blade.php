@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex">
-                    <h4 class="">Encargar nueva pieza - <span class="font-weight-bold"> {{ $pieceType->name }}</span></h4>
+                    <h4 >Encargar nueva pieza - <span class="font-weight-bold"> {{ $pieceType->name }}</span></h4>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('piece.store') }}">
@@ -48,6 +48,8 @@
                                     </div>
                                 </div>
                                 <div class="col-6 col-sm-4 float-left text-center">
+
+                                    <!-- Piece Image -->
                                     <img src="{{ $pieceType->image_path }}" class="pr-2" style="height:10em; width:10em;" alt="{{ $pieceType->name }}">
                                     <br>
                                     <a class="btn btn-warning mt-2" href="{{ url('/piece') }}">Elegir otra pieza</a>    
@@ -57,7 +59,7 @@
                                         <!-- Client -->
                                         <label for="client" class="col-md-2 col-form-label text-md-right">Cliente</label>
                                         <select id="client" type="text" class="col-md-6 form-control @error('client') is-invalid @enderror" name="project_id" value="{{ old('provider_id') }}" autocomplete="provider_id" autofocus>
-                                            <option disabled selected value> -- </option>
+                                            <option selected="true" disabled="disabled" value> -- </option>
                                             @forelse($clients as $client)
                                                 <option value={{ $client->id }}>
                                                     {{ $client->name }}
@@ -78,7 +80,6 @@
                                     <label for="project" class="col-md-2 col-form-label text-md-right">Obra</label>
                                     <select id="projects" type="text" class="col-md-6 form-control @error('project') is-invalid @enderror" name="project_id" value="{{ old('provider_id') }}" autocomplete="provider_id" autofocus>
                                         <option disabled selected value> -- Seleccionar cliente -- </option>
-                                        <option> TEST</option>
                                     </select>
                                     @error('project')
                                         <span class="invalid-feedback" role="alert">
@@ -113,43 +114,6 @@
 @endsection
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
+<script src="{{ asset('js/pieces/create.js') }}" type="text/javascript"></script>
 
-        
-        // var countryID = $(this).val();
-        // if(countryID) {
-        // $.ajax({
-        //     url: '/admin/user_register/ajax/'+encodeURI(countryID),
-        //     type: "GET",
-        //     dataType: "json",
-        //     success:function(data) {
-        //     $('select[name="state"]').empty();
-        //     $.each(data, function(key, value) {
-        //         $('select[name="state"]').append('<option value="'+ value +'">'+ value +'</option>');
-        //         });
-        //     }
-        // });
-        // }else{
-        // $('select[name="state"]').empty();
-        //     }
-        // });
-
-$(document).ready(function() {
-    $('#client').change(function() {
-        $.ajax({
-            url: '/projects/'+encodeURI($(this).val()),
-            type: "GET",
-            dataType: "json",
-            success:function(data) {
-                console.log(data);
-                $('#projects').empty();
-                $.each(data, function(key, project){
-                    $('#projects').append('<option value="'+project.id+'">'+project.name+'</option>')
-                });
-  
-            }
-        });
-    });
-});
-</script>
 @endsection
