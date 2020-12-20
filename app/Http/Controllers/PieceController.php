@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Piece;
 use App\Models\PieceType;
+use App\Models\PieceState;
 use App\Models\Project;
 use App\Models\Material;
 use App\Models\Client;
-use App\Models\Image;
+use App\Models\User;
+//use App\Models\Image;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -71,7 +73,7 @@ class PieceController extends Controller
     {
         
         $data = $request->validate([
-            'pieceType_id' => 'required|int',
+            'type_id' => 'required|int',
             'quantity' => 'required|int',
             'material_id' => 'required|not_in:0',
             'client_id' => 'required|not_in:0',
@@ -85,5 +87,17 @@ class PieceController extends Controller
         
         return redirect('/');
 
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getMyOrders(Request $request, User $user)
+    {   
+        $allOrders = Piece::where('ordered_by', '=', $user->id)->with('state', 'project', 'type', 'material')->get();
+        //dd($allOrders);
+        return view('pieces/myOrders', compact('allOrders', 'user'));
     }
 }

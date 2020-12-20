@@ -18,7 +18,7 @@ class Piece extends Model
         'quantity',
         'measurements',
         'image_id',
-        'pieceType_id',
+        'type_id',
         'material_id',
         'state_id',
         'project_id',
@@ -46,26 +46,26 @@ class Piece extends Model
 
     public function project()
     {
-    return $this->belongsTo(Project::class);
+        return $this->belongsTo(Project::class);
     }
 
     public function state()
     {
-        return $this->hasOne(PieceState::class);
+        return $this->belongsTo(PieceState::class);
     }
 
     public function type()
     {
-        return $this->hasOne(PieceType::class);
+        return $this->belongsTo(PieceType::class);
     }
 
     public function material()
     {
-        return $this->hasOne(Material::class);
+        return $this->belongsTo(Material::class);
+    }
+    public function ordered_by()
+    {
+        return $this->belongsTo(User::class);
     }
 
-    public function pieceType()
-    {
-        return $this->hasOne(PieceType::class);
-    }
 }

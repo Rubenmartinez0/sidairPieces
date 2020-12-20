@@ -17,7 +17,7 @@
                                     <!-- Piece Image -->
                                     <div class="col-6 col-sm-4 float-left text-center">
                                         <img src="{{ $pieceType->image_path }}" class="pr-2" style="height:10em; width:10em;" alt="{{ $pieceType->name }}">
-                                        <input hidden name="pieceType_id" value="{{ $pieceType->id }}">
+                                        <input hidden name="type_id" value="{{ $pieceType->id }}">
                                         <br>
                                         <a class="btn btn-warning mt-2" href="{{ url('/piece') }}">Elegir otra pieza</a>    
                                     </div>    

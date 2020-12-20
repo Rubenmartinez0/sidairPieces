@@ -19,8 +19,8 @@ class CreatePiecesTable extends Migration
             $table->mediumText('measurements')->nullable();
             // $table->unsignedBigInteger('image_id');
             // $table->index('image_id');
-            $table->unsignedBigInteger('pieceType_id');
-            $table->index('pieceType_id');
+            $table->unsignedBigInteger('type_id');
+            $table->index('type_id');
             $table->unsignedBigInteger('material_id');
             $table->index('material_id');
             $table->unsignedBigInteger('state_id');

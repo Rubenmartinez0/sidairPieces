@@ -13,8 +13,8 @@ class MaterialSeeder extends Seeder
     public function run()
     {
         $materials = [
-            ['material' => 'chapa', 'visible' => True],
-            ['material' => 'fibra', 'visible' => True],
+            ['material' => 'Chapa', 'visible' => True],
+            ['material' => 'Fibra', 'visible' => True],
         ];
         foreach($materials as $material){
             \App\Models\Material::create($material);
