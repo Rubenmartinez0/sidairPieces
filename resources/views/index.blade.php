@@ -7,9 +7,11 @@
         <div class="card">
             <!-- <div class="card-header d-flex"></div> -->
         <div class="card-body m-3 justify-content-center">
-            <a class="btn btn-primary mb-3" href="{{ url('/piece') }}">Encargar nueva pieza</a>            
+            <a class="btn btn-primary mb-3" href="{{ url('/piece') }}">Encargar nueva pieza.</a>            
             <br>
-            <a class="btn btn-warning" href="#">Mis piezas encargadas</a>
+            <a class="btn btn-warning mb-3" href="#">Mis piezas.</a>
+            <br>
+            <a class="btn btn-success" href="#">Fabricar piezas.</a>
         </div>
     </div>
 </div>

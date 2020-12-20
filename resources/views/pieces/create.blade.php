@@ -17,6 +17,7 @@
                                     <!-- Piece Image -->
                                     <div class="col-6 col-sm-4 float-left text-center">
                                         <img src="{{ $pieceType->image_path }}" class="pr-2" style="height:10em; width:10em;" alt="{{ $pieceType->name }}">
+                                        <input hidden name="pieceType_id" value="{{ $pieceType->id }}">
                                         <br>
                                         <a class="btn btn-warning mt-2" href="{{ url('/piece') }}">Elegir otra pieza</a>    
                                     </div>    
@@ -27,24 +28,20 @@
                                             <!-- Quantity -->
                                             <div class="d-flex mb-3">
                                                 <label for="quantity" class="col-8 col-sm-4 col-md-6 col-lg-6 col-xl-6 col-form-label text-md-right">{{ __('Cantidad') }}</label>
-                                                <input id="quantity" maxLength="2" type="text" class="col-md-6 col-lg-6 col-xl-6 form-control @error('quantity') is-invalid @enderror" name="quantity" value="{{ old('quantity') }}" autocomplete="quantity">
-                                                @error('quantity')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
+                                                <input id="quantity" maxLength="2" type="text" class="col-md-6 col-lg-6 col-xl-6 form-control @error('quantity') is-invalid @enderror" name="quantity" value="{{ old('quantity') }}">
                                             </div>
+                                            
                                             <!-- Material -->
                                             <div class="d-flex">
                                                 <label for="material" id="test" class="col-8 col-sm-4 col-md-6 col-lg-6 col-xl-6 col-form-label text-md-right">{{ __('Material') }}</label>
-                                                <select id="material" type="text" class="col-md-6 col-lg-6 col-xl-6 form-control @error('material') is-invalid @enderror" name="material_id" value="{{ old('material_id') }}" autocomplete="provider_id" autofocus>
-                                                    <option disabled selected value> -- </option>
+                                                <select id="material" class="col-md-6 col-lg-6 col-xl-6 form-control @error('material') is-invalid @enderror" name="material_id" value="{{ old('material_id') }}">
+                                                    <option disabled selected value=""> -- </option>
                                                     @forelse($materials as $material)
-                                                        <option value={{ $material->id }}>
+                                                        <option value="{{ $material->id }}" {{ old('material_id') == $material->id ? 'selected' : '' }}>
                                                             {{ $material->material }}
                                                         </option>
                                                     @empty
-                                                        <option>There are no materials in the database</option>       
+                                                        <option>There are no available materials</option>       
                                                     @endforelse
                                                 </select>
                                                 @error('material')
@@ -60,10 +57,10 @@
                                     <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 float-right mb-3">
                                         <div class="d-flex">
                                             <label for="client" class="col-md-2 col-form-label text-md-right">Cliente</label>
-                                            <select id="client" type="text" class="col-md-6 form-control @error('client') is-invalid @enderror" name="project_id" value="{{ old('provider_id') }}" autocomplete="provider_id" autofocus>
+                                            <select id="client" type="text" class="col-md-6 form-control @error('client') is-invalid @enderror" name="client_id" value="{{ old('provider_id') }}">
                                                 <option selected="true" disabled="disabled" value> -- </option>
                                                 @forelse($clients as $client)
-                                                    <option value={{ $client->id }}>
+                                                    <option value="{{ $client->id }}" {{ old('client_id') == $client->id ? 'selected' : '' }}>
                                                         {{ $client->name }}
                                                     </option>
                                                 @empty
@@ -93,8 +90,8 @@
                                 <div class="row pt-2">
                                     @foreach($measurements as $measurement)
                                         <div class="d-flex col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 mb-3">
-                                            <label for="{{ $measurement }}" class="col-md-9 col-form-label text-md-right ">{{ $measurement }}</label>
-                                            <input id="{{ $measurement }}" maxLength="4" type="text" class="col-md-3 form-control @error('{{ $measurement }}') is-invalid @enderror" name="{{ $measurement }}" value="{{ old('quantity') }}" autocomplete="{{ $measurement }}">
+                                            <label for="{{ $measurement }}" class="col-md-6 col-form-label text-md-right ">{{ $measurement }}</label>
+                                            <input required="required" id="{{ $measurement }}" type="number" min="1" max="5000" pattern="\d+" class="col-md-6 form-control @error('{{ $measurement }}') is-invalid @enderror" name="{{ $measurement }}" value="{{ old('.$measurement.')}}" autocomplete="{{ $measurement }}">
                                         </div>
                                     @endforeach
                                 </div>

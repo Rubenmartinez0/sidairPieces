@@ -15,8 +15,10 @@ class Piece extends Model
      */
     protected $fillable = [
         'name',
+        'quantity',
         'measurements',
         'image_id',
+        'pieceType_id',
         'material_id',
         'state_id',
         'project_id',

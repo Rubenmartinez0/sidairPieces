@@ -10,7 +10,7 @@ $(document).ready(function() {
                     $('#projects').empty();
                     $('#projects').append('<option disabled selected value">-- Seleccionar Obra --</option>');
                     $.each(data, function(key, project){
-                        $('#projects').append('<option value="'+project.id+'">'+project.name+'</option>');
+                        $('#projects').append('<option value="'+project.id+'" >'+project.name+'</option>');
                     });
                 }
             });
@@ -23,4 +23,22 @@ $(document).ready(function() {
     $('#projects').change(function() {
         var selectedProject = $(this).children("option:selected").val();
     });
+
+    
+    selectedClient = $("#client :selected").val();
+    if($.isNumeric(selectedClient)){
+        $.ajax({
+            url: '/projects/'+selectedClient,
+            type: "GET",
+            dataType: "json",
+            success:function(data) {
+                $('#projects').empty();
+                $('#projects').append('<option disabled selected value">-- Seleccionar Obra --</option>');
+                $.each(data, function(key, project){
+                    $('#projects').append('<option value="'+project.id+'" >'+project.name+'</option>');
+                });
+            }
+        });
+    }
+    
 });

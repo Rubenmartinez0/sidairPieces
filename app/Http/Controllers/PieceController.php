@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Piece;
+use App\Models\Piece;
 use App\Models\PieceType;
 use App\Models\Project;
 use App\Models\Material;
@@ -69,13 +69,21 @@ class PieceController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-        //     $data = request()->validate([
-        //     'pieceType_id' => ['required'],
-        //     'quantity' => ['required', 'int'],
-        //     'material_id' => ['required'],
-        //     'project_id' => ['required'],
-        // ]);
+        
+        $data = $request->validate([
+            'pieceType_id' => 'required|int',
+            'quantity' => 'required|int',
+            'material_id' => 'required|not_in:0',
+            'client_id' => 'required|not_in:0',
+            'project_id' => 'required|not_in:0',
+        ]);
+        $data["state_id"] = 1;
+        $data["ordered_by"] = auth()->user()->id;
+        //dd($data);
+        Piece::create($data);
+  
+        
+        return redirect('/');
 
     }
 }
