@@ -19,7 +19,7 @@
 
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
-                    @if (count($allOrders) > 1)
+                    @if (count($allOrders) > 0)
                         <table class="table">
                             <thead>
                                 <tr>
@@ -38,19 +38,19 @@
                                         <td>
                                             @switch($piece->state_id)
                                                 @case(1)
-                                                    <label class="bg-warning rounded-lg p-1">{{ $piece->state->state }}</label>
+                                                    <label class="bg-warning rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
                                                     @break
                                                 @case(2)
-                                                    <label class="bg-primary rounded-lg p-1">{{ $piece->state->state }}</label>
+                                                    <label class="bg-primary text-white rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
                                                     @break
                                                 @case(3)
-                                                    <label class="bg-success rounded-lg p-1">{{ $piece->state->state }}</label>
+                                                    <label class="bg-success rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
                                                     @break
                                                 @case(4)
-                                                    <label class="bg-danger rounded-lg p-1">{{ $piece->state->state }}</label>
+                                                    <label class="bg-danger text-white rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
                                                     @break
                                                 @default
-                                                    <label class="bg-dark rounded-lg p-1">Desconocido</label>
+                                                    <label class="bg-dark rounded-lg p-1 font-weight-bold">Desconocido</label>
                                             @endswitch
                                         </td>
                                         <td><label>{{ $piece->quantity }}</label></td>
@@ -89,7 +89,7 @@
                                 @foreach($allOrders as $piece)
                                     @if($piece->state->id === 1)
                                         <tr>
-                                            <td><label class="bg-warning rounded-lg p-1">{{ $piece->state->state }}</label></td>
+                                            <td><label class="bg-warning font-weight-bold rounded-lg p-1">{{ $piece->state->state }}</label></td>
                                             <td><label>{{ $piece->quantity }}</label></td>
                                             <td><label>{{ $piece->type->name }}</label></td>
                                             <td><label>{{ $piece->material->material }}</label></td>
@@ -124,7 +124,7 @@
                                 @foreach($allOrders as $piece)
                                     @if($piece->state->id === 3)
                                         <tr>
-                                            <td><label class="bg-success rounded-lg p-1">{{ $piece->state->state }}</label></td>
+                                            <td><label class="bg-success font-weight-bold rounded-lg p-1">{{ $piece->state->state }}</label></td>
                                             <td><label>{{ $piece->quantity }}</label></td>
                                             <td><label>{{ $piece->type->name }}</label></td>
                                             <td><label>{{ $piece->material->material }}</label></td>
