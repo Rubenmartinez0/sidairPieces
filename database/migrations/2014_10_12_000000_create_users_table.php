@@ -21,8 +21,11 @@ class CreateUsersTable extends Migration
             $table->string('surname')->nullable();
             $table->unsignedBigInteger('role_id')->default(3);
             $table->index('role_id');
+            $table->unsignedBigInteger('project_id')->default(0);
+            $table->index('project_id');
+            $table->unsignedBigInteger('material_id')->default(0);
+            $table->index('material_id');
             $table->boolean('active')->default(0);
-            $table->integer('favorite_tab')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
