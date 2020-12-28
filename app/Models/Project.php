@@ -15,10 +15,10 @@ class Project extends Model
      */
     protected $fillable = [
         'name',
-        //'client_id',
+        'client_id',
         'started_at',
         'finished_at',
-        //'state_id',
+        'state_id',
     ];
 
     /**

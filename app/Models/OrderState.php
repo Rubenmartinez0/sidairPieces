@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Material extends Model
+class OrderState extends Model
 {
     use HasFactory;
     /**
@@ -14,7 +14,7 @@ class Material extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'visible',
+        'state',
     ];
 
     /**
@@ -35,8 +35,8 @@ class Material extends Model
 
     public $timestamps = false;
 
-    public function piece()
+    public function order()
     {
-        return $this->hasMany(Piece::class);
+        return $this->hasMany(Order::class);
     }
 }

@@ -23,7 +23,7 @@ class Role extends Model
      * @var array
      */
     protected $hidden = [
-        'role',
+        'name',
     ];
 
     /**
