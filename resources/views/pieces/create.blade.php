@@ -38,7 +38,7 @@
                                                     <option disabled selected value=""> -- </option>
                                                     @forelse($materials as $material)
                                                         <option value="{{ $material->id }}" {{ old('material_id') == $material->id ? 'selected' : '' }}>
-                                                            {{ $material->material }}
+                                                            {{ $material->name }}
                                                         </option>
                                                     @empty
                                                         <option>There are no available materials</option>       

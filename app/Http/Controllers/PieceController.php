@@ -96,7 +96,7 @@ class PieceController extends Controller
      */
     public function getMyOrders(Request $request, User $user)
     {   
-        $allOrders = Piece::where('ordered_by', '=', $user->id)->with('state', 'project', 'type', 'material')->get();
+        $allOrders = Piece::where('ordered_by', '=', $user->id)->with('state', 'project', 'type', 'material')->orderBy('ordered_at', 'DESC')->get();
         //$allOrders = Piece::with('state', 'project', 'type', 'material')->get();
 
         //dd($allOrders);

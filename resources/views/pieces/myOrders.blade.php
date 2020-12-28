@@ -208,7 +208,7 @@
                                         <td><label class="bg-danger text-white rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label></td>
                                         <td><label>{{ $piece->quantity }}</label></td>
                                         <td><label>{{ $piece->type->name }}</label></td>
-                                        <td><label>{{ $piece->material->material }}</label></td>
+                                        <td><label>{{ $piece->material->name }}</label></td>
                                         <td><label>{{ $piece->project->name }}</label></td>
                                         <td><label>{{ $piece->ordered_at }}</label></td>
                                         @if ( $piece->manufactured_at )
