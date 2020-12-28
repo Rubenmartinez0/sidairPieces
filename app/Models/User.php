@@ -53,7 +53,22 @@ class User extends Authenticatable
         return $this->hasOne(Role::class);
     }
 
-    public function piece(){
-        return $this->hasMany(Piece::class);
+    public function project()
+    {
+        return $this->hasOne(Project::class);
+    }
+
+    public function material()
+    {
+        return $this->hasOne(Material::class);
+    }
+    
+    public function orders(){
+        return $this->hasMany(Order::class);
+    }
+
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
     }
 }

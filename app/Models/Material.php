@@ -39,4 +39,14 @@ class Material extends Model
     {
         return $this->hasMany(Piece::class);
     }
+
+    public function order()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
 }

@@ -39,4 +39,8 @@ class ProjectState extends Model
     {
         return $this->hasMany(Project::class);
     }
+    public function projectState()
+    {
+        return $this->hasOne(ProjectState::class);
+    }
 }

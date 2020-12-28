@@ -33,4 +33,9 @@ class Note extends Model
      */
     protected $casts = [
     ];
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }

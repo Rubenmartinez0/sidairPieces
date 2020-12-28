@@ -38,4 +38,34 @@ class Order extends Model
     ];
 
     
+    public function project()
+    {
+        return $this->hasOne(Project::class);
+    }
+
+    public function client()
+    {
+        return $this->hasOne(Client::class);
+    }
+
+    public function material()
+    {
+        return $this->hasOne(Material::class);
+    }
+
+    public function state()
+    {
+        return $this->hasOne(OrderState::class);
+    }
+
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
+    public function pieces()
+    {
+        return $this->hasMany(Piece::class);
+    }
+
+    
 }

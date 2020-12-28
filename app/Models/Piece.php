@@ -56,7 +56,7 @@ class Piece extends Model
 
     public function type()
     {
-        return $this->belongsTo(PieceType::class);
+        return $this->hasOne(PieceType::class);
     }
 
     public function material()
@@ -67,5 +67,12 @@ class Piece extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+
 
 }
