@@ -77,10 +77,10 @@
                                     <!-- Project -->
                                     <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 float-right d-flex mb-3">
                                         <label for="project" class="col-md-2 col-form-label text-md-right">Obra</label>
-                                        <select id="projects" type="text" class="col-md-6 form-control @error('project') is-invalid @enderror" name="project_id" value="{{ old('provider_id') }}" autocomplete="provider_id" autofocus>
-                                            <option disabled selected value> -- Seleccionar cliente -- </option>
+                                        <select id="projects" type="text" class="col-md-6 form-control @error('projects') is-invalid @enderror" name="project_id" value="{{ old('provider_id') }}" autocomplete="provider_id" autofocus>
+                                            <option disabled selected value>-- Seleccionar cliente --</option>
                                         </select>
-                                        @error('project')
+                                        @error('projects')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -96,7 +96,7 @@
                                     @endforeach
                                 </div>
                             <div class="mb-3 mr-3 float-right">
-                            <button type="submit" class="btn btn-primary">Encargar pieza</button>
+                                <button type="submit" class="btn btn-primary">Encargar pieza</button>
                             </div> 
                         </div>
                     </form>

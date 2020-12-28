@@ -32,12 +32,29 @@ class PieceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function userSettings()
+    {
+
+        return redirect('/piece');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function choosePiece()
     {
-        //dd($request->all());
-    
+        
+        $id = Auth::user()->id;
+        $profile = User::where('id', '=', $id)->first();
+        
+        //dd($profile);
+        if(!$profile->project_id || !$profile->material_id){
+            return redirect('/settings');
+        }
+
         $pieceTypes = PieceType::where('visible', '=', 1)->get();
-       
         return view('pieces/choosePiece', compact('pieceTypes'));
     }
 
@@ -57,7 +74,7 @@ class PieceController extends Controller
         }
         $materials = Material::where('visible', '=', 1)->get();
         foreach($materials as $material){
-            $material->material = ucfirst($material->material);
+            $material->name = ucfirst($material->name);
         }
 
         $measurements = $pieceType->measurements;
@@ -84,9 +101,7 @@ class PieceController extends Controller
         //dd($data);
         Piece::create($data);
   
-        
         return redirect('/');
-
     }
 
     /**
