@@ -49,6 +49,12 @@ class UserController extends Controller
      */
     public function updateSettings(Request $request)
     {
-        //
+        dd($request->all());
+
+        $data = $request->validate([
+            'client_id' => 'required|not_in:0',
+            'project_id' => 'required|not_in:0',
+            'material_id' => 'required|not_in:0',
+        ]);
     }
 }

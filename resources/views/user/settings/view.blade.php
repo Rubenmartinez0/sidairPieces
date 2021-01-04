@@ -1,71 +1,70 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row justify-content-center">
-    <div class="card">
-        <div class="card-header d-flex ">
-            <h4 class="mr-auto">{{ __('Settings') }}</h4>
-        </div>
-        <div class="card-body">
-            <!-- Client -->
-            <div class="d-flex mb-3">
-                <label for="client" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-form-label text-md-right">Cliente</label>
-                <select id="client" class="col-md-6 col-lg-6 col-xl-6 form-control @error('client') is-invalid @enderror" name="client_id" value="{{ old('client_id') }}">
-                    <option disabled selected value=""> -- </option>
-                    @forelse($clients as $client)
-                        <option value="{{ $client->id }}" {{ old('client_id') == $client->id ? 'selected' : '' }}>
-                            {{ $client->name }}
-                        </option>
-                    @empty
-                        <option>There are no available clients</option>       
-                    @endforelse
-                </select>
-                @error('client')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-
-            <!-- Project -->
-            <div class="d-flex mb-3">
-                <label for="project" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-form-label text-md-right">Obra</label>
-                <select disabled id="projects" class="col-md-6 col-lg-6 col-xl-6 form-control @error('projects') is-invalid @enderror" name="projects_id" value="{{ old('project_id') }}">
-                <option disabled selected value>Cliente</option>
-                </select>
-                @error('projects')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-
-
-            <!-- Material -->
-            <div class="d-flex mb-3">
-                <label for="material" class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-form-label text-md-right">{{ __('Material') }}</label>
-                <select id="material" class="col-md-6 col-lg-6 col-xl-6 form-control @error('material') is-invalid @enderror" name="material_id" value="{{ old('material_id') }}">
-                    <option disabled selected value=""> -- </option>
-                    @forelse($materials as $material)
-                        <option value="{{ $material->id }}" {{ old('material_id') == $material->id ? 'selected' : '' }}>
-                            {{ $material->name }}
-                        </option>
-                    @empty
-                        <option>There are no available materials</option>       
-                    @endforelse
-                </select>
-                @error('material')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-
-            <div class="mt-3 float-right">
-                <button type="submit" class="btn btn-success">Guardar opciones</button>
-            </div> 
-        </div>
+<div class="container col-8 col-sm-8 col-md-6 col-lg-3 mt-5">
+    <h2>Preferencias</h2>
+    <hr>
+    <!-- Success message -->
+    @if(Session::has('success'))
+    <div class="alert alert-success">
+        {{Session::get('success')}}
     </div>
+    @endif
+
+    <form action="" method="post" action="">
+
+        @csrf
+        <!-- Client -->
+        <div class="form-group">
+            <label for="client">Cliente</label>
+            <select id="client" class="form-control @error('client') is-invalid @enderror" name="client_id" value="{{ old('client_id') }}">
+                <option disabled selected value=""></option>
+                @forelse($clients as $client)
+                    <option value="{{ $client->id }}" {{ old('client_id') == $client->id ? 'selected' : '' }}>
+                        {{ $client->name }}
+                    </option>
+                @empty
+                    <option>There are no available clients</option>       
+                @endforelse
+            </select>
+        </div>
+
+        <!-- Project -->
+        <div class="form-group">
+            <label for="project">Obra</label>
+            <select disabled id="projects" class="form-control @error('projects') is-invalid @enderror" name="projects_id" value="{{ old('project_id') }}">
+                <option disabled selected value>-- Seleccionar cliente --</option>
+            </select>
+            @error('projects')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+
+        </div>
+        
+        <!-- Material -->
+        <div class="form-group">
+            <label for="material">Material</label>
+            <select id="material" class="form-control @error('material') is-invalid @enderror" name="material_id" value="{{ old('material_id') }}">
+                <option disabled selected value=""></option>
+                @forelse($materials as $material)
+                    <option value="{{ $material->id }}" {{ old('material_id') == $material->id ? 'selected' : '' }}>
+                        {{ $material->name }}
+                    </option>
+                @empty
+                    <option>There are no available materials</option>       
+                @endforelse
+            </select>
+            @error('material')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        <br>
+        <input type="submit" value="Guardar opciones" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 btn btn-success btn-block ml-auto">
+    </form>
 </div>
 
 @endsection

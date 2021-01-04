@@ -8,12 +8,15 @@ $(document).ready(function() {
                 dataType: "json",
                 success:function(data) {
                     $('#projects').empty();
-                    $('#projects').append('<option disabled selected value">-- Obra --</option>');
-                    $.each(data, function(key, project){
-                        $('#projects').append('<option value="'+project.id+'" >'+project.name+'</option>');
-                    });
+                    if(data == ""){
+                        $('#projects').append('<option disabled selected value">-- Cliente sin obras --</option>');
+                    }else{
+                        $('#projects').append('<option disabled selected value">-- Seleccionar obra --</option>');
+                        $.each(data, function(key, project){
+                            $('#projects').append('<option value="'+project.id+'" >'+project.name+'</option>');
+                        });
+                    }
                     $('#projects').removeAttr('disabled');
-                    
                 }
             });
         }else{
@@ -35,7 +38,7 @@ $(document).ready(function() {
             dataType: "json",
             success:function(data) {
                 $('#projects').empty();
-                $('#projects').append('<option disabled selected value">--Obra--</option>');
+                $('#projects').append('<option disabled selected value">-- Seleccionar obra--</option>');
                 $.each(data, function(key, project){
                     $('#projects').append('<option value="'+project.id+'" >'+project.name+'</option>');
                 });
