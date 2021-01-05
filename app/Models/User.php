@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
         'surname',
         'active',
+        'client_id',
         'project_id',
         'material_id',
     ];

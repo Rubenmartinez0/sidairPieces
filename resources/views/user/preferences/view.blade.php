@@ -4,18 +4,12 @@
 <div class="container col-8 col-sm-8 col-md-6 col-lg-3 mt-5">
     <h2>Preferencias</h2>
     <hr>
-    <!-- Success message -->
-    @if(Session::has('success'))
-    <div class="alert alert-success">
-        {{Session::get('success')}}
-    </div>
-    @endif
 
     <form action="" method="post" action="">
 
         @csrf
         <!-- Client -->
-        <div class="form-group">
+        <div class="form-group p-1">
             <label for="client">Cliente</label>
             <select id="client" class="form-control @error('client') is-invalid @enderror" name="client_id" value="{{ old('client_id') }}">
                 <option disabled selected value=""></option>
@@ -30,9 +24,9 @@
         </div>
 
         <!-- Project -->
-        <div class="form-group">
+        <div class="form-group p-1">
             <label for="project">Obra</label>
-            <select disabled id="projects" class="form-control @error('projects') is-invalid @enderror" name="projects_id" value="{{ old('project_id') }}">
+            <select disabled id="projects" class="form-control @error('projects') is-invalid @enderror" name="project_id" value="{{ old('project_id') }}">
                 <option disabled selected value>-- Seleccionar cliente --</option>
             </select>
             @error('projects')
@@ -44,7 +38,7 @@
         </div>
         
         <!-- Material -->
-        <div class="form-group">
+        <div class="form-group p-1">
             <label for="material">Material</label>
             <select id="material" class="form-control @error('material') is-invalid @enderror" name="material_id" value="{{ old('material_id') }}">
                 <option disabled selected value=""></option>
@@ -62,6 +56,10 @@
                 </span>
             @enderror
         </div>
+        
+
+        <input hidden name="redirect_to" value="{{ session('redirectTo') ?? '' }}">
+        
         <br>
         <input type="submit" value="Guardar opciones" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 btn btn-success btn-block ml-auto">
     </form>

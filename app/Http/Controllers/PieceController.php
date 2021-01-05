@@ -49,10 +49,13 @@ class PieceController extends Controller
         $id = Auth::user()->id;
         $profile = User::where('id', '=', $id)->first();
         
-        //dd($profile);
-        if(!$profile->project_id || !$profile->material_id){
-            return redirect('/settings');
+        
+        if(!$profile->client_id || !$profile->project_id || !$profile->material_id){
+            $redirectTo = 'piece';
+            return redirect('/preferences')->with('redirectTo', 'piece');
         }
+
+        
 
         $pieceTypes = PieceType::where('visible', '=', 1)->get();
         return view('pieces/choosePiece', compact('pieceTypes'));

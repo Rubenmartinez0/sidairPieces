@@ -38,7 +38,7 @@ $(document).ready(function() {
             dataType: "json",
             success:function(data) {
                 $('#projects').empty();
-                $('#projects').append('<option disabled selected value">-- Seleccionar obra--</option>');
+                $('#projects').append('<option disabled selected value">-- Seleccionar obra --</option>');
                 $.each(data, function(key, project){
                     $('#projects').append('<option value="'+project.id+'" >'+project.name+'</option>');
                 });

@@ -49,12 +49,24 @@ class UserController extends Controller
      */
     public function updatePreferences(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
+        $redirectTo = $request->redirect_to;
 
         $data = $request->validate([
-            'client_id' => 'required|not_in:0',
-            'project_id' => 'required|not_in:0',
-            'material_id' => 'required|not_in:0',
+            'client_id' => 'required|int|not_in:0',
+            'project_id' => 'required|int|not_in:0',
+            'material_id' => 'required|int|not_in:0',
         ]);
+        
+        $user_id = auth()->user()->id;
+        $user = User::find(1)->where('id',  $user_id);
+        
+        $user->update($data);
+
+        if($redirectTo === 'piece'){
+            return redirect('/piece');
+        }else{
+            return redirect('/')->with('status', 'Preferencias actualizadas correctamente.');
+        }
     }
 }
