@@ -28,7 +28,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showSettings(Request $request)
+    public function showPreferences(Request $request)
     {
         //$projects = Project::where('finished_at', '=', NULL)->get();
         
@@ -40,14 +40,14 @@ class UserController extends Controller
         foreach($materials as $material){
             $material->name = ucfirst($material->name);
         }
-        return view('user/settings/view', compact('clients', 'materials'));
+        return view('user/preferences/view', compact('clients', 'materials'));
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function updateSettings(Request $request)
+    public function updatePreferences(Request $request)
     {
         dd($request->all());
 

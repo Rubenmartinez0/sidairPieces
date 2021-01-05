@@ -30,8 +30,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('{user}/pieces', 'App\Http\Controllers\PieceController@getMyOrders')->name('piece.getMyOrders');
 
 
-    Route::get('/settings', 'App\Http\Controllers\UserController@showSettings')->name('settings.show');
-    Route::post('/settings', 'App\Http\Controllers\UserController@updateSettings')->name('settings.store');
+    Route::get('/preferences', 'App\Http\Controllers\UserController@showPreferences')->name('preferences.show');
+    Route::post('/preferences', 'App\Http\Controllers\UserController@updatePreferences')->name('preferences.store');
 });
 
 Route::get('/projects/{client}', 'App\Http\Controllers\ProjectController@getProjectsByClient')->name('projects.getByClient');
