@@ -18,6 +18,9 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <!-- Font Awesome Icons -->
+    <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -56,9 +59,8 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a id="navbarCart" class="nav-link " href="#">
-                                    Carrito
-                                </a>
+                                <a id="navbarCart" class="nav-link fas fa-shopping-cart" href="/myCart"></a>
+
                             </li>
 
                             <li class="nav-item dropdown">

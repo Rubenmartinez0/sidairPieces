@@ -19,7 +19,8 @@ class CreateCartItemsTable extends Migration
             $table->index('user_id');
             $table->unsignedBigInteger('type_id');
             $table->index('type_id');
-            $table->string('measurements');
+            $table->mediumText('measurements')->nullable();
+            $table->tinyInteger("quantity");
             $table->timestamps();
         });
     }

@@ -54,9 +54,13 @@ class Piece extends Model
         return $this->belongsTo(PieceState::class);
     }
 
+    // public function type()
+    // {
+    //     return $this->hasOne(PieceType::class);
+    // }
     public function type()
     {
-        return $this->hasOne(PieceType::class);
+        return $this->belongsTo(PieceType::class);
     }
 
     public function material()

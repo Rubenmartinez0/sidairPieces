@@ -23,12 +23,23 @@ class UserController extends Controller
         //
     }
 
+    public static function getUserCurrentPreferences(int $id)
+    {
+        $profile = User::where('id', '=', $id)->with(['client', 'project', 'material'])->first();
+
+        $currentPreferences["client"] = $profile->client;
+        $currentPreferences["project"] = $profile->project;
+        $currentPreferences["material"] = $profile->material;
+
+        return $currentPreferences;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function showPreferences(Request $request)
+    public function showPreferencesView(Request $request)
     {
         //$projects = Project::where('finished_at', '=', NULL)->get();
         
@@ -68,5 +79,10 @@ class UserController extends Controller
         }else{
             return redirect('/')->with('status', 'Preferencias actualizadas correctamente.');
         }
+
+
+        // DO NOT ALLOW IF THERE ARE PIECES IN CART.
     }
+
+    
 }

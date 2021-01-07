@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex">
-                    <h4 >Encargar nueva pieza - <span class="font-weight-bold"> {{ $pieceType->name }}</span></h4>
+                    <h4 >Encargar nueva pieza de <strong>{{$currentPreferences["material"]->name}}</strong> para <strong>{{$currentPreferences["project"]->name}}</strong> - <span class="font-weight-bold"> {{ $pieceType->name }}</span></h4>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('piece.store') }}" enctype="multipart/form-data">
@@ -33,8 +33,11 @@
                                             
                                             <!-- Material -->
                                             <div class="d-flex">
-                                                <label for="material" id="test" class="col-8 col-sm-4 col-md-6 col-lg-6 col-xl-6 col-form-label text-md-right">{{ __('Material') }}</label>
-                                                <select id="material" class="col-md-6 col-lg-6 col-xl-6 form-control @error('material') is-invalid @enderror" name="material_id" value="{{ old('material_id') }}">
+                                                <label for="material" class="col-form-label text-md-right">{{ __('Material') }}</label>
+                                                <input disabled value="{{$currentPreferences["material"]->name}}" class="font-weight-bold text-primary" name="material_id">
+                                                <input hidden name="material_id" value="{{$currentPreferences["material"]->id}}">
+
+                                                {{-- <select id="material" class="col-md-6 col-lg-6 col-xl-6 form-control @error('material') is-invalid @enderror" name="material_id" value="{{ old('material_id') }}">
                                                     <option disabled selected value=""> -- </option>
                                                     @forelse($materials as $material)
                                                         <option value="{{ $material->id }}" {{ old('material_id') == $material->id ? 'selected' : '' }}>
@@ -48,7 +51,7 @@
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
-                                                @enderror
+                                                @enderror --}}
                                             </div>
                                         </div>
                                     </div>
@@ -57,7 +60,9 @@
                                     <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 float-right mb-3">
                                         <div class="d-flex">
                                             <label for="client" class="col-md-2 col-form-label text-md-right">Cliente</label>
-                                            <select id="client" type="text" class="col-md-6 form-control @error('client') is-invalid @enderror" name="client_id" value="{{ old('provider_id') }}">
+                                            <input disabled value="{{$currentPreferences["client"]->name}}" class="font-weight-bold text-primary">
+                                            <input hidden name="client_id" value="{{$currentPreferences["client"]->id}}">
+                                            {{-- <select id="client" type="text" class="col-md-6 form-control @error('client') is-invalid @enderror" name="client_id" value="{{ old('provider_id') }}">
                                                 <option selected="true" disabled="disabled" value> -- </option>
                                                 @forelse($clients as $client)
                                                     <option value="{{ $client->id }}" {{ old('client_id') == $client->id ? 'selected' : '' }}>
@@ -66,25 +71,27 @@
                                                 @empty
                                                     <option>There are no projects in the database</option>       
                                                 @endforelse
-                                            </select>
+                                            </select> 
                                             @error('client')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
-                                            @enderror
+                                            @enderror --}}
                                         </div>
                                     </div>
                                     <!-- Project -->
                                     <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 float-right d-flex mb-3">
                                         <label for="project" class="col-md-2 col-form-label text-md-right">Obra</label>
-                                        <select id="projects" type="text" class="col-md-6 form-control @error('projects') is-invalid @enderror" name="project_id" value="{{ old('provider_id') }}" autocomplete="provider_id" autofocus>
+                                        <input disabled value="{{$currentPreferences["project"]->name}}" class="font-weight-bold text-primary">
+                                        <input hidden name="project_id" value="{{$currentPreferences["project"]->id}}">
+                                        {{-- <select id="projects" type="text" class="col-md-6 form-control @error('projects') is-invalid @enderror" name="project_id" value="{{ old('provider_id') }}" autocomplete="provider_id" autofocus>
                                             <option disabled selected value>-- Seleccionar cliente --</option>
                                         </select>
                                         @error('projects')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
                                 </div>
                                 <div class="row pt-2">
@@ -96,7 +103,7 @@
                                     @endforeach
                                 </div>
                             <div class="mb-3 mr-3 float-right">
-                                <button type="submit" class="btn btn-primary">Encargar pieza</button>
+                                <button type="submit" class="btn btn-primary">Añadir al pedido</button>
                             </div> 
                         </div>
                     </form>

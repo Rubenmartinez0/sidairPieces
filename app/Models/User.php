@@ -54,14 +54,19 @@ class User extends Authenticatable
         return $this->hasOne(Role::class);
     }
 
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
     public function project()
     {
-        return $this->hasOne(Project::class);
+        return $this->belongsTo(Project::class);
     }
 
     public function material()
     {
-        return $this->hasOne(Material::class);
+        return $this->belongsTo(Material::class);
     }
     
     public function orders(){

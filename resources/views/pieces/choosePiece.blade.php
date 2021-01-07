@@ -4,7 +4,7 @@
 <div class="col-md-12 row justify-content-center">
     <div class="card">
         <div class="card-header d-flex ">
-            <h4 class="mr-auto">{{ __('Encargar nueva pieza') }}</h4>
+            <h4 class="mr-auto">Encargar nueva pieza de <strong>{{$currentPreferences["material"]->name}}</strong> para <strong>{{$currentPreferences["project"]->name}}</strong></h4>
         </div>
         <div class="card-body">
 

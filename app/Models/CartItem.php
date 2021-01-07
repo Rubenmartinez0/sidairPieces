@@ -14,7 +14,7 @@ class CartItem extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'type_id', 'measurements', 
+        'user_id', 'type_id', 'measurements', 'quantity',
     ];
 
     /**
@@ -36,6 +36,11 @@ class CartItem extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function type()
+    {
+        return $this->belongsTo(PieceType::class);
     }
 
 }
