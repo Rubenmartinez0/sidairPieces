@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('{user}/pieces', 'App\Http\Controllers\PieceController@getMyOrders')->name('piece.getMyOrders');
 
 
+    Route::get('cartItems/{user}', 'App\Http\Controllers\CartController@getCartItems')->name('cart.getItems');
     Route::get('/myCart', 'App\Http\Controllers\CartController@show')->name('cart.show');
     Route::delete('/myCart/{cartItemId}', 'App\Http\Controllers\CartController@destroy')->name('cartItem.destroy');
     Route::delete('/myCart', 'App\Http\Controllers\CartController@destroy')->name('cart.clean');

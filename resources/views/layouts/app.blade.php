@@ -59,7 +59,7 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a id="navbarCart" class="nav-link fas fa-shopping-cart" href="/myCart"></a>
+                                <a id="navbarCart" class="d-flex nav-link fas fa-shopping-cart" href="/myCart"><div id="cart-items-count">(0)</div></a>
 
                             </li>
 
@@ -98,6 +98,7 @@
         </main>
     </div>
     @yield('scripts')
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{ asset('js/fixbar.js') }}" type="text/javascript"></script>
 </body>
 </html>
