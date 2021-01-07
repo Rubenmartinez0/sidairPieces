@@ -36,6 +36,13 @@ class CartController extends Controller
     public function show(Request $request)
     {
         $id = Auth::user()->id;
+        $profile = User::where('id', '=', $id)->first();
+        
+        if(!$profile->client_id || !$profile->project_id || !$profile->material_id){
+            $redirectTo = 'piece';
+            return redirect('/preferences')->with('redirectTo', 'piece');
+        }
+
         $currentPieces = CartItem::where('user_id', '=', $id)->with('type')->orderBy('created_at', 'DESC')->get();
         $currentPreferences = UserController::getUserCurrentPreferences($id);
        

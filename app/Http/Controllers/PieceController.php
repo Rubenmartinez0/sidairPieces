@@ -46,7 +46,6 @@ class PieceController extends Controller
      */
     public function choosePiece()
     {
-        
         $id = Auth::user()->id;
         $profile = User::where('id', '=', $id)->first();
         

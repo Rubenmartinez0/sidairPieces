@@ -5,7 +5,7 @@
     <h2>Preferencias</h2>
     <hr>
 
-    <form action="" method="post" action="">
+    <form action="" method="post" action="{{ route('preferences.store') }}">
 
         @csrf
         <!-- Client -->
