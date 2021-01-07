@@ -60,29 +60,31 @@ class UserController extends Controller
      */
     public function updatePreferences(Request $request)
     {
-        //dd($request->all());
-        $redirectTo = $request->redirect_to;
-
-        $data = $request->validate([
-            'client_id' => 'required|int|not_in:0',
-            'project_id' => 'required|int|not_in:0',
-            'material_id' => 'required|int|not_in:0',
-        ]);
-        
-        $user_id = auth()->user()->id;
-        $user = User::find(1)->where('id',  $user_id);
-        
-        $user->update($data);
-
-        if($redirectTo === 'piece'){
-            return redirect('/piece');
-        }else{
-            return redirect('/')->with('status', 'Preferencias actualizadas correctamente.');
-        }
-
-
         // DO NOT ALLOW IF THERE ARE PIECES IN CART.
-    }
 
-    
+        $currentPieces = CartController::getCartItems();
+        if($currentPieces > 0){
+            return redirect('/preferences')->with('status', 'Es necesario pedir o eliminar las piezas de tu carrito antes de cambiar tus preferencias.');
+        }else{
+
+            $redirectTo = $request->redirect_to;
+
+            $data = $request->validate([
+                'client_id' => 'required|int|not_in:0',
+                'project_id' => 'required|int|not_in:0',
+                'material_id' => 'required|int|not_in:0',
+            ]);
+            
+            $user_id = auth()->user()->id;
+            $user = User::find(1)->where('id',  $user_id);
+            
+            $user->update($data);
+
+            if($redirectTo === 'piece'){
+                return redirect('/piece');
+            }else{
+                return redirect('/')->with('status', 'Preferencias actualizadas correctamente.');
+            }
+        }  
+    }
 }

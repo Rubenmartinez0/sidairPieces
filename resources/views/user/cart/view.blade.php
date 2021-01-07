@@ -13,10 +13,10 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                <th><input type="checkbox" id="select-all"> Seleccionar</th>
+                                <th><input type="checkbox" id="select-all"></th>
                                 <th>Cantidad</th>
                                 <th>Pieza</th>
-                                <th>Material</th>
+                                
                                 <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -26,9 +26,9 @@
                                         <td><input type="checkbox" value={{ $piece->id }}></td>
                                         <td><label>{{ $piece->quantity }}</label></td>
                                         <td><label>{{ $piece->type->name }}</label></td>
-                                        <td><label>{{$currentPreferences["material"]->name}}</label></td>
+                                        
                                         <td>
-                                            <a class="btn btn-primary mb-3" href="{{ url('/piece') }}">Ver detalle</a>
+                                            <a class="btn btn-primary mb-3" href="{{ url('/piece') }}">Detalle</a>
                                         </td>
                                     </tr>
                                 @endforeach

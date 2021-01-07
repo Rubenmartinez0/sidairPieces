@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container col-8 col-sm-8 col-md-6 col-lg-3 mt-5">
     <h2>Preferencias</h2>
     <hr>
@@ -61,9 +62,22 @@
         <input hidden name="redirect_to" value="{{ session('redirectTo') ?? '' }}">
         
         <br>
-        <input type="submit" value="Guardar opciones" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 btn btn-success btn-block ml-auto">
+        <div class="row mt-3 p-1" style="display:flex; justify-content:center;">
+            @if ($message = Session::get('status'))
+                <div id="status_message" class="alert alert-danger alert-block">
+                    <button type="button" class="close" data-dismiss="alert" >×</button>
+                    <strong>{{ $message }}</strong>
+                </div>
+            @else
+                <input type="submit" value="Guardar opciones" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 btn btn-success btn-block ml-auto">
+        
+            @endif
+        </div>
+    
     </form>
 </div>
+
+
 
 @endsection
 @section('scripts')

@@ -49,7 +49,7 @@ class CartController extends Controller
         return view('user/cart/view', compact('currentPieces', 'currentPreferences'));
     }
 
-    public function getCartItems(Request $request, User $id)
+    public static function getCartItems()
     {
         $id = Auth::user()->id;
         $currentPieces = CartItem::where('user_id', '=', $id)->count();
