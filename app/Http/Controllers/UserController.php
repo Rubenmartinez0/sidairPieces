@@ -79,9 +79,8 @@ class UserController extends Controller
             $user = User::find(1)->where('id',  $user_id);
             
             $user->update($data);
-
-            if($redirectTo === 'piece'){
-                return redirect('/piece');
+            if($redirectTo != ''){
+                return redirect($redirectTo);
             }else{
                 return redirect('/')->with('status', 'Preferencias actualizadas correctamente.');
             }

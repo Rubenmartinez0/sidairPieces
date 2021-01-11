@@ -51,8 +51,8 @@ class PieceController extends Controller
         
         
         if(!$profile->client_id || !$profile->project_id || !$profile->material_id){
-            $redirectTo = 'piece';
-            return redirect('/preferences')->with('redirectTo', 'piece');
+            //$redirectTo = 'piece';
+            return redirect('/preferences')->with('redirectTo', '/piece');
         }
 
         $profile = User::where('id', '=', $id)->with(['client', 'project', 'material'])->first();

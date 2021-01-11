@@ -36,17 +36,32 @@ class CartController extends Controller
     public function show(Request $request)
     {
         $id = Auth::user()->id;
+        
         $profile = User::where('id', '=', $id)->first();
         
         if(!$profile->client_id || !$profile->project_id || !$profile->material_id){
-            $redirectTo = 'piece';
-            return redirect('/preferences')->with('redirectTo', 'piece');
+            //$redirectTo = 'myCart';
+            return redirect('/preferences')->with('redirectTo', '/myCart');
         }
 
         $currentPieces = CartItem::where('user_id', '=', $id)->with('type')->orderBy('created_at', 'DESC')->get();
         $currentPreferences = UserController::getUserCurrentPreferences($id);
        
         return view('user/cart/view', compact('currentPieces', 'currentPreferences'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyCartItems(Request $request)
+    {
+        //dd($request->data[0]);
+        foreach($request->data as $item){
+            CartItem::destroy($item);
+        }
+        return response('Items deleted correctly', 200);
     }
 
     public static function getCartItems()
