@@ -13,7 +13,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                <th><input type="checkbox" id="select-all"></th>
+                                <th><input type="checkbox" id="selectAll"></th>
                                 <th>Cantidad</th>
                                 <th>Pieza</th>
                                 
@@ -48,18 +48,22 @@
                     <textarea style="resize: none;"></textarea>
                     <a class="btn btn-success" href="{{ url('#') }}">Guardar</a>
                 </div>
-                <a class="btn btn-warning fas fa-plus-circle" href="{{ url('#') }}"></a>
+                <br>
+                <label>
+                    <a class="btn btn-warning fas fa-plus-circle" href="{{ url('#') }}"></a>
+                    Añadir nota
+                </label>
             </div>
             
             
-            <a class="btn btn-primary mb-3" href="{{ url('/#') }}">Hacer pedido</a>
-            <a class="btn btn-danger mb-3" href="{{ url('/#') }}">Eliminar seleccionados</a>
+            <a class="btn btn-primary mb-3" action="{{ route('order.store') }}">Hacer pedido</a>
+            <a class="float-right btn btn-danger mb-3 " href="{{ url('/#') }}">Eliminar seleccionados</a>
         </div>
     </div>
 </div>
 @endsection
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="{{ asset('js/user/cart.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/user/cart/cart.js') }}" type="text/javascript"></script>
 
 @endsection
