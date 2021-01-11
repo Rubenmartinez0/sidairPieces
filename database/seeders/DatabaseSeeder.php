@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             ProjectStateSeeder::class,
             RoleSeeder::class,
             OrderStateSeeder::class,
+            CartItemSeeder::class,
         ]);
     }
 }
