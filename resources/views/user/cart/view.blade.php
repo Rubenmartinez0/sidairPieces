@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <h4 >Resumen del encargo de piezas de <strong>{{$currentPreferences["material"]->name}}</strong> para <strong>{{$currentPreferences["project"]->name}}</strong></h4>
+            <h3 >Resumen del encargo de piezas de <strong>{{$currentPreferences["material"]->name}}</strong> para <strong>{{$currentPreferences["project"]->name}}</strong></h3>
 
             <div class="tab-content" id="myTabContent">
                 <!-- All pieces !-->
@@ -39,6 +39,18 @@
                     @endif
                 </div>
             </div>
+            <hr>
+            <div class="mb-5">
+                <h4>Notas/piezas adicionales<h4>
+                <br>
+                <div class="row form-vertical">
+                    <label>#1</label>
+                    <textarea style="resize: none;"></textarea>
+                    <a class="btn btn-success" href="{{ url('#') }}">Guardar</a>
+                </div>
+                <a class="btn btn-warning fas fa-plus-circle" href="{{ url('#') }}"></a>
+            </div>
+            
             
             <a class="btn btn-primary mb-3" href="{{ url('/#') }}">Hacer pedido</a>
             <a class="btn btn-danger mb-3" href="{{ url('/#') }}">Eliminar seleccionados</a>

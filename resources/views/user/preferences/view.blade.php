@@ -69,8 +69,7 @@
                     <strong>{{ $message }}</strong>
                 </div>
             @else
-                <input type="submit" value="Guardar opciones" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 btn btn-success btn-block ml-auto">
-        
+                <input type="submit" value="Guardar preferencias" class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 btn btn-success btn-block ml-auto">
             @endif
         </div>
     
