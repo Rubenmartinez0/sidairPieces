@@ -3,62 +3,65 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12">
-            <h3 >Resumen del encargo de piezas de <strong>{{$currentPreferences["material"]->name}}</strong> para <strong>{{$currentPreferences["project"]->name}}</strong></h3>
+        <form method="POST" action="{{ route('order.store') }}">
+            {{-- @csrf --}}
+            <div class="col-md-12">
+                <h3 >Resumen del encargo de piezas de <strong>{{$currentPreferences["material"]->name}}</strong> para <strong>{{$currentPreferences["project"]->name}}</strong></h3>
 
-            <div class="tab-content" id="myTabContent">
-                <!-- All pieces !-->
-                <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
-                    @if (count($currentPieces) > 0)
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                <th><input type="checkbox" id="selectAll"></th>
-                                <th>Cantidad</th>
-                                <th>Pieza</th>
-                                
-                                <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($currentPieces as $piece)
+                <div class="tab-content" id="myTabContent">
+                    <!-- All pieces !-->
+                    <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+                        @if (count($currentPieces) > 0)
+                            <table class="table">
+                                <thead>
                                     <tr>
-                                        <td><input type="checkbox" value={{ $piece->id }}></td>
-                                        <td><label>{{ $piece->quantity }}</label></td>
-                                        <td><label>{{ $piece->type->name }}</label></td>
-                                        
-                                        <td>
-                                            <a class="btn btn-primary mb-3" href="{{ url('/piece') }}">Detalle</a>
-                                        </td>
+                                    <th><input type="checkbox" id="selectAll"></th>
+                                    <th>Cantidad</th>
+                                    <th>Pieza</th>
+                                    
+                                    <th>Acciones</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    @else
-                        <h4 class="mt-5">Aún no tienes ninguna pieza en el carrito.</h4>
-                    @endif
+                                </thead>
+                                <tbody>
+                                    @foreach($currentPieces as $piece)
+                                        <tr value={{ $piece->id }}>
+                                            {{-- <input value={{ $piece->id }} name="piece_{{ $piece->id }}"> --}}
+                                            <td><input type="checkbox" value={{ $piece->id }}></td>
+                                            <td><label>{{ $piece->quantity }}</label></td>
+                                            <td><label>{{ $piece->type->name }}</label></td>
+                                            
+                                            <td>
+                                                <a class="btn btn-primary mb-3" href="{{ url('/piece') }}">Detalle</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @else
+                            <h4 class="mt-5">Aún no tienes ninguna pieza en el carrito.</h4>
+                        @endif
+                    </div>
                 </div>
-            </div>
-            <hr>
-            <div class="mb-5">
-                <h4>Notas/piezas adicionales<h4>
-                <br>
-                <div class="row form-vertical">
-                    <label>#1</label>
-                    <textarea style="resize: none;"></textarea>
-                    <a class="btn btn-success" href="{{ url('#') }}">Guardar</a>
+                <hr>
+                <div class="mb-5">
+                    <h4>Notas/piezas adicionales<h4>
+                    <br>
+                    <div class="row form-vertical">
+                        <label>#1</label>
+                        <textarea style="resize: none;"></textarea>
+                        <a class="btn btn-success" href="{{ url('#') }}">Guardar</a>
+                    </div>
+                    <br>
+                    <label>
+                        <a class="btn btn-warning fas fa-plus-circle" href="{{ url('#') }}"></a>
+                        Añadir nota
+                    </label>
                 </div>
-                <br>
-                <label>
-                    <a class="btn btn-warning fas fa-plus-circle" href="{{ url('#') }}"></a>
-                    Añadir nota
-                </label>
+                <button type="submit" class="btn btn-primary mb-3">Hacer pedido</button>
+                <a id="deleteSelected" class="float-right btn btn-danger mb-3">Eliminar seleccionados</a>
+                
             </div>
-            
-            
-            <a class="btn btn-primary mb-3" action="{{ route('order.store') }}">Hacer pedido</a>
-            <a class="float-right btn btn-danger mb-3 " href="{{ url('/#') }}">Eliminar seleccionados</a>
-        </div>
+        </form>
     </div>
 </div>
 @endsection
