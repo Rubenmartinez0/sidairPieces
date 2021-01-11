@@ -72,6 +72,19 @@ class CartController extends Controller
         return $currentPieces;
     }
 
+    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function updateItems(Request $request)
+    {
+        $itemId = $request->id;
+        $newQuantity = $request->newQuantity;
+        CartItem::where('id', '=', $itemId)->update(array('quantity' => $newQuantity));
+        
+    }
 
     
 }

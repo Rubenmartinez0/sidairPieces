@@ -24,10 +24,10 @@
                                 </thead>
                                 <tbody>
                                     @foreach($currentPieces as $piece)
-                                        <tr value={{ $piece->id }}>
+                                        <tr>
                                             {{-- <input value={{ $piece->id }} name="piece_{{ $piece->id }}"> --}}
                                             <td><input type="checkbox" value={{ $piece->id }}></td>
-                                            <td><label>{{ $piece->quantity }}</label></td>
+                                            <td><input id= {{ $piece->id }} type="number" min="1" max="99" pattern="\d+" value="{{ $piece->quantity }}"></td>
                                             <td><label>{{ $piece->type->name }}</label></td>
                                             
                                             <td>
