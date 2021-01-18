@@ -63,6 +63,14 @@ class CartController extends Controller
         }
         return response('Items deleted correctly', 200);
     }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public static function cleanCartItem($id){
+        CartItem::destroy($id);
+    }
 
     public static function getCartItems()
     {
@@ -71,6 +79,8 @@ class CartController extends Controller
        
         return $currentPieces;
     }
+
+    
 
     
     /**

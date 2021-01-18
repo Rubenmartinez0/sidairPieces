@@ -57,17 +57,11 @@ class OrderController extends Controller
                 Piece::create($pieceToCreate);
 
                 //remove cartItem from cart
-                CartItem::destroy($piece->id);
+                CartController::cleanCartItem($piece->id);
             }
             return redirect('/')->with('status', 'Pedido realizado correctamente.');
         }else{
             return redirect('/myCart')->with('status_fail', 'Se deben añadir piezas o notas para poder hacer un pedido.');
         }
-        
-        
-
-        
-
-        return redirect('/');
     }
 }

@@ -34,7 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/myCart', 'App\Http\Controllers\CartController@show')->name('cart.show');
     Route::patch('/myCart', 'App\Http\Controllers\CartController@updateItems')->name('cart.updateItems');
     Route::delete('/myCart', 'App\Http\Controllers\CartController@destroyCartItems')->name('cart.destroyItems');
-    //Route::delete('/myCart', 'App\Http\Controllers\CartController@destroy')->name('cart.clean');
+    Route::delete('/myCart', 'App\Http\Controllers\CartController@cleanCartItems')->name('cart.clean');
 
 
     Route::post('/order/store', 'App\Http\Controllers\OrderController@store')->name('order.store');
