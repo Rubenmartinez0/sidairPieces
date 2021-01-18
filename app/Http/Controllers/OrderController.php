@@ -16,7 +16,7 @@ use App\Models\Order;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -88,10 +88,18 @@ class OrderController extends Controller
      */
     public function generateOrderId()
     {   
-        $lastOrderId = Order::max('id');
-        $newOrderId = str_pad($lastOrderId+1, 4, 0, STR_PAD_LEFT);
-        //dd(date('ymd') . $newOrderId);
-        return date('ymd') . $newOrderId;
+        
+        $todayLastOrderId = Order::whereDate('created_at', Carbon::today())->orderBy('order_id', 'DESC')->first();
+
+        if($todayLastOrderId){ //if there is at least one order.
+            $todayLastOrderId = $todayLastOrderId->order_id;
+            $newOrderId = str_pad($todayLastOrderId+1, 4, 0, STR_PAD_LEFT);
+            return $newOrderId;
+        }else{ // today's first order.
+            $newOrderId = str_pad(1, 4, 0, STR_PAD_LEFT);
+            return date('ymd') . $newOrderId;
+        }
+        
     }
 
 }
