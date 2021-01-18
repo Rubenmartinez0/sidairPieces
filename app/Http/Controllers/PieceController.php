@@ -69,7 +69,7 @@ class PieceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, PieceType $pieceType)
+    public function addPieceToCart(Request $request, PieceType $pieceType)
     {
         //$projects = Project::where('finished_at', '=', NULL)->with("client")->get();
         //$projects = Project::where('finished_at', '=', NULL)->get();
@@ -90,7 +90,7 @@ class PieceController extends Controller
 
         $currentPreferences = UserController::getUserCurrentPreferences($id);
 
-        return view('pieces/create', compact('pieceType', 'measurements' , 'currentPreferences'));
+        return view('pieces/addToCart', compact('pieceType', 'measurements' , 'currentPreferences'));
     }
     /**
      * Display a listing of the resource.

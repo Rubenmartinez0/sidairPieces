@@ -14,7 +14,7 @@ class PieceType extends Model
      * @var array
      */
     protected $fillable = [
-        'name','image_path', 'visible'
+        'name','image_path', 'image_path2', 'visible'
     ];
 
     /**

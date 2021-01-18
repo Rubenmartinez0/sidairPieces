@@ -16,7 +16,12 @@
                                 <div class="row justify-content-center text-center" style="display:inline-block">
                                     <!-- Piece Image -->
                                     <div class="col-6 col-sm-4 float-left text-center">
-                                        <img src="{{ $pieceType->image_path }}" class="pr-2" style="height:10em; width:10em;" alt="{{ $pieceType->name }}">
+                                        @if($pieceType->image_path2)
+                                            <img src="{{ $pieceType->image_path2 }}" class="pr-2" style="height:15em; width:15em;" alt="{{ $pieceType->name }}">
+
+                                        @else
+                                            <img src="{{ $pieceType->image_path }}" class="pr-2" style="height:15em; width:15em;" alt="{{ $pieceType->name }}">
+                                        @endif
                                         <input hidden name="type_id" value="{{ $pieceType->id }}">
                                         <br>
                                         <a class="btn btn-warning mt-2" href="{{ url('/piece') }}">Elegir otra pieza</a>    

@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <hr>
-                <div class="mb-5">
+                {{-- <div class="mb-5">
                     <h4>Notas/piezas adicionales<h4>
                     <br>
                     <div class="row form-vertical">
@@ -56,7 +56,7 @@
                         <a class="btn btn-warning fas fa-plus-circle" href="{{ url('#') }}"></a>
                         Añadir nota
                     </label>
-                </div>
+                </div> --}}
                 <button type="submit" class="btn btn-primary mb-3">Hacer pedido</button>
                 <a id="deleteSelected" class="float-right btn btn-danger mb-3">Eliminar seleccionados</a>
                 

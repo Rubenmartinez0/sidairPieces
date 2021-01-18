@@ -25,7 +25,7 @@ Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('i
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/piece', 'App\Http\Controllers\PieceController@choosePiece')->name('piece.index');
-    Route::get('/piece/{pieceType}', 'App\Http\Controllers\PieceController@create')->name('piece.create');
+    Route::get('/piece/{pieceType}', 'App\Http\Controllers\PieceController@addPieceToCart')->name('piece.addToCart');
     Route::post('/piece/store', 'App\Http\Controllers\PieceController@store')->name('piece.store');
     Route::get('{user}/pieces', 'App\Http\Controllers\PieceController@getMyOrders')->name('piece.getMyOrders');
 
