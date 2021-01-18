@@ -13,6 +13,7 @@
                             <thead>
                                 <tr>
                                 <th>Estado</th>
+                                <th>Número de pedido</th>
                                 <th>Cliente</th>
                                 <th>Obra</th>
                                 <th>Material</th>
@@ -40,6 +41,7 @@
                                                     <label class="bg-dark rounded-lg p-1 font-weight-bold">Desconocido</label>
                                             @endswitch
                                         </td>
+                                        <td><label>{{ $order->order_id }}</label></td>
                                         <td><label>{{ $order->client->name }}</label></td>
                                         <td><label>{{ $order->project->name }}</label></td>
                                         <td><label>{{ $order->material->name }}</label></td>

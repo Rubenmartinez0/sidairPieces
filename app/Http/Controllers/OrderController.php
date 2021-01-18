@@ -46,14 +46,17 @@ class OrderController extends Controller
         // check if there are items/pieces or notes in the cart.
         if(count($currentCartItems) || count($currentCartNotes)){
             //create a new order
-            $order = ['created_by' => $id, 'client_id' => $currentPreferences['client']['id'], 'project_id' => $currentPreferences['project']['id'], 'material_id' => $currentPreferences['material']['id'], 'state_id' => 1];
+            $orderId = $this->generateOrderId();
+            $order = ['order_id' => $orderId, 'created_by' => $id, 'client_id' => $currentPreferences['client']['id'],
+            'project_id' => $currentPreferences['project']['id'],
+            'material_id' => $currentPreferences['material']['id'],'state_id' => 1];
             $order = Order::create($order);
             
             //create each piece
             foreach($currentCartItems as $piece){
                 $pieceToCreate = ['quantity' => $piece->quantity, 'measurements' => $piece->measurements, 'type_id' => $piece->type_id,
-                'material_id' => $currentPreferences['material']['id'], 'project_id' => $currentPreferences['project']['id'], 'ordered_by' => $id,
-                'state_id' => 1, 'order_id' => $order->id ];
+                'material_id' => $currentPreferences['material']['id'], 'project_id' => $currentPreferences['project']['id'],
+                'ordered_by' => $id, 'state_id' => 1, 'order_id' => $order->id ];
                 Piece::create($pieceToCreate);
 
                 //remove cartItem from cart
@@ -64,9 +67,8 @@ class OrderController extends Controller
             return redirect('/myCart')->with('status_fail', 'Se deben añadir piezas o notas para poder hacer un pedido.');
         }
     }
-
-
-     /**
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -77,7 +79,19 @@ class OrderController extends Controller
       
         return view('user/order/index', compact('orders', 'user'));
     }
+    
 
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function generateOrderId()
+    {   
+        $lastOrderId = Order::max('id');
+        $newOrderId = str_pad($lastOrderId+1, 4, 0, STR_PAD_LEFT);
+        //dd(date('ymd') . $newOrderId);
+        return date('ymd') . $newOrderId;
+    }
 
 }
