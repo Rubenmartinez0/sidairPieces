@@ -64,4 +64,20 @@ class OrderController extends Controller
             return redirect('/myCart')->with('status_fail', 'Se deben añadir piezas o notas para poder hacer un pedido.');
         }
     }
+
+
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getMyOrders(User $user)
+    {   
+        $orders = Order::where('created_by', '=', $user->id)->with('client', 'project', 'material', 'state', 'notes', 'pieces')->orderBy('created_at', 'DESC')->get();
+      
+        return view('user/order/index', compact('orders', 'user'));
+    }
+
+
+
 }

@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/piece', 'App\Http\Controllers\PieceController@choosePiece')->name('piece.index');
     Route::get('/piece/{pieceType}', 'App\Http\Controllers\PieceController@addPieceToCart')->name('piece.addToCart');
     Route::post('/piece/store', 'App\Http\Controllers\PieceController@store')->name('piece.store');
-    Route::get('{user}/pieces', 'App\Http\Controllers\PieceController@getMyOrders')->name('piece.getMyOrders');
+    Route::get('{user}/pieces', 'App\Http\Controllers\PieceController@myOrderedPieces')->name('piece.myOrderedPieces');
 
 
     Route::get('/cartItems', 'App\Http\Controllers\CartController@getCartItems')->name('cart.getItems');
@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
     Route::post('/order/store', 'App\Http\Controllers\OrderController@store')->name('order.store');
-
+    Route::get('{user}/order', 'App\Http\Controllers\OrderController@getMyOrders')->name('order.getMyOrders');
 
     Route::get('/preferences', 'App\Http\Controllers\UserController@showPreferencesView')->name('preferences.show');
     Route::post('/preferences', 'App\Http\Controllers\UserController@updatePreferences')->name('preferences.store');

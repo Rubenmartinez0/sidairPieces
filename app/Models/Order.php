@@ -40,22 +40,22 @@ class Order extends Model
     
     public function project()
     {
-        return $this->hasOne(Project::class);
+        return $this->belongsTo(Project::class);
     }
 
     public function client()
     {
-        return $this->hasOne(Client::class);
+        return $this->belongsTo(Client::class);
     }
 
     public function material()
     {
-        return $this->hasOne(Material::class);
+        return $this->belongsTo(Material::class);
     }
 
     public function state()
     {
-        return $this->hasOne(OrderState::class);
+        return $this->belongsTo(OrderState::class);
     }
 
     public function notes()

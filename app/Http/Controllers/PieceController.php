@@ -117,14 +117,13 @@ class PieceController extends Controller
     }
 
 
-    
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function getMyOrders(Request $request, User $user)
+    public function myOrderedPieces(Request $request, User $user)
     {   
         $allOrders = Piece::where('ordered_by', '=', $user->id)->with('state', 'project', 'type', 'material')->orderBy('ordered_at', 'DESC')->get();
         //$allOrders = Piece::with('state', 'project', 'type', 'material')->get();
