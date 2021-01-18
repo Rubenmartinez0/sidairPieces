@@ -13,7 +13,7 @@
                         @csrf
                         <div class="container">
                             
-                                <div class="row justify-content-center text-center" style="display:inline-block">
+                                <div class="row justify-content-center text-center" st0yle="display:inline-block">
                                     <!-- Piece Image -->
                                     <div class="col-6 col-sm-4 float-left text-center">
                                         @if($pieceType->image_path2)

@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <form method="POST" action="{{ route('order.store') }}">
-            {{-- @csrf --}}
+            @csrf
             <div class="col-md-12">
                 <h3 >Resumen del encargo de piezas de <strong>{{$currentPreferences["material"]->name}}</strong> para <strong>{{$currentPreferences["project"]->name}}</strong></h3>
 
@@ -60,6 +60,14 @@
                 <button type="submit" class="btn btn-primary mb-3">Hacer pedido</button>
                 <a id="deleteSelected" class="float-right btn btn-danger mb-3">Eliminar seleccionados</a>
                 
+                <div class="row mt-3 p-1" style="display:flex; justify-content:center;">
+                    @if ($message = Session::get('status_fail'))
+                        <div id="status_message_fail" class="alert alert-danger alert-block">
+                            <button type="button" class="close" data-dismiss="alert" >×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+                </div>
             </div>
         </form>
     </div>

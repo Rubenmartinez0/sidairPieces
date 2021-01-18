@@ -29,11 +29,8 @@ $(document).ready(function() {
 
                         
                         //remove from frontend every row that has been deleted.
-                        console.log("success");
-
                         $("input[type=checkbox").each(function( index ) {
                             if(this.checked && $(this).attr('id') != "selectAll"){
-                                    console.log("removing " +this.value);
                                     $(this).closest('tr').remove();
                             }
                         });

@@ -21,6 +21,8 @@ class CreatePiecesTable extends Migration
             // $table->index('image_id');
             $table->unsignedBigInteger('type_id');
             $table->index('type_id');
+            $table->unsignedBigInteger('order_id');
+            $table->index('order_id');
             $table->unsignedBigInteger('material_id');
             $table->index('material_id');
             $table->unsignedBigInteger('state_id');
