@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             ProjectSeeder::class,
             ProjectStateSeeder::class,
             RoleSeeder::class,
+            OrderSeeder::class,
             OrderStateSeeder::class,
             CartItemSeeder::class,
         ]);

@@ -41,12 +41,12 @@
                                                     <label class="bg-dark rounded-lg p-1 font-weight-bold">Desconocido</label>
                                             @endswitch
                                         </td>
-                                        <td><label>{{ $order->order_id }}</label></td>
+                                        <td><a class="btn btn-primary" href="/order/{{ $order->id }}">{{ $order->order_id }}</a></td>
                                         <td><label>{{ $order->client->name }}</label></td>
                                         <td><label>{{ $order->project->name }}</label></td>
                                         <td><label>{{ $order->material->name }}</label></td>
                                         <td><label>{{ $order->created_at }}</label></td>
-                                        <td><a class="btn btn-primary" href="/order/{{ $order->id }}">Detalles</a></td>
+                                        
                                     </tr>
                                 @endforeach
                             </tbody>

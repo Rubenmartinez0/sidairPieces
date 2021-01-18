@@ -33,8 +33,9 @@
                                             <!-- Quantity -->
                                             <div class="d-flex mb-3">
                                                 <label for="quantity" class="col-8 col-sm-4 col-md-6 col-lg-6 col-xl-6 col-form-label text-md-right">{{ __('Cantidad') }}</label>
-                                                <input id="quantity" maxLength="2" type="text" class="col-md-6 col-lg-6 col-xl-6 form-control @error('quantity') is-invalid @enderror" name="quantity" value="{{ old('quantity') }}">
+                                                <input id="quantity" maxLength="2" type="number" min="1" max="5000" required="required" class="col-md-6 col-lg-6 col-xl-6 form-control @error('quantity') is-invalid @enderror" name="quantity" value="{{ old('quantity') }}">
                                             </div>
+                                            
                                             
                                             <!-- Material -->
                                             <div class="d-flex">
