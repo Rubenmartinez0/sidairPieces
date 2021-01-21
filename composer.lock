@@ -540,7 +540,7 @@
                 "symfony/http-kernel": "^4.3.4|^5"
             },
             "require-dev": {
-                "laravel/framework": "^6|^7|^8",
+                "laravel/framework": "^8.22.1",
                 "orchestra/testbench-dusk": "^4|^5|^6",
                 "phpunit/phpunit": "^6|^7|^8",
                 "squizlabs/php_codesniffer": "^3.5"
@@ -5559,7 +5559,7 @@
                 "fideloper/proxy": "^4.4.0",
                 "friendsofphp/php-cs-fixer": "^2.16.4",
                 "fruitcake/laravel-cors": "^2.0.1",
-                "laravel/framework": "^8.0",
+                "laravel/framework": "^8.22.1",
                 "laravel/tinker": "^2.4.1",
                 "nunomaduro/larastan": "^0.6.2",
                 "nunomaduro/mock-final-classes": "^1.0",
