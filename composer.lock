@@ -540,7 +540,7 @@
                 "symfony/http-kernel": "^4.3.4|^5"
             },
             "require-dev": {
-                "laravel/framework": "^8.22.1",
+                "laravel/framework": "8.22.1",
                 "orchestra/testbench-dusk": "^4|^5|^6",
                 "phpunit/phpunit": "^6|^7|^8",
                 "squizlabs/php_codesniffer": "^3.5"
@@ -894,7 +894,7 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.18.1",
+            "version": "8.22.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
