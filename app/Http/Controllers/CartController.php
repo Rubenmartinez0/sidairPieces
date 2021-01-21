@@ -80,6 +80,25 @@ class CartController extends Controller
         return $currentPieces;
     }
 
+    public static function cartItemView(Request $request, CartItem $item)
+    {
+        
+
+        $piece = $item;
+        $pieceType = PieceType::where('id', '=', $item->type_id)->first();
+        //dd($pieceType);
+        $id = Auth::user()->id;
+        $currentPreferences = UserController::getUserCurrentPreferences($id);
+        
+        $measurements = $piece->measurements;
+        
+        $measurements = explode(",", $measurements);
+        //dd($measurements);
+        
+
+        return view('user/cart/itemView', compact('piece', 'pieceType', 'currentPreferences', 'measurements'));
+    }
+
     
 
     

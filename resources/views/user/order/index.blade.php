@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <h4>Pedidos realizados por {{ $user->username }}</h4>
+            <h4>Tus pedidos</h4>
             <div>
                 <!-- All pieces !-->
                 <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">

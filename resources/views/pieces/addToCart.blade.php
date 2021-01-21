@@ -6,10 +6,10 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex">
-                    <h4 >Encargar nueva pieza de <strong>{{$currentPreferences["material"]->name}}</strong> para <strong>{{$currentPreferences["project"]->name}}</strong> - <span class="font-weight-bold"> {{ $pieceType->name }}</span></h4>
+                    <h4 >Encargar nueva pieza de <strong>{{$currentPreferences["material"]->name}}</strong> para <strong>{{$currentPreferences["project"]->name}}</strong> - <strong> {{ $pieceType->name }}</strong></h4>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('piece.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('piece.storeToCart') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="container">
                             

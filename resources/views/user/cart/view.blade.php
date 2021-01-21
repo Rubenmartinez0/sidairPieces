@@ -27,11 +27,11 @@
                                         <tr>
                                             {{-- <input value={{ $piece->id }} name="piece_{{ $piece->id }}"> --}}
                                             <td><input type="checkbox" value={{ $piece->id }}></td>
-                                            <td><input id= {{ $piece->id }} type="number" min="1" max="99" pattern="\d+" value="{{ $piece->quantity }}"></td>
+                                            <td><input id={{ $piece->id }} type="number" min="1" max="99" pattern="\d+" value="{{ $piece->quantity }}"></td>
                                             <td><label>{{ $piece->type->name }}</label></td>
                                             
                                             <td>
-                                                <a class="btn btn-primary mb-3" href="{{ url('/piece') }}">Detalle</a>
+                                                <a class="btn btn-primary mb-3" href="{{ route('cart.showItem',$piece->id) }}">Detalle</a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -73,11 +73,12 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getMyOrders(User $user)
-    {   
-        $orders = Order::where('created_by', '=', $user->id)->with('client', 'project', 'material', 'state', 'notes', 'pieces')->orderBy('created_at', 'DESC')->get();
+    public function getMyOrders()
+    {
+        $userId = Auth::user()->id;
+        $orders = Order::where('created_by', '=', $userId)->with('client', 'project', 'material', 'state', 'notes', 'pieces')->orderBy('created_at', 'DESC')->get();
       
-        return view('user/order/index', compact('orders', 'user'));
+        return view('user/order/index', compact('orders'));
     }
     
 

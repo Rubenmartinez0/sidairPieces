@@ -69,19 +69,8 @@ class PieceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addPieceToCart(Request $request, PieceType $pieceType)
+    public function addPieceToCartView(Request $request, PieceType $pieceType)
     {
-        //$projects = Project::where('finished_at', '=', NULL)->with("client")->get();
-        //$projects = Project::where('finished_at', '=', NULL)->get();
-        
-        // $clients = Client::where('visible', '=', 1)->get(); 
-        // foreach($clients as $client){
-        //     $client->name = ucfirst($client->name);
-        // }
-        // $materials = Material::where('visible', '=', 1)->get();
-        // foreach($materials as $material){
-        //     $material->name = ucfirst($material->name);
-        // }
 
         $measurements = $pieceType->measurements;
         //dd($measurements);
@@ -97,7 +86,7 @@ class PieceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storePieceToCart(Request $request)
     {
         
         $data = $request->validate([
@@ -107,10 +96,22 @@ class PieceController extends Controller
             'client_id' => 'required|not_in:0',
             'project_id' => 'required|not_in:0',
         ]);
-        //$data["state_id"] = 1;
-        //$data["ordered_by"] = auth()->user()->id;
         $data["user_id"] = auth()->user()->id;
-        //Piece::create($data);
+
+
+
+        $currentPieceMeasurements = PieceType::where('id', '=', $data['type_id'])->first();
+        $measurementsToDb = '';
+        foreach($currentPieceMeasurements->measurements as $measure){
+            if($request->$measure){ // Check that current measure exists
+                $measurementsToDb .= $measure . ":" . $request->$measure . ',';
+            }
+        }
+        //dd($measurementsToDb);
+        $measurementsToDb = rtrim($measurementsToDb, ", ");
+        
+        //dd($measurementsToDb);
+        $data["measurements"] = $measurementsToDb;
         CartItem::create($data);
 
         return redirect('/piece');

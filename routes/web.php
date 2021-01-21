@@ -25,20 +25,21 @@ Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('i
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/piece', 'App\Http\Controllers\PieceController@choosePiece')->name('piece.index');
-    Route::get('/piece/{pieceType}', 'App\Http\Controllers\PieceController@addPieceToCart')->name('piece.addToCart');
-    Route::post('/piece/store', 'App\Http\Controllers\PieceController@store')->name('piece.store');
+    Route::get('/piece/{pieceType}', 'App\Http\Controllers\PieceController@addPieceToCartView')->name('piece.addToCartView');
+    Route::post('/piece/store', 'App\Http\Controllers\PieceController@storePieceToCart')->name('piece.storeToCart');
     Route::get('{user}/pieces', 'App\Http\Controllers\PieceController@myOrderedPieces')->name('piece.myOrderedPieces');
 
 
     Route::get('/cartItems', 'App\Http\Controllers\CartController@getCartItems')->name('cart.getItems');
     Route::get('/myCart', 'App\Http\Controllers\CartController@show')->name('cart.show');
+    Route::get('/myCart/{item}', 'App\Http\Controllers\CartController@cartItemView')->name('cart.showItem');
     Route::patch('/myCart', 'App\Http\Controllers\CartController@updateItems')->name('cart.updateItems');
     Route::delete('/myCart', 'App\Http\Controllers\CartController@destroyCartItems')->name('cart.destroyItems');
-    Route::delete('/myCart', 'App\Http\Controllers\CartController@cleanCartItems')->name('cart.clean');
+    //Route::delete('/myCart', 'App\Http\Controllers\CartController@cleanCartItems')->name('cart.clean');
 
 
     Route::post('/order/store', 'App\Http\Controllers\OrderController@store')->name('order.store');
-    Route::get('{user}/order', 'App\Http\Controllers\OrderController@getMyOrders')->name('order.getMyOrders');
+    Route::get('/myOrders', 'App\Http\Controllers\OrderController@getMyOrders')->name('order.getMyOrders');
 
     Route::get('/preferences', 'App\Http\Controllers\UserController@showPreferencesView')->name('preferences.show');
     Route::post('/preferences', 'App\Http\Controllers\UserController@updatePreferences')->name('preferences.store');
