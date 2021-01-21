@@ -30,16 +30,17 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('{user}/pieces', 'App\Http\Controllers\PieceController@myOrderedPieces')->name('piece.myOrderedPieces');
 
 
-    Route::get('/cartItems', 'App\Http\Controllers\CartController@getCartItems')->name('cart.getItems');
+    Route::get('/cartItems', 'App\Http\Controllers\CartController@getCartItemsCount')->name('cart.getItems');
     Route::get('/myCart', 'App\Http\Controllers\CartController@show')->name('cart.show');
     Route::get('/myCart/{item}', 'App\Http\Controllers\CartController@cartItemView')->name('cart.showItem');
     Route::patch('/myCart', 'App\Http\Controllers\CartController@updateItems')->name('cart.updateItems');
     Route::delete('/myCart', 'App\Http\Controllers\CartController@destroyCartItems')->name('cart.destroyItems');
     //Route::delete('/myCart', 'App\Http\Controllers\CartController@cleanCartItems')->name('cart.clean');
 
-
-    Route::post('/order/store', 'App\Http\Controllers\OrderController@store')->name('order.store');
     Route::get('/myOrders', 'App\Http\Controllers\OrderController@getMyOrders')->name('order.getMyOrders');
+    Route::get('/order/{order_id}', 'App\Http\Controllers\OrderController@showSummary')->name('order.showSummary');
+    Route::post('/order/store', 'App\Http\Controllers\OrderController@store')->name('order.store');
+    
 
     Route::get('/preferences', 'App\Http\Controllers\UserController@showPreferencesView')->name('preferences.show');
     Route::post('/preferences', 'App\Http\Controllers\UserController@updatePreferences')->name('preferences.store');

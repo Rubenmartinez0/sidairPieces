@@ -6,7 +6,7 @@
         <form method="POST" action="{{ route('order.store') }}">
             @csrf
             <div class="col-md-12">
-                <h3 >Resumen del encargo de piezas de <strong>{{$currentPreferences["material"]->name}}</strong> para <strong>{{$currentPreferences["project"]->name}}</strong></h3>
+                <h3 >Resumen del carrito de <strong>{{$currentPreferences["material"]->name}}</strong> para <strong>{{$currentPreferences["project"]->name}}</strong></h3>
 
                 <div class="tab-content" id="myTabContent">
                     <!-- All pieces !-->

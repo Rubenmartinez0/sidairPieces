@@ -72,12 +72,16 @@ class CartController extends Controller
         CartItem::destroy($id);
     }
 
-    public static function getCartItems()
+    public static function getCartItemsCount()
+    {
+        $id = Auth::user()->id;  
+        return CartItem::where('user_id', '=', $id)->count();
+    }
+
+    public static function getCartNotesCount()
     {
         $id = Auth::user()->id;
-        $currentPieces = CartItem::where('user_id', '=', $id)->count();
-       
-        return $currentPieces;
+        return CartNotes::where('user_id', '=', $id)->count();
     }
 
     public static function cartItemView(Request $request, CartItem $item)

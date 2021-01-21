@@ -12,6 +12,7 @@ use App\Models\Material;
 use App\Models\Client;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Note;
 
 
 use Illuminate\Http\Request;
@@ -67,7 +68,29 @@ class OrderController extends Controller
             return redirect('/myCart')->with('status_fail', 'Se deben añadir piezas o notas para poder hacer un pedido.');
         }
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showSummary(int $order_id)
+    {
+        $userId = Auth::user()->id;
+        $order = Order::where('order_id', '=', $order_id)->with('client', 'project', 'material', 'state')->orderBy('created_at', 'DESC')->first();
+        $orderPieces = Piece::where('order_id', '=', $order->id)->with('state', 'type')->get();
+        $orderNotes = Note::where('order_id', '=', $order->id)->get();
+
+        //dd($orderPieces);
+        $order->totalPieces = 0;
+        foreach($orderPieces as $piece){
+            $order->totalPieces += $piece->quantity;
+        }
+        return view('user/order/show', compact('order', 'orderPieces', 'orderNotes'));
+    }
     
+
+
     /**
      * Display a listing of the resource.
      *
