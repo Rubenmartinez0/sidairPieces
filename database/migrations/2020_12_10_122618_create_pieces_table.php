@@ -29,6 +29,8 @@ class CreatePiecesTable extends Migration
             $table->index('state_id');
             $table->unsignedBigInteger('project_id');
             $table->index('project_id');
+            $table->unsignedBigInteger('client_id');
+            $table->index('client_id');
             $table->unsignedBigInteger('ordered_by');
             $table->index('ordered_by');
             $table->timestamp("ordered_at")->default(DB::raw('CURRENT_TIMESTAMP'));
