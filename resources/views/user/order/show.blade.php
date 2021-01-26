@@ -42,7 +42,7 @@
                 <label><strong>Número total de piezas: </strong>{{ $order->totalPieces }} piezas y {{ $order->totalNotes }} nota/s.</label>
             </div>
             <div class="border border-gray rounded p-3 mb-3">
-                <h4>Piezas del pedido:</h4>
+                <h4><strong>Piezas del pedido:</strong></h4>
                 <!-- All pieces !-->
                 <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
                     @if (count($orderPieces) > 0)
@@ -90,10 +90,10 @@
 
                 <div>
                     @if ($order->totalNotes > 0)
-                        <h4>Notas del pedido:</h4>
+                        <h4><strong>Notas del pedido:</strong></h4>
 
                         @foreach($orderNotes as $note)
-                                <h5>{{ $loop->index+1 }}. {{ $note->content }}</h5>
+                                <h5><strong>{{ $loop->index+1 }}.</strong> {{ $note->content }}</h5>
                         @endforeach
                     @else
                         <h5 class=""><i class="far fa-comment-alt text-primary"></i> Este pedido no tiene ningúna nota.</h5>
