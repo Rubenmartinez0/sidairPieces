@@ -60,10 +60,8 @@ class UserController extends Controller
      */
     public function updatePreferences(Request $request)
     {
-        // DO NOT ALLOW IF THERE ARE PIECES IN CART.
-
-        $currentPieces = CartController::getCartItemsCount();
-        if($currentPieces > 0){
+        $cartCurrentItems = CartController::getCartItemsCount();
+        if($cartCurrentItems > 0){
             return redirect('/preferences')->with('status', 'Es necesario pedir o eliminar las piezas de tu carrito antes de cambiar tus preferencias.');
         }else{
 

@@ -75,7 +75,9 @@ class CartController extends Controller
     public static function getCartItemsCount()
     {
         $id = Auth::user()->id;  
-        return CartItem::where('user_id', '=', $id)->count();
+        $cartPiecesCount = CartItem::where('user_id', '=', $id)->count(); 
+        $cartNotesCount = CartNote::where('user_id', '=', $id)->count();
+        return $cartPiecesCount+$cartNotesCount;
     }
 
     public static function getCartNotesCount()
