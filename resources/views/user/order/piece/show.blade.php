@@ -10,10 +10,26 @@
                 </div>
                 <div class="card-body">
                     <div class="container">
-                        
+
                             <div class="row justify-content-center text-center">
                                 <!-- Piece Image -->
                                 <div class="col-6 col-sm-4 float-left text-center">
+                                    @switch($piece->state->id)
+                                        @case(1)
+                                            <label class="bg-warning rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
+                                            @break
+                                        @case(2)
+                                            <label class="bg-primary text-white rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
+                                            @break
+                                        @case(3)
+                                            <label class="bg-success rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
+                                            @break
+                                        @case(4)
+                                            <label class="bg-danger text-white rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
+                                            @break
+                                        @default
+                                            <label class="bg-dark rounded-lg p-1 font-weight-bold">Desconocido</label>
+                                    @endswitch
                                     @if($piece->type->image_path2)
                                         <img src="{{ $piece->type->image_path2 }}" class="pr-2" style="height:15em; width:15em;" alt="{{  $piece->type->name }}">
                                     @else
@@ -55,7 +71,7 @@
                                 @endforeach
                             </div>
                         <div class="mb-3 mr-3 float-left">
-                            <a class="btn btn-primary mb-3 d-flex" href="/myCart"><div>Atrás</div></a>
+                            <a class="btn btn-primary mb-3 d-flex" href="/order/{{ $piece->order->order_id }}"><div>Atrás</div></a>
                         </div> 
                     </div>
                    

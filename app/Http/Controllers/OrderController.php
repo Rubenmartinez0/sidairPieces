@@ -106,8 +106,6 @@ class OrderController extends Controller
         $piece = Piece::where('id', '=', $piece->id)->with('type','order', 'state', 'material', 'project', 'client')->first();
         $created_by = User::where('id', '=', $piece->ordered_by)->first();
         $piece->ordered_by = $created_by->username;
-        
-        //dd($piece);
         $measurements = $piece->measurements;
         $measurements = explode(",", $measurements);
         
