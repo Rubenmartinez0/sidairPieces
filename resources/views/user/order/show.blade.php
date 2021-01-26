@@ -58,18 +58,18 @@
                                 @foreach($orderPieces as $piece)
                                     <tr>
                                         <td>
-                                            @switch($order->state_id)
+                                            @switch($piece->state->id)
                                                 @case(1)
-                                                    <label class="bg-warning rounded-lg p-1 font-weight-bold">{{ $order->state->state }}</label>
+                                                    <label class="bg-warning rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
                                                     @break
                                                 @case(2)
-                                                    <label class="bg-primary text-white rounded-lg p-1 font-weight-bold">{{ $order->state->state }}</label>
+                                                    <label class="bg-primary text-white rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
                                                     @break
                                                 @case(3)
-                                                    <label class="bg-success rounded-lg p-1 font-weight-bold">{{ $order->state->state }}</label>
+                                                    <label class="bg-success rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
                                                     @break
                                                 @case(4)
-                                                    <label class="bg-danger text-white rounded-lg p-1 font-weight-bold">{{ $order->state->state }}</label>
+                                                    <label class="bg-danger text-white rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
                                                     @break
                                                 @default
                                                     <label class="bg-dark rounded-lg p-1 font-weight-bold">Desconocido</label>

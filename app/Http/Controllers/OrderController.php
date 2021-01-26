@@ -83,8 +83,7 @@ class OrderController extends Controller
         $created_by = User::where('id', '=', $order->created_by)->first();
         $order->ordered_by = $created_by->username;
 
-        
-
+        //dd($orderPieces);
         $order->totalPieces = 0;
         foreach($orderPieces as $piece){
             $order->totalPieces += $piece->quantity;
