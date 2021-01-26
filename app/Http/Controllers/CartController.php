@@ -46,7 +46,7 @@ class CartController extends Controller
         }
 
         $currentPieces = CartItem::where('user_id', '=', $id)->with('type')->orderBy('created_at', 'DESC')->get();
-        $currentNotes = CartNote::where('user_id', '=', $id)->orderBy('created_at', 'DESC')->get();
+        $currentNotes = CartNote::where('user_id', '=', $id)->orderBy('created_at', 'ASC')->get();
         $currentPreferences = UserController::getUserCurrentPreferences($id);
        
         return view('user/cart/view', compact('currentPieces', 'currentNotes', 'currentPreferences'));
@@ -115,9 +115,6 @@ class CartController extends Controller
         return view('user/cart/itemView', compact('piece', 'pieceType', 'currentPreferences', 'measurements'));
     }
 
-    
-
-    
     /**
      * Display a listing of the resource.
      *
@@ -129,15 +126,39 @@ class CartController extends Controller
             $itemId = $request->id;
             $newQuantity = $request->newQuantity;
             CartItem::where('id', '=', $itemId)->update(array('quantity' => $newQuantity));
+            return response('Piece quantity updated correctly.', 200);
         }
         if($request->newTextValue){ // update note content
             $noteId = $request->id;
             $newTextValue = $request->newTextValue;
+            $newTextValue = trim($newTextValue);
+
             CartNote::where('id', '=', $noteId)->update(array('content' => $newTextValue));
+            return response('Note content updated correctly.', 200);
         }
         
         
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createNote()
+    {
+    
+        $user_id = Auth::user()->id;
+       
+        $blankCartNotesCount = CartNote::where('user_id', '=', $user_id)->where('content', '=', '')->count();
+        if($blankCartNotesCount > 0){
+            return response('There is already a blank note', 200);
+        }else{
+            CartNote::create(['user_id' => $user_id, 'content' =>'']);
+            return response('Note created correctly', 200);
+        }
+        
+    }
+    
     
 }

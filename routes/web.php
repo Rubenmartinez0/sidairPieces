@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/cartItems', 'App\Http\Controllers\CartController@getCartItemsCount')->name('cart.getItems');
     Route::get('/myCart', 'App\Http\Controllers\CartController@show')->name('cart.show');
     Route::get('/myCart/{item}', 'App\Http\Controllers\CartController@cartItemView')->name('cart.showItem');
+    Route::post('/myCart/addNote', 'App\Http\Controllers\CartController@createNote')->name('cart.createNote');
     Route::patch('/myCart', 'App\Http\Controllers\CartController@updateItems')->name('cart.updateItems');
     Route::delete('/myCart', 'App\Http\Controllers\CartController@destroyCartItems')->name('cart.destroyItems');
     //Route::delete('/myCart', 'App\Http\Controllers\CartController@cleanCartItems')->name('cart.clean');

@@ -20,7 +20,7 @@ class CreateCartItemsTable extends Migration
             $table->unsignedBigInteger('type_id');
             $table->index('type_id');
             $table->mediumText('measurements')->nullable();
-            $table->tinyInteger("quantity");
+            $table->integer("quantity");
             $table->timestamps();
         });
     }

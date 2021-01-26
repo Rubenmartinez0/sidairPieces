@@ -35,12 +35,12 @@ $(document).ready(function() {
                         //remove from frontend every piece and note that has been deleted.
                         $(".pieceCheckbox").each(function( index ) {
                             if(this.checked && $(this).attr('id') != "selectAll"){
-                                    $(this).closest('tr').remove();
+                                $(this).closest('tr').remove();
                             }
                         });
                         $(".noteCheckbox").each(function( index ) {
                             if(this.checked){
-                                    $(this).closest('div').remove();
+                                 $(this).closest('div').remove();
                             }
                         });
                         location.reload();
@@ -76,6 +76,34 @@ $(document).ready(function() {
             url: '/myCart',
             type: "PATCH",
             data: data,
+            success: function(message){
+                $(".noteInput").each(function( index ) {
+                    $(this).css('border', '');
+                });
+            }
         });
+    });
+
+    $('#addNoteButton').click(function() {
+        var emptyInput;
+        $(".noteInput").each(function( index ) {
+            if( !$(this).val()){
+                $(this).css("border", "2px solid red");
+                emptyInput = true;
+                return;
+            }
+        });
+        if(!emptyInput){
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '/myCart/addNote',
+                type: "POST",
+                success:function(message) {
+                    location.reload();
+                }
+            });
+        }
     });
 });

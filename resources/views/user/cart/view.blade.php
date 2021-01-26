@@ -49,22 +49,22 @@
                                 <h4><strong>Notas adicionales</strong></h4>
                                     @foreach($currentNotes as $note)
                                         <div class="m-3">
-                                            <input class="noteCheckbox" type="checkbox" class="mr-2" value={{ $note->id }}>
-                                            <input id={{ $note->id }} class="noteInput" type="text" class="m-auto" style="width: 90%" value="{{ $note->content }}">
+                                            <input class="noteCheckbox mr-2" type="checkbox" value={{ $note->id }}>
+                                            <input id={{ $note->id }} class="noteInput m-auto" type="text" style="width: 90%" value="{{ $note->content }}">
                                             {{-- <a class="btn btn-success m-auto float-right" href="{{ url('#') }}">Guardar</a> --}}
                                         {{-- <a class="btn btn-success m-auto" href="{{ url('cartNote/save/{{$note->id}}') }}">Guardar</a> --}}
                                         </div>
                                     @endforeach
 
-                                <div class="mb-2">
-                                    <a class="btn btn-warning fas fa-plus-circle" href="{{ url('#') }}"></a>
+                                <div class="mb-2 addButtonDiv">
+                                    <a class="btn btn-warning fas fa-plus-circle" id="addNoteButton"></a>
                                     <strong >Añadir nota</strong>
                                 </div>
                             </div>
                         @else
                             <h4 class="mt-5"><i class="fas fa-exclamation-triangle text-danger"></i> Aún no tienes ninguna pieza o nota en el carrito.</h4>
                             <div class="mb-2">
-                                <a class="btn btn-warning fas fa-plus-circle mt-3" href="{{ url('#') }}"></a>
+                                <a class="btn btn-warning fas fa-plus-circle mt-3" id="addNoteButton"></a>
                                 <strong >Añadir nota</strong>
                             </div>
                         @endif
