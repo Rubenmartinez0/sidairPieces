@@ -51,11 +51,24 @@ $(document).ready(function() {
     });
 
 
-    $("input[type=number]").on("input", function() {
+    $(".pieceQuantityInput").on("input", function() {
         var id = $(this).attr("id");
         var newValue = this.value;
         var data = { newQuantity : newValue, id: id };
-        //alert("Piece "+ id +" changed to " + this.value);
+
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '/myCart',
+            type: "PATCH",
+            data: data,
+        });
+    });
+    $(".noteInput").on("input", function() {
+        var id = $(this).attr("id");
+        var newTextValue = this.value;
+        var data = { newTextValue : newTextValue, id: id };
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

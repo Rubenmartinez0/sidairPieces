@@ -61,12 +61,12 @@ class CartController extends Controller
     {
         //dd($request->data[0]);
         //return $request->all();
-        if($request->pieces){
+        if($request->pieces){ // delete cart pieces
             foreach($request->pieces as $item){
                 CartItem::destroy($item);
             }
         }
-        if($request->notes){
+        if($request->notes){ // delete cart notes
             foreach($request->notes as $item){
                 CartNote::destroy($item);
             }
@@ -125,9 +125,17 @@ class CartController extends Controller
      */
     public function updateItems(Request $request)
     {
-        $itemId = $request->id;
-        $newQuantity = $request->newQuantity;
-        CartItem::where('id', '=', $itemId)->update(array('quantity' => $newQuantity));
+        if($request->newQuantity){ // update piece quantity
+            $itemId = $request->id;
+            $newQuantity = $request->newQuantity;
+            CartItem::where('id', '=', $itemId)->update(array('quantity' => $newQuantity));
+        }
+        if($request->newTextValue){ // update note content
+            $noteId = $request->id;
+            $newTextValue = $request->newTextValue;
+            CartNote::where('id', '=', $noteId)->update(array('content' => $newTextValue));
+        }
+        
         
     }
 

@@ -31,7 +31,7 @@
                                                 <tr>
                                                     {{-- <input value={{ $piece->id }} name="piece_{{ $piece->id }}"> --}}
                                                     <td><input type="checkbox" class="pieceCheckbox" value={{ $piece->id }}></td>
-                                                    <td><input id={{ $piece->id }} type="number" min="1" max="99" pattern="\d+" value="{{ $piece->quantity }}"></td>
+                                                    <td><input id={{ $piece->id }} class="pieceQuantityInput" type="number" min="1" max="99" pattern="\d+" value="{{ $piece->quantity }}"></td>
                                                     <td><label>{{ $piece->type->name }}</label></td>
                                                     
                                                     <td>
@@ -48,10 +48,10 @@
                             <div class="border border-gray rounded pt-3 pl-3 pr-3 mb-3 mt-3">
                                 <h4><strong>Notas adicionales</strong></h4>
                                     @foreach($currentNotes as $note)
-                                        <div class="row form-vertical m-3">
-                                            <input class="noteCheckbox" type="checkbox" class="mt-2 mr-2" value={{ $note->id }}>
-                                            <input type="text" class="m-auto" style="width: 80%" value="{{ $note->content }}">
-                                            <a class="btn btn-success m-auto float-left" href="{{ url('#') }}">Guardar</a>
+                                        <div class="m-3">
+                                            <input class="noteCheckbox" type="checkbox" class="mr-2" value={{ $note->id }}>
+                                            <input id={{ $note->id }} class="noteInput" type="text" class="m-auto" style="width: 90%" value="{{ $note->content }}">
+                                            {{-- <a class="btn btn-success m-auto float-right" href="{{ url('#') }}">Guardar</a> --}}
                                         {{-- <a class="btn btn-success m-auto" href="{{ url('cartNote/save/{{$note->id}}') }}">Guardar</a> --}}
                                         </div>
                                     @endforeach
