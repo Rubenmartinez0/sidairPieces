@@ -46,9 +46,10 @@ class CartController extends Controller
         }
 
         $currentPieces = CartItem::where('user_id', '=', $id)->with('type')->orderBy('created_at', 'DESC')->get();
+        $currentNotes = CartNote::where('user_id', '=', $id)->orderBy('created_at', 'DESC')->get();
         $currentPreferences = UserController::getUserCurrentPreferences($id);
        
-        return view('user/cart/view', compact('currentPieces', 'currentPreferences'));
+        return view('user/cart/view', compact('currentPieces', 'currentNotes', 'currentPreferences'));
     }
 
     /**

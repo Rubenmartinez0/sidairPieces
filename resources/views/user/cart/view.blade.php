@@ -9,54 +9,61 @@
                 <h3 >Resumen del carrito de <strong>{{$currentPreferences["material"]->name}}</strong> para <strong>{{$currentPreferences["project"]->name}}</strong></h3>
 
                 <div class="tab-content" id="myTabContent">
-                    <!-- All pieces !-->Piezas
+                    <!-- All pieces !-->
                     <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
                         @if (count($currentPieces) > 0)
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                    <th><input type="checkbox" id="selectAll"></th>
-                                    <th>Cantidad</th>
-                                    <th>Pieza</th>
-                                    
-                                    <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($currentPieces as $piece)
+                            
+                            <div class="border border-gray rounded pt-3 pl-3 pr-3 mb-3 mt-3">
+                                <h4><strong>Piezas</strong></h4>
+                                <table class="table">
+                                    <thead>
                                         <tr>
-                                            {{-- <input value={{ $piece->id }} name="piece_{{ $piece->id }}"> --}}
-                                            <td><input type="checkbox" value={{ $piece->id }}></td>
-                                            <td><input id={{ $piece->id }} type="number" min="1" max="99" pattern="\d+" value="{{ $piece->quantity }}"></td>
-                                            <td><label>{{ $piece->type->name }}</label></td>
-                                            
-                                            <td>
-                                                <a class="btn btn-primary mb-3" href="{{ route('cart.showItem',$piece->id) }}">Detalle</a>
-                                            </td>
+                                        <th><input type="checkbox" id="selectAll"></th>
+                                        <th>Cantidad</th>
+                                        <th>Pieza</th>
+                                        
+                                        <th>Acciones</th>
                                         </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($currentPieces as $piece)
+                                            <tr>
+                                                {{-- <input value={{ $piece->id }} name="piece_{{ $piece->id }}"> --}}
+                                                <td><input type="checkbox" value={{ $piece->id }}></td>
+                                                <td><input id={{ $piece->id }} type="number" min="1" max="99" pattern="\d+" value="{{ $piece->quantity }}"></td>
+                                                <td><label>{{ $piece->type->name }}</label></td>
+                                                
+                                                <td>
+                                                    <a class="btn btn-primary" href="{{ route('cart.showItem',$piece->id) }}">Detalle</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="border border-gray rounded pt-3 pl-3 pr-3 mb-3 mt-3">
+                                <h4><strong>Notas adicionales</strong></h4>
+                                    @foreach($currentNotes as $note)
+                                        <div class="row form-vertical m-3">
+                                            <input type="checkbox" class="mt-2 mr-2" value={{ $note->id }}>
+                                            <input type="text" class="m-auto" style="width: 80%" value="{{ $note->content }}">
+                                            <a class="btn btn-success m-auto float-left" href="{{ url('#') }}">Guardar</a>
+                                        {{-- <a class="btn btn-success m-auto" href="{{ url('cartNote/save/{{$note->id}}') }}">Guardar</a> --}}
+                                        </div>
                                     @endforeach
-                                </tbody>
-                            </table>
+
+                                <div class="mb-2">
+                                    <a class="btn btn-warning fas fa-plus-circle" href="{{ url('#') }}"></a>
+                                    <strong >Añadir nota</strong>
+                                </div>
+                            </div>
                         @else
                             <h4 class="mt-5"><i class="fas fa-exclamation-triangle text-danger"></i> Aún no tienes ninguna pieza/nota en el carrito.</h4>
                         @endif
                     </div>
                 </div>
-                <hr>
-                {{-- <div class="mb-5">
-                    <h4>Notas/piezas adicionales<h4>
-                    <br>
-                    <div class="row form-vertical">
-                        <label>#1</label>
-                        <textarea style="resize: none;"></textarea>
-                        <a class="btn btn-success" href="{{ url('#') }}">Guardar</a>
-                    </div>
-                    <br>
-                    <label>
-                        <a class="btn btn-warning fas fa-plus-circle" href="{{ url('#') }}"></a>
-                        Añadir nota
-                    </label>
-                </div> --}}
+                
+                
                 @if (count($currentPieces) > 0)
                     <button type="submit" class="btn btn-primary mb-3">Hacer pedido</button>
                     <a id="deleteSelected" class="float-right btn btn-danger mb-3">Eliminar seleccionados</a>
