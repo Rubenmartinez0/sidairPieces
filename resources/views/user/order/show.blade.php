@@ -8,7 +8,26 @@
 
 
             <div class="border border-gray rounded p-3 mb-3">
-                <label><strong>Estado del pedido: </strong>{{ $order->state->state}}</label>
+                <label><strong>Estado del pedido: </strong></label>
+
+                @switch($order->state_id)
+                    @case(1)
+                        <label class="bg-warning rounded-lg p-1 font-weight-bold">{{ $order->state->state }}</label>
+                        @break
+                    @case(2)
+                        <label class="bg-primary text-white rounded-lg p-1 font-weight-bold">{{ $order->state->state }}</label>
+                        @break
+                    @case(3)
+                        <label class="bg-success rounded-lg p-1 font-weight-bold">{{ $order->state->state }}</label>
+                        @break
+                    @case(4)
+                        <label class="bg-danger text-white rounded-lg p-1 font-weight-bold">{{ $order->state->state }}</label>
+                        @break
+                    @default
+                        <label class="bg-dark rounded-lg p-1 font-weight-bold">Desconocido</label>
+                @endswitch
+
+
                 <br>
                 <label><strong>Fecha de encargo: </strong>{{ $order->created_at }}</label>
                 <br>
@@ -20,7 +39,7 @@
                 <br>
                 <label><strong>Número total de piezas: </strong>{{ $order->totalPieces }} y ZZZ notas.</label>
             </div>
-            <div>
+            <div class="border border-gray rounded p-3 mb-3">
                 <h4>Piezas del pedido:</h4>
                 <!-- All pieces !-->
                 <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
@@ -37,7 +56,24 @@
                             <tbody>
                                 @foreach($orderPieces as $piece)
                                     <tr>
-                                        <td><label>{{ $piece->state->state }}</label></td>
+                                        <td>
+                                            @switch($order->state_id)
+                                                @case(1)
+                                                    <label class="bg-warning rounded-lg p-1 font-weight-bold">{{ $order->state->state }}</label>
+                                                    @break
+                                                @case(2)
+                                                    <label class="bg-primary text-white rounded-lg p-1 font-weight-bold">{{ $order->state->state }}</label>
+                                                    @break
+                                                @case(3)
+                                                    <label class="bg-success rounded-lg p-1 font-weight-bold">{{ $order->state->state }}</label>
+                                                    @break
+                                                @case(4)
+                                                    <label class="bg-danger text-white rounded-lg p-1 font-weight-bold">{{ $order->state->state }}</label>
+                                                    @break
+                                                @default
+                                                    <label class="bg-dark rounded-lg p-1 font-weight-bold">Desconocido</label>
+                                            @endswitch
+                                        </td>
                                         <td><label>{{ $piece->quantity }}</label></td>
                                         <td><label>{{ $piece->type->name }}</label></td>
                                         <td><a class="btn btn-primary" href="#">Detalle</a></td>
@@ -49,8 +85,12 @@
                         </table>
                     @endif
                 </div>
+
+                <div>
+                    <h4>Notas del pedido:</h4>
+                </div>
             </div>
-            <hr>
+            
             
             
             <div class="row mt-3 p-1" style="display:flex; justify-content:center;">
