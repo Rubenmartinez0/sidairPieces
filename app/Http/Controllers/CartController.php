@@ -60,8 +60,16 @@ class CartController extends Controller
     public function destroyCartItems(Request $request)
     {
         //dd($request->data[0]);
-        foreach($request->data as $item){
-            CartItem::destroy($item);
+        //return $request->all();
+        if($request->pieces){
+            foreach($request->pieces as $item){
+                CartItem::destroy($item);
+            }
+        }
+        if($request->notes){
+            foreach($request->notes as $item){
+                CartNote::destroy($item);
+            }
         }
         return response('Items deleted correctly', 200);
     }

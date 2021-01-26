@@ -2,20 +2,26 @@ $(document).ready(function() {
 
     $("#selectAll").change(function() {
         booleanValue = this.checked ? true : false;
-        $("input[type=checkbox]").prop('checked', booleanValue, $(this).prop('checked', booleanValue));
+        $(".pieceCheckbox").prop('checked', booleanValue, $(this).prop('checked', booleanValue));
     });
     
     $('#deleteSelected').click(function() {
         //console.log('Click con click');
-        var itemsToDelete = [];
-        //itemsToDelete.push(value);
-        $("input[type=checkbox]" ).each(function( index ) {
+        var piecesToDelete = [];
+        var notesToDelete = [];
+        //piecesToDelete.push(value);
+        $(".pieceCheckbox" ).each(function( index ) {
             if(this.checked && $(this).attr('id') != "selectAll"){
-                itemsToDelete.push(this.value);
+                piecesToDelete.push(this.value);
             }
         });
-        if(itemsToDelete.length > 0){
-            if (confirm("Seguro que quieres eliminar las piezas seleccionadas?")) {
+        $(".noteCheckbox" ).each(function( index ) {
+            if(this.checked){
+                notesToDelete.push(this.value);
+            }
+        });
+        if(piecesToDelete.length > 0 || notesToDelete.length > 0){
+            if (confirm("Seguro que quieres eliminar las piezas/notas seleccionadas?")) {
                 
                 $.ajax({
                     headers: {
@@ -24,19 +30,24 @@ $(document).ready(function() {
                     url: '/myCart',
                     type: "DELETE",
                     
-                    data: { data : itemsToDelete },
+                    data: { pieces : piecesToDelete, notes: notesToDelete },
                     success:function(message) {
 
-                        
+                        console.log(message);
                         //remove from frontend every row that has been deleted.
-                        $("input[type=checkbox").each(function( index ) {
+                        $(".pieceCheckbox").each(function( index ) {
                             if(this.checked && $(this).attr('id') != "selectAll"){
                                     $(this).closest('tr').remove();
                             }
                         });
-                        if( $("#selectAll").is(':checked')){
-                            $("table").remove();
-                        }
+                        $(".noteCheckbox").each(function( index ) {
+                            if(this.checked){
+                                    $(this).closest('div').remove();
+                            }
+                        });
+                        // if( $("#selectAll").is(':checked')){
+                        //     $("table").remove();
+                        // }
                         location.reload();
                     }
                 });
