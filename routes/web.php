@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/myOrders', 'App\Http\Controllers\OrderController@getMyOrders')->name('order.getMyOrders');
     Route::get('/order/{order_id}', 'App\Http\Controllers\OrderController@showSummary')->name('order.showSummary');
+    Route::get('/order/piece/{piece}', 'App\Http\Controllers\OrderController@showPiece')->name('order.showPiece');
     Route::post('/order/store', 'App\Http\Controllers\OrderController@store')->name('order.store');
     
 

@@ -27,7 +27,8 @@
                         <label class="bg-dark rounded-lg p-1 font-weight-bold">Desconocido</label>
                 @endswitch
 
-
+                <br>
+                <label><strong>Pedido realizado por: </strong>{{ $order->ordered_by }}</label>
                 <br>
                 <label><strong>Fecha de encargo: </strong>{{ $order->created_at }}</label>
                 <br>
@@ -37,7 +38,7 @@
                 <br>
                 <label><strong>Material de las piezas: </strong>{{ $order->material->name}}</label>
                 <br>
-                <label><strong>Número total de piezas: </strong>{{ $order->totalPieces }} y ZZZ notas.</label>
+                <label><strong>Número total de piezas: </strong>{{ $order->totalPieces }} piezas y {{ $order->totalNotes }} nota/s.</label>
             </div>
             <div class="border border-gray rounded p-3 mb-3">
                 <h4>Piezas del pedido:</h4>
@@ -76,7 +77,7 @@
                                         </td>
                                         <td><label>{{ $piece->quantity }}</label></td>
                                         <td><label>{{ $piece->type->name }}</label></td>
-                                        <td><a class="btn btn-primary" href="#">Detalle</a></td>
+                                        <td><a class="btn btn-primary" href="{{ route('order.showPiece', $piece->id) }}">Detalle</a></td>
                                         {{-- <td><a class="btn btn-primary" href="{{ route('cart.showItem',$piece->id) }}">Detalle</a></td> --}}
 
                                     </tr>

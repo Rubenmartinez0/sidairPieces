@@ -57,7 +57,7 @@ class OrderController extends Controller
             foreach($currentCartItems as $piece){
                 $pieceToCreate = ['quantity' => $piece->quantity, 'measurements' => $piece->measurements, 'type_id' => $piece->type_id,
                 'material_id' => $currentPreferences['material']['id'], 'project_id' => $currentPreferences['project']['id'],
-                'ordered_by' => $id, 'state_id' => 1, 'order_id' => $order->id ];
+                'client_id' => $currentPreferences['client']['id'], 'ordered_by' => $id, 'state_id' => 1, 'order_id' => $order->id ];
                 Piece::create($pieceToCreate);
 
                 //remove cartItem from cart
@@ -80,16 +80,41 @@ class OrderController extends Controller
         $order = Order::where('order_id', '=', $order_id)->with('client', 'project', 'material', 'state')->orderBy('created_at', 'DESC')->first();
         $orderPieces = Piece::where('order_id', '=', $order->id)->with('state', 'type')->get();
         $orderNotes = Note::where('order_id', '=', $order->id)->get();
+        $created_by = User::where('id', '=', $order->created_by)->first();
+        $order->ordered_by = $created_by->username;
 
-        //dd($orderPieces);
+        
+
         $order->totalPieces = 0;
         foreach($orderPieces as $piece){
             $order->totalPieces += $piece->quantity;
         }
+        $order->totalNotes = count($orderNotes);
+
+        
         return view('user/order/show', compact('order', 'orderPieces', 'orderNotes'));
     }
-    
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showPiece(Piece $piece)
+    {
+
+        $piece = Piece::where('id', '=', $piece->id)->with('type','order', 'state', 'material', 'project', 'client')->first();
+        $created_by = User::where('id', '=', $piece->ordered_by)->first();
+        $piece->ordered_by = $created_by->username;
+        
+        //dd($piece);
+        $measurements = $piece->measurements;
+        $measurements = explode(",", $measurements);
+        
+        return view('user/order/piece/show', compact('piece', 'measurements'));
+    }
+    
+    
 
     /**
      * Display a listing of the resource.

@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex">
-                    <h4 >Pieza en carrito: <strong> {{ $pieceType->name }}</strong> </h4>
+                    <h4 >Pieza perteneciente al pedido: <strong> <a href="/order/{{ $piece->order->order_id }}">{{ $piece->order->order_id }} </a></strong> </h4>
                 </div>
                 <div class="card-body">
                     <div class="container">
@@ -14,10 +14,10 @@
                             <div class="row justify-content-center text-center">
                                 <!-- Piece Image -->
                                 <div class="col-6 col-sm-4 float-left text-center">
-                                    @if($pieceType->image_path2)
-                                        <img src="{{ $pieceType->image_path2 }}" class="pr-2" style="height:15em; width:15em;" alt="{{ $pieceType->name }}">
+                                    @if($piece->type->image_path2)
+                                        <img src="{{ $piece->type->image_path2 }}" class="pr-2" style="height:15em; width:15em;" alt="{{  $piece->type->name }}">
                                     @else
-                                        <img src="{{ $pieceType->image_path }}" class="pr-2" style="height:15em; width:15em;" alt="{{ $pieceType->name }}">
+                                        <img src="{{ $piece->type->image_path }}" class="pr-2" style="height:15em; width:15em;" alt="{{  $piece->type->name }}">
                                     @endif
                                     <br>    
                                 </div>    
@@ -31,19 +31,19 @@
                                     
                                     <!-- Material -->
                                     <div class="d-flex mb-2">
-                                        <label class="col-form-label text-md-right"><strong>{{ __('Material:') }}</strong> {{$currentPreferences["material"]->name}}</label>
+                                        <label class="col-form-label text-md-right"><strong>{{ __('Material:') }}</strong> {{ $piece->material->name }}</label>
                                     </div>
                         
                                 
                                     <!-- Client -->
                                 
                                     <div class="d-flex mb-2">
-                                        <label class=" col-form-label text-md-right"><strong>Cliente:</strong> {{$currentPreferences["client"]->name}}</label>
+                                        <label class=" col-form-label text-md-right"><strong>Cliente:</strong> {{ $piece->client->name }}</label>
                                     </div>
                                 
                                     <!-- Project -->
                                     <div class="d-flex mb-2">
-                                        <label class="col-form-label text-md-right"><strong>Obra:</strong> {{$currentPreferences["project"]->name}}</label>
+                                        <label class="col-form-label text-md-right"><strong>Obra:</strong> {{ $piece->project->name }}</label>
                                     </div>
                                 </div>
                             </div>
