@@ -9,7 +9,7 @@
                 <h3 >Resumen del carrito de <strong>{{$currentPreferences["material"]->name}}</strong> para <strong>{{$currentPreferences["project"]->name}}</strong></h3>
 
                 <div class="tab-content" id="myTabContent">
-                    <!-- All pieces !-->
+                    <!-- All pieces !-->PIezas
                     <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
                         @if (count($currentPieces) > 0)
                             <table class="table">

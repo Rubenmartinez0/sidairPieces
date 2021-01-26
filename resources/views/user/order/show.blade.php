@@ -8,7 +8,7 @@
             <h3>Resumen del pedido: <strong>{{ $order->order_id }}</strong></h3>
             
             
-            <div class="border border-gray rounded p-3 mb-3">
+            <div class="border border-gray rounded p-3 mb-3 mt-3">
                 <label><strong>Estado del pedido: </strong></label>
 
                 @switch($order->state_id)
