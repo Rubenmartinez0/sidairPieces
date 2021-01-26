@@ -23,6 +23,7 @@ class Piece extends Model
         'material_id',
         'state_id',
         'project_id',
+        'client_id',
         'ordered_by',
         'ordered_at',
         'manufactured_by',
@@ -45,6 +46,11 @@ class Piece extends Model
     protected $casts = [
     ];
 
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
     public function project()
     {
         return $this->belongsTo(Project::class);
@@ -64,10 +70,7 @@ class Piece extends Model
     {
         return $this->belongsTo(Material::class);
     }
-    public function ordered_by()
-    {
-        return $this->belongsTo(User::class);
-    }
+
 
     public function order()
     {
