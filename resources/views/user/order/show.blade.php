@@ -4,9 +4,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-8">
+            <a class="btn btn-primary m-auto float-right" onclick="history.back()">Atras</a>
             <h3>Resumen del pedido: <strong>{{ $order->order_id }}</strong></h3>
-
-
+            
+            
             <div class="border border-gray rounded p-3 mb-3">
                 <label><strong>Estado del pedido: </strong></label>
 
