@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             ClientSeeder::class,
             MaterialSeeder::class,
             PieceSeeder::class,
+            NoteSeeder::class,
             PieceStateSeeder::class,
             PieceTypeSeeder::class,
             ProjectSeeder::class,

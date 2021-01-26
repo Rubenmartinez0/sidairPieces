@@ -9,7 +9,7 @@
                 <h3 >Resumen del carrito de <strong>{{$currentPreferences["material"]->name}}</strong> para <strong>{{$currentPreferences["project"]->name}}</strong></h3>
 
                 <div class="tab-content" id="myTabContent">
-                    <!-- All pieces !-->PIezas
+                    <!-- All pieces !-->Piezas
                     <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
                         @if (count($currentPieces) > 0)
                             <table class="table">
@@ -38,7 +38,7 @@
                                 </tbody>
                             </table>
                         @else
-                            <h4 class="mt-5">Aún no tienes ninguna pieza en el carrito.</h4>
+                            <h4 class="mt-5"><i class="fas fa-exclamation-triangle text-danger"></i> Aún no tienes ninguna pieza/nota en el carrito.</h4>
                         @endif
                     </div>
                 </div>
@@ -57,9 +57,10 @@
                         Añadir nota
                     </label>
                 </div> --}}
-                <button type="submit" class="btn btn-primary mb-3">Hacer pedido</button>
-                <a id="deleteSelected" class="float-right btn btn-danger mb-3">Eliminar seleccionados</a>
-                
+                @if (count($currentPieces) > 0)
+                    <button type="submit" class="btn btn-primary mb-3">Hacer pedido</button>
+                    <a id="deleteSelected" class="float-right btn btn-danger mb-3">Eliminar seleccionados</a>
+                @endif
                 <div class="row mt-3 p-1" style="display:flex; justify-content:center;">
                     @if ($message = Session::get('status_fail'))
                         <div id="status_message_fail" class="alert alert-danger alert-block">

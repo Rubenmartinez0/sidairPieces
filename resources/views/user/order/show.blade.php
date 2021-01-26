@@ -89,7 +89,15 @@
                 </div>
 
                 <div>
-                    <h4>Notas del pedido:</h4>
+                    @if ($order->totalNotes > 0)
+                        <h4>Notas del pedido:</h4>
+
+                        @foreach($orderNotes as $note)
+                                <h5>{{ $loop->index+1 }}. {{ $note->content }}</h5>
+                        @endforeach
+                    @else
+                        <h5 class=""><i class="far fa-comment-alt text-primary"></i> Este pedido no tiene ningúna nota.</h5>
+                    @endif
                 </div>
             </div>
             

@@ -17,6 +17,8 @@ class CreateNotesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('order_id');
             $table->index('order_id');
+            $table->unsignedBigInteger('user_id');
+            $table->index('user_id');
             $table->string('content');
             $table->timestamps();
         });

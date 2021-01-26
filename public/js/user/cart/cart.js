@@ -37,7 +37,7 @@ $(document).ready(function() {
                         if( $("#selectAll").is(':checked')){
                             $("table").remove();
                         }
-                    
+                        location.reload();
                     }
                 });
             }
