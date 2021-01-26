@@ -15,8 +15,8 @@ class OrderStateSeeder extends Seeder
     {
         $states = [
             ['state' => 'Encargado'],
-            ['state' => 'Tramitando'],
-            ['state' => 'Finalizado'],
+            ['state' => 'En preparación'],
+            ['state' => 'Preparado'],
             ['state' => 'Denegado'],
         ];
         foreach($states as $state){
