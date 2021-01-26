@@ -100,10 +100,10 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showPiece(Piece $piece)
+    public function showPiece(int $piece_id)
     {
-
-        $piece = Piece::where('id', '=', $piece->id)->with('type','order', 'state', 'material', 'project', 'client')->first();
+        //dd($piece_id);
+        $piece = Piece::where('id', '=', $piece_id)->with('type','order', 'state', 'material', 'project', 'client')->first();
         $created_by = User::where('id', '=', $piece->ordered_by)->first();
         $piece->ordered_by = $created_by->username;
         $measurements = $piece->measurements;
