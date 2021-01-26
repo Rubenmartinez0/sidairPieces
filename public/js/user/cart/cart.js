@@ -32,9 +32,7 @@ $(document).ready(function() {
                     
                     data: { pieces : piecesToDelete, notes: notesToDelete },
                     success:function(message) {
-
-                        console.log(message);
-                        //remove from frontend every row that has been deleted.
+                        //remove from frontend every piece and note that has been deleted.
                         $(".pieceCheckbox").each(function( index ) {
                             if(this.checked && $(this).attr('id') != "selectAll"){
                                     $(this).closest('tr').remove();
@@ -45,9 +43,6 @@ $(document).ready(function() {
                                     $(this).closest('div').remove();
                             }
                         });
-                        // if( $("#selectAll").is(':checked')){
-                        //     $("table").remove();
-                        // }
                         location.reload();
                     }
                 });
