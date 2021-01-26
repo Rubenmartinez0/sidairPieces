@@ -25,6 +25,12 @@
             <strong>{{ $message }}</strong>
         </div>
     @endif
+    @if ($message = Session::get('fail_status'))
+        <div id="status_message" class="alert alert-danger alert-block">
+            <!-- <button type="button" class="close" data-dismiss="alert" >×</button>     -->
+            <strong>{{ $message }}</strong>
+        </div>
+    @endif
 </div>
 @endsection
 @section('scripts')

@@ -74,24 +74,28 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showSummary(int $order_id)
+    public function showSummary($order_id)
     {
         $userId = Auth::user()->id;
         $order = Order::where('order_id', '=', $order_id)->with('client', 'project', 'material', 'state')->orderBy('created_at', 'DESC')->first();
-        $orderPieces = Piece::where('order_id', '=', $order->id)->with('state', 'type')->get();
-        $orderNotes = Note::where('order_id', '=', $order->id)->get();
-        $created_by = User::where('id', '=', $order->created_by)->first();
-        $order->ordered_by = $created_by->username;
-
-        //dd($orderPieces);
-        $order->totalPieces = 0;
-        foreach($orderPieces as $piece){
-            $order->totalPieces += $piece->quantity;
-        }
-        $order->totalNotes = count($orderNotes);
-
         
-        return view('user/order/show', compact('order', 'orderPieces', 'orderNotes'));
+        if($order){
+            $orderPieces = Piece::where('order_id', '=', $order->id)->with('state', 'type')->get();
+            $orderNotes = Note::where('order_id', '=', $order->id)->get();
+            $created_by = User::where('id', '=', $order->created_by)->first();
+            $order->ordered_by = $created_by->username;
+
+            //dd($orderPieces);
+            $order->totalPieces = 0;
+            foreach($orderPieces as $piece){
+                $order->totalPieces += $piece->quantity;
+            }
+            $order->totalNotes = count($orderNotes);
+
+            
+            return view('user/order/show', compact('order', 'orderPieces', 'orderNotes'));
+        }
+        return redirect('/')->with('fail_status', "El pedido ". $order_id ." no existe.");
     }
 
     /**
