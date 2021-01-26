@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Piece;
 use App\Models\CartItem;
+use App\Models\CartNote;
 use App\Models\PieceType;
 use App\Models\PieceState;
 use App\Models\Project;
