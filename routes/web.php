@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/piece', 'App\Http\Controllers\PieceController@choosePiece')->name('piece.index');
     Route::get('/piece/{pieceType}', 'App\Http\Controllers\PieceController@addPieceToCartView')->name('piece.addToCartView');
     Route::get('{user}/pieces', 'App\Http\Controllers\PieceController@myOrderedPieces')->name('piece.myOrderedPieces');
+    Route::get('/piece/show/{id}', 'App\Http\Controllers\PieceController@showPiece')->name('piece.show');
     Route::post('/piece/store', 'App\Http\Controllers\PieceController@storePieceToCart')->name('piece.storeToCart');
     Route::patch('/piece/updateState', 'App\Http\Controllers\PieceController@updatePieceState')->name('piece.updateState');
 
@@ -46,7 +47,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/myOrders', 'App\Http\Controllers\OrderController@getMyOrders')->name('order.getMyOrders');
     Route::get('/order/{order_id}', 'App\Http\Controllers\OrderController@showSummary')->name('order.showSummary');
-    Route::get('/order/piece/{id}', 'App\Http\Controllers\OrderController@showPiece')->name('order.showPiece');
     Route::post('/order/store', 'App\Http\Controllers\OrderController@store')->name('order.store');
     Route::patch('/order/updateState', 'App\Http\Controllers\OrderController@updateOrderState')->name('order.updateState');
 

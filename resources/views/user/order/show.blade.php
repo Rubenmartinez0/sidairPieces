@@ -126,7 +126,7 @@
                                         </td>
                                         <td><label>{{ $piece->quantity }}</label></td>
                                         <td><label>{{ $piece->type->name }}</label></td>
-                                        <td><a class="btn btn-primary" href="/order/piece/{{ $piece->id }}">Detalle</a></td>
+                                        <td><a class="btn btn-primary" href="/piece/show/{{ $piece->id }}">Detalle</a></td>
                                         {{-- <td><a class="btn btn-primary" href="{{ route('cart.showItem',$piece->id) }}">Detalle</a></td> --}}
 
                                     </tr>

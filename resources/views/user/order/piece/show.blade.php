@@ -15,26 +15,42 @@
                             <div class="row justify-content-center text-center">
                                 <!-- Piece Image -->
                                 <div class="col-6 col-sm-4 float-left text-center">
-                                    @switch($piece->state->id)
-                                        @case(1)
-                                            <label class="bg-warning rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
-                                            @break
-                                        @case(2)
-                                            <label class="bg-primary text-white rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
-                                            @break
-                                        @case(3)
-                                            <label class="bg-success rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
-                                            @break
-                                        @case(4)
-                                            <label class="bg-danger text-white rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
-                                            @break
-                                        @default
-                                            <label class="bg-dark rounded-lg p-1 font-weight-bold">Desconocido</label>
-                                    @endswitch
-                                    @if($piece->type->image_path2)
-                                        <img src="{{ $piece->type->image_path2 }}" class="pr-2" style="height:15em; width:15em;" alt="{{  $piece->type->name }}">
+                                    @if($modifyPermissions == true)
+                                        <select id="pieceStateSelect" class="rounded-lg p-1 bg-white font-weight-bold">
+                                            @foreach($pieceStates as $state)
+                                                @if($piece->state->id == $state->id)
+                                                    <option class="font-weight-bold" selected pieceId='{{$piece->id}}' stateId='{{ $state->id }}'>{{ $state->state }}</option>
+                                                @else
+                                                    <option class="font-weight-bold" pieceId='{{$piece->id}}' stateId='{{ $state->id }}'>{{ $state->state }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+
                                     @else
-                                        <img src="{{ $piece->type->image_path }}" class="pr-2" style="height:15em; width:15em;" alt="{{  $piece->type->name }}">
+                                        @switch($piece->state->id)
+                                            @case(1)
+                                                <label class="bg-warning rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
+                                                @break
+                                            @case(2)
+                                                <label class="bg-primary text-white rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
+                                                @break
+                                            @case(3)
+                                                <label class="bg-success rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
+                                                @break
+                                            @case(4)
+                                                <label class="bg-danger text-white rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
+                                                @break
+                                            @default
+                                                <label class="bg-dark rounded-lg p-1 font-weight-bold">Desconocido</label>
+                                        @endswitch
+                                    @endif
+
+
+                                    
+                                    @if($piece->type->image_path2)
+                                        <img src="{{ $piece->type->image_path2 }}" class="pr-2" style="height:15em; width:15em;" alt="{{ $piece->type->name }}">
+                                    @else
+                                        <img src="{{ $piece->type->image_path }}" class="pr-2" style="height:15em; width:15em;" alt="{{ $piece->type->name }}">
                                     @endif
                                     <br>    
                                 </div>    
@@ -84,5 +100,7 @@
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="{{ asset('js/pieces/create.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/pieces/show.js') }}" type="text/javascript"></script>
+
 
 @endsection

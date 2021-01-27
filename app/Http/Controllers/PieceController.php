@@ -45,6 +45,31 @@ class PieceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function showPiece(int $piece_id)
+    {
+        //dd($piece_id);
+        $piece = Piece::where('id', '=', $piece_id)->with('type','order', 'state', 'material', 'project', 'client')->first();
+        $created_by = User::where('id', '=', $piece->ordered_by)->first();
+        $piece->ordered_by = $created_by->username;
+        $measurements = $piece->measurements;
+        $measurements = explode(",", $measurements);
+        
+        $allowedModifyRoles = [1,2,3,5,6];
+        $userRole = Auth::user()->role_id;
+        $modifyPermissions = false;
+        if(in_array($userRole, $allowedModifyRoles, true)){
+            $modifyPermissions = true;
+        }
+        $pieceStates = PieceState::all();
+
+        return view('user/order/piece/show', compact('piece', 'measurements','pieceStates','modifyPermissions'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function choosePiece()
     {
         $id = Auth::user()->id;

@@ -100,8 +100,6 @@ class OrderController extends Controller
             $orderNotes = Note::where('order_id', '=', $order->id)->get();
             $created_by = User::where('id', '=', $order->created_by)->first();
             $order->ordered_by = $created_by->username;
-
-            //dd($orderPieces);
             $order->totalPieces = 0;
             foreach($orderPieces as $piece){
                 $order->totalPieces += $piece->quantity;
@@ -121,22 +119,7 @@ class OrderController extends Controller
         return redirect('/')->with('fail_status', "El pedido ". $order_id ." no existe.");
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function showPiece(int $piece_id)
-    {
-        //dd($piece_id);
-        $piece = Piece::where('id', '=', $piece_id)->with('type','order', 'state', 'material', 'project', 'client')->first();
-        $created_by = User::where('id', '=', $piece->ordered_by)->first();
-        $piece->ordered_by = $created_by->username;
-        $measurements = $piece->measurements;
-        $measurements = explode(",", $measurements);
-        
-        return view('user/order/piece/show', compact('piece', 'measurements'));
-    }
+    
     
     
 
