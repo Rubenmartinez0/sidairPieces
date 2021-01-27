@@ -4,6 +4,11 @@ $(document).ready(function() {
         booleanValue = this.checked ? true : false;
         $(".pieceCheckbox").prop('checked', booleanValue, $(this).prop('checked', booleanValue));
     });
+
+    $("#selectAllNotes").change(function() {
+        booleanValue = this.checked ? true : false;
+        $(".noteCheckbox").prop('checked', booleanValue, $(this).prop('checked', booleanValue));
+    });
     
     $('#deleteSelected').click(function() {
         //console.log('Click con click');

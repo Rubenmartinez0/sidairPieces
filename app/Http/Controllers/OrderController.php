@@ -39,16 +39,16 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         
-        $id = Auth::user()->id;
-        $currentCartItems = CartItem::where('user_id', '=', $id)->with('type')->orderBy('created_at', 'DESC')->get();
-        $currentCartNotes = CartNote::where('user_id', '=', $id)->get();
-        $currentPreferences = UserController::getUserCurrentPreferences($id);
+        $userId = Auth::user()->id;
+        $currentCartItems = CartItem::where('user_id', '=', $userId)->with('type')->orderBy('created_at', 'DESC')->get();
+        $currentCartNotes = CartNote::where('user_id', '=', $userId)->get();
+        $currentPreferences = UserController::getUserCurrentPreferences($userId);
         
         // check if there are items/pieces or notes in the cart.
         if(count($currentCartItems) || count($currentCartNotes)){
             //create a new order
             $orderId = $this->generateOrderId();
-            $order = ['order_id' => $orderId, 'created_by' => $id, 'client_id' => $currentPreferences['client']['id'],
+            $order = ['order_id' => $orderId, 'created_by' => $userId, 'client_id' => $currentPreferences['client']['id'],
             'project_id' => $currentPreferences['project']['id'],
             'material_id' => $currentPreferences['material']['id'],'state_id' => 1];
             $order = Order::create($order);
@@ -57,12 +57,23 @@ class OrderController extends Controller
             foreach($currentCartItems as $piece){
                 $pieceToCreate = ['quantity' => $piece->quantity, 'measurements' => $piece->measurements, 'type_id' => $piece->type_id,
                 'material_id' => $currentPreferences['material']['id'], 'project_id' => $currentPreferences['project']['id'],
-                'client_id' => $currentPreferences['client']['id'], 'ordered_by' => $id, 'state_id' => 1, 'order_id' => $order->id ];
+                'client_id' => $currentPreferences['client']['id'], 'ordered_by' => $userId, 'state_id' => 1, 'order_id' => $order->id ];
                 Piece::create($pieceToCreate);
 
                 //remove cartItem from cart
                 CartController::cleanCartItem($piece->id);
             }
+
+            //create each note
+            foreach($currentCartNotes as $note){
+                $noteToCreate = ['order_id' => $order->id, 'user_id' => $userId, 'content' => $note->content ];
+                Note::create($noteToCreate);
+
+                //remove cartNote from cart
+                CartController::cleanCartNote($note->id);
+            }
+
+
             return redirect('/')->with('status', 'Pedido realizado correctamente.');
         }else{
             return redirect('/myCart')->with('status_fail', 'Se deben añadir piezas o notas para poder hacer un pedido.');

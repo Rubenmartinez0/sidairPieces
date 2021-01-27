@@ -47,6 +47,9 @@
                             </div>
                             <div class="border border-gray rounded pt-3 pl-3 pr-3 mb-3 mt-3">
                                 <h4><strong>Notas adicionales</strong></h4>
+                                    @if(count($currentNotes) > 0)
+                                        <input class="ml-3" type="checkbox" id="selectAllNotes">
+                                    @endif
                                     @foreach($currentNotes as $note)
                                         <div class="m-3">
                                             <input class="noteCheckbox mr-2" type="checkbox" value={{ $note->id }}>

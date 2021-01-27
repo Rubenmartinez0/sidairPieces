@@ -82,6 +82,15 @@ class CartController extends Controller
         CartItem::destroy($id);
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public static function cleanCartNote($id){
+        CartNote::destroy($id);
+    }
+
     public static function getCartItemsCount()
     {
         $id = Auth::user()->id;  
