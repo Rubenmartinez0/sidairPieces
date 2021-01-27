@@ -66,13 +66,15 @@ class OrderController extends Controller
 
             //create each note
             foreach($currentCartNotes as $note){
-                $noteToCreate = ['order_id' => $order->id, 'user_id' => $userId, 'content' => $note->content ];
-                Note::create($noteToCreate);
-
+                if($note->content != ''){
+                    $noteToCreate = ['order_id' => $order->id, 'user_id' => $userId, 'content' => $note->content ];
+                    Note::create($noteToCreate);
+                }else if($note->content == '' && count($currentCartNotes) == 1 ){
+                    return redirect('/myCart')->with('status_fail', 'Se deben añadir piezas o notas para poder hacer un pedido.');
+                }
                 //remove cartNote from cart
                 CartController::cleanCartNote($note->id);
             }
-
 
             return redirect('/')->with('status', 'Pedido realizado correctamente.');
         }else{
@@ -141,7 +143,6 @@ class OrderController extends Controller
         return view('user/order/index', compact('orders'));
     }
     
-
     /**
      * Display a listing of the resource.
      *
@@ -149,7 +150,6 @@ class OrderController extends Controller
      */
     public function generateOrderId()
     {   
-        
         $todayLastOrderId = Order::whereDate('created_at', Carbon::today())->orderBy('order_id', 'DESC')->first();
 
         if($todayLastOrderId){ //if there is at least one order.
@@ -160,7 +160,29 @@ class OrderController extends Controller
             $newOrderId = str_pad(1, 4, 0, STR_PAD_LEFT);
             return date('ymd') . $newOrderId;
         }
-        
     }
 
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getPendingOrders()
+    {   
+        $allowedRoles = [1,2,3,5,6];
+        $user = Auth::user();
+        //dd($user);
+        if(in_array($user->id, $allowedRoles, true) ){
+            $orders = Order::where('state_id', '=', 1)->with('user','client', 'project', 'material', 'state', 'notes', 'pieces')->orderBy('created_at', 'DESC')->get();
+            dd($orders);
+            return view('user/order/index', compact('orders'));
+        }else{
+            return redirect('/')->with('fail_status', "Acceso restringido, no tienes los permisos suficientes.");
+        }
+   
+    }
+
+
+    
 }

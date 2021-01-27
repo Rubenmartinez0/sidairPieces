@@ -42,10 +42,10 @@
                 <label><strong>Número total de piezas: </strong>{{ $order->totalPieces }} piezas y {{ $order->totalNotes }} nota/s.</label>
             </div>
             <div class="border border-gray rounded p-3 mb-3">
-                <h4><strong>Piezas del pedido:</strong></h4>
-                <!-- All pieces !-->
-                <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
-                    @if (count($orderPieces) > 0)
+                @if ($order->totalPieces > 0)
+                    <h4><strong>Piezas del pedido:</strong></h4>
+                    <!-- All pieces !-->
+                    <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -85,8 +85,10 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    @endif
-                </div>
+                    </div>
+                @else
+                    <h5 class=""><i class="far fa-comment-alt text-primary"></i> Este pedido no tiene ningúna pieza.</h5>
+                @endif
 
                 <div>
                     @if ($order->totalNotes > 0)

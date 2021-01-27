@@ -29,6 +29,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/piece/store', 'App\Http\Controllers\PieceController@storePieceToCart')->name('piece.storeToCart');
     Route::get('{user}/pieces', 'App\Http\Controllers\PieceController@myOrderedPieces')->name('piece.myOrderedPieces');
 
+    
+
+
 
     Route::get('/cartItems', 'App\Http\Controllers\CartController@getCartItemsCount')->name('cart.getItems');
     Route::get('/myCart', 'App\Http\Controllers\CartController@show')->name('cart.show');
@@ -38,14 +41,23 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/myCart', 'App\Http\Controllers\CartController@destroyCartItems')->name('cart.destroyItems');
     //Route::delete('/myCart', 'App\Http\Controllers\CartController@cleanCartItems')->name('cart.clean');
 
+
+
     Route::get('/myOrders', 'App\Http\Controllers\OrderController@getMyOrders')->name('order.getMyOrders');
     Route::get('/order/{order_id}', 'App\Http\Controllers\OrderController@showSummary')->name('order.showSummary');
     Route::get('/order/piece/{id}', 'App\Http\Controllers\OrderController@showPiece')->name('order.showPiece');
     Route::post('/order/store', 'App\Http\Controllers\OrderController@store')->name('order.store');
     
 
+    Route::get('/order/manufacture/i', 'App\Http\Controllers\OrderController@getPendingOrders')->name('order.getPendingOrders');
+
+
+
+    Route::get('/projects/{client}', 'App\Http\Controllers\ProjectController@getProjectsByClient')->name('projects.getByClient');
+
+
+
     Route::get('/preferences', 'App\Http\Controllers\UserController@showPreferencesView')->name('preferences.show');
     Route::post('/preferences', 'App\Http\Controllers\UserController@updatePreferences')->name('preferences.store');
 });
 
-Route::get('/projects/{client}', 'App\Http\Controllers\ProjectController@getProjectsByClient')->name('projects.getByClient');

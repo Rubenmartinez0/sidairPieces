@@ -12,7 +12,7 @@
             {{-- <a class="btn btn-warning mb-3" href="{{ Auth::user()->id }}/order">Mis pedidos.</a> --}}
             <a class="btn btn-warning mb-3" href="/myOrders">Mis pedidos.</a>
             <br>
-            <a class="btn btn-success" href="#">Fabricar piezas.</a>
+            <a class="btn btn-success" href="/order/manufacture/i">Fabricar piezas.</a>
         </div>
     </div>
 
