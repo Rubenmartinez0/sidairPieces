@@ -4,8 +4,8 @@
 <div class="col-md-12 row justify-content-center">
     <div class="card">
         <div class="card-header">
-            <h4 class="mr-auto">Encargar nueva pieza de <strong>{{$currentPreferences["material"]->name}}</strong> para <strong>{{$currentPreferences["project"]->name}}</strong></h4>
-            <a class="btn btn-primary m-auto float-right" href="/preferences">Preferencias</a>
+            <h4 class="float-left">Encargar nueva pieza de <strong>{{$currentPreferences["material"]->name}}</strong> para <strong>{{$currentPreferences["project"]->name}}</strong></h4>
+            <a class="btn btn-primary float-right" href="/preferences">Preferencias</a>
         </div>
         <div class="card-body">
 

@@ -5,8 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header d-flex">
-                    <h4 >Pieza perteneciente al pedido: <strong> <a href="/order/{{ $piece->order->order_id }}">{{ $piece->order->order_id }} </a></strong> </h4>
+                <div class="card-header">
+                    <h4 class="float-left">Pieza perteneciente al pedido: <strong> <a href="/order/{{ $piece->order->order_id }}">{{ $piece->order->order_id }} </a></strong> </h4>
+                    <a class="btn btn-primary mb-2 float-right" href="/order/{{ $piece->order->order_id }}"><div>Atrás</div></a>
                 </div>
                 <div class="card-body">
                     <div class="container">
@@ -70,9 +71,7 @@
                                     </div>
                                 @endforeach
                             </div>
-                        <div class="mb-3 mr-3 float-left">
-                            <a class="btn btn-primary mb-3 d-flex" href="/order/{{ $piece->order->order_id }}"><div>Atrás</div></a>
-                        </div> 
+                        
                     </div>
                    
                 </div>
