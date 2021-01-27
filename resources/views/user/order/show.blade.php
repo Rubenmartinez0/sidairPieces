@@ -28,6 +28,7 @@
                         <label class="bg-dark rounded-lg p-1 font-weight-bold">Desconocido</label>
                 @endswitch
 
+
                 <br>
                 <label><strong>Pedido realizado por: </strong>{{ $order->ordered_by }}</label>
                 <br>
@@ -59,22 +60,51 @@
                                 @foreach($orderPieces as $piece)
                                     <tr>
                                         <td>
-                                            @switch($piece->state->id)
-                                                @case(1)
-                                                    <label class="bg-warning rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
-                                                    @break
-                                                @case(2)
-                                                    <label class="bg-primary text-white rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
-                                                    @break
-                                                @case(3)
-                                                    <label class="bg-success rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
-                                                    @break
-                                                @case(4)
-                                                    <label class="bg-danger text-white rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
-                                                    @break
-                                                @default
-                                                    <label class="bg-dark rounded-lg p-1 font-weight-bold">Desconocido</label>
-                                            @endswitch
+                                            @if($modifyPermissions == true)
+                                            {{-- @switch($piece->state->id)
+                                            @case(1)
+                                                <option class="">{{ $piece->state->state }}</option>
+                                                @break
+                                            @case(2)
+                                                <select class="bg-primary text-white rounded-lg p-1 font-weight-bold">
+                                                @break
+                                            @case(3)
+                                                <select class="bg-success rounded-lg p-1 font-weight-bold">
+                                                @break
+                                            @case(4)
+                                                <select class="bg-danger text-white rounded-lg p-1 font-weight-bold">
+                                                @break
+                                            @default
+                                                <select class="bg-dark rounded-lg p-1 font-weight-bold">
+                                        @endswitch --}}
+                                                
+                                                <select class="rounded-lg p-1 font-weight-bold">
+                                                    @foreach($pieceStates as $state)
+                                                        @if($piece->state->id == $state->id)
+                                                            <option selected>{{ $state->state }}</option>
+                                                        @else
+                                                            <option>{{ $state->state }}</option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                            @else
+                                                @switch($piece->state->id)
+                                                    @case(1)
+                                                        <label class="bg-warning rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
+                                                        @break
+                                                    @case(2)
+                                                        <label class="bg-primary text-white rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
+                                                        @break
+                                                    @case(3)
+                                                        <label class="bg-success rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
+                                                        @break
+                                                    @case(4)
+                                                        <label class="bg-danger text-white rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
+                                                        @break
+                                                    @default
+                                                        <label class="bg-dark rounded-lg p-1 font-weight-bold">Desconocido</label>
+                                                @endswitch
+                                            @endif
                                         </td>
                                         <td><label>{{ $piece->quantity }}</label></td>
                                         <td><label>{{ $piece->type->name }}</label></td>

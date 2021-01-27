@@ -89,7 +89,9 @@ class OrderController extends Controller
      */
     public function showSummary($order_id)
     {
-        $userId = Auth::user()->id;
+        $allowedModifyRoles = [1,2,3,5,6];
+        $userRole = Auth::user()->role_id;
+
         $order = Order::where('order_id', '=', $order_id)->with('client', 'project', 'material', 'state')->orderBy('created_at', 'DESC')->first();
         
         if($order){
@@ -105,8 +107,14 @@ class OrderController extends Controller
             }
             $order->totalNotes = count($orderNotes);
 
-            
-            return view('user/order/show', compact('order', 'orderPieces', 'orderNotes'));
+            $modifyPermissions = false;
+            if(in_array($userRole, $allowedModifyRoles, true)){
+                $modifyPermissions = true;
+            }
+
+            $pieceStates = PieceState::all();
+
+            return view('user/order/show', compact('order', 'orderPieces', 'orderNotes', 'modifyPermissions', 'pieceStates'));
         }
         return redirect('/')->with('fail_status', "El pedido ". $order_id ." no existe.");
     }
@@ -171,9 +179,13 @@ class OrderController extends Controller
     public function getPendingOrders()
     {   
         $allowedRoles = [1,2,3,5,6];
-        $user = Auth::user();
+        $userRole = Auth::user()->role_id;
         //dd($user);
-        if(in_array($user->id, $allowedRoles, true) ){
+        if(in_array($userRole, $allowedRoles, true)){
+            //$orders = Order::where([['state_id', '=', 1], ['created_by', '=', '1']])->with('client', 'project', 'material', 'state', 'notes', 'pieces')->orderBy('created_at', 'DESC')->get();
+            //$orders = Order::whereDay('created_at','27')->with('client', 'project', 'material', 'state', 'notes', 'pieces')->orderBy('created_at', 'DESC')->get();
+            //$orders = Order::whereMonth('created_at','01')->with('client', 'project', 'material', 'state', 'notes', 'pieces')->orderBy('created_at', 'DESC')->get();
+
             $orders = Order::where('state_id', '=', 1)->with('client', 'project', 'material', 'state', 'notes', 'pieces')->orderBy('created_at', 'DESC')->get();
             foreach($orders as $order){
                 $currentUser = User::where('id', '=', $order->created_by)->first();

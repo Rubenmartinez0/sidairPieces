@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div>
                 <h4 class="float-left">Historico de pedidos</h4>
-                <a class="btn btn-primary float-right mb-2" href="#">Atrás</a>
+                <a class="btn btn-primary float-right mb-2" onclick="history.back()">Atrás</a>
             </div>
             <div>
                 <!-- All pieces !-->
