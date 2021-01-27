@@ -21,6 +21,9 @@ class CreateNotesTable extends Migration
             $table->index('user_id');
             $table->string('content');
             $table->timestamps();
+            $table->unsignedBigInteger('manufactured_by')->nullable();
+            $table->index('manufactured_by')->nullable();
+            $table->timestamp("manufactured_at")->nullable();
         });
     }
 

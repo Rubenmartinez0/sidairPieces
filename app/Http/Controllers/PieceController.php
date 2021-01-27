@@ -89,7 +89,23 @@ class PieceController extends Controller
         return view('pieces/choosePiece', compact('pieceTypes', 'currentPreferences'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 
+    public function havePermission(){
+        $allowedModifyRoles = [1,2,3,5,6];
+        $userRole = Auth::user()->role_id;
+
+        if(in_array($userRole, $allowedModifyRoles, true)){
+            return true;
+        }
+        return false;
+        //return response('Not authorized.', 403);
+    }
+    
     /**
      * Display a listing of the resource.
      *

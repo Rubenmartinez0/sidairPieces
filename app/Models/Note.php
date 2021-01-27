@@ -17,6 +17,8 @@ class Note extends Model
         'order_id',
         'user_id', 
         'content',
+        'manufactured_by',
+        'manufactured_at',
     ];
 
     /**
