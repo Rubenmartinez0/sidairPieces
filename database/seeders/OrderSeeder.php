@@ -35,6 +35,14 @@ class OrderSeeder extends Seeder
             'state_id' => 1, 'created_at' => "2021-01-18 15:38:17", 'updated_at' => "2021-01-18 09:38:17"],
             ['order_id' => 2101180002, 'client_id' => 1, 'project_id' => 1, 'created_by' => 1,'material_id' => 2,
             'state_id' => 1, 'created_at' => "2021-01-18 10:52:14", 'updated_at' => "2021-01-18 10:52:14"],
+
+            ['order_id' => 2101180003, 'client_id' => 1, 'project_id' => 1, 'created_by' => 2,'material_id' => 1,
+            'state_id' => 1, 'created_at' => "2021-01-18 15:38:17", 'updated_at' => "2021-01-18 09:38:17"],
+            ['order_id' => 2101180004, 'client_id' => 1, 'project_id' => 1, 'created_by' => 2,'material_id' => 2,
+            'state_id' => 1, 'created_at' => "2021-01-18 10:52:14", 'updated_at' => "2021-01-18 10:52:14"],
+            ['order_id' => 2101180005, 'client_id' => 1, 'project_id' => 1, 'created_by' => 2,'material_id' => 1,
+            'state_id' => 1, 'created_at' => "2021-01-18 15:38:17", 'updated_at' => "2021-01-18 09:38:17"],
+
             
         ];
         foreach($orders as $order){
