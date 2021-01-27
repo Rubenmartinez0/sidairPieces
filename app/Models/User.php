@@ -69,7 +69,7 @@ class User extends Authenticatable
         return $this->belongsTo(Material::class);
     }
     
-    public function orders(){
+    public function order(){
         return $this->hasMany(Order::class);
     }
 
@@ -77,4 +77,5 @@ class User extends Authenticatable
     {
         return $this->hasMany(CartItem::class);
     }
+    
 }

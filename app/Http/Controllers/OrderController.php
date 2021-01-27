@@ -174,9 +174,13 @@ class OrderController extends Controller
         $user = Auth::user();
         //dd($user);
         if(in_array($user->id, $allowedRoles, true) ){
-            $orders = Order::where('state_id', '=', 1)->with('user','client', 'project', 'material', 'state', 'notes', 'pieces')->orderBy('created_at', 'DESC')->get();
-            dd($orders);
-            return view('user/order/index', compact('orders'));
+            $orders = Order::where('state_id', '=', 1)->with('client', 'project', 'material', 'state', 'notes', 'pieces')->orderBy('created_at', 'DESC')->get();
+            foreach($orders as $order){
+                $currentUser = User::where('id', '=', $order->created_by)->first();
+                $order->username = $currentUser->username; 
+            }
+            //dd($orders);
+            return view('orders/index', compact('orders'));
         }else{
             return redirect('/')->with('fail_status', "Acceso restringido, no tienes los permisos suficientes.");
         }

@@ -38,10 +38,11 @@ class Order extends Model
     protected $casts = [
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    //Comented due security reasons.
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
     
     public function project()
     {
