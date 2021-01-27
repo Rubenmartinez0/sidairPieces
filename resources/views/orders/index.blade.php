@@ -20,6 +20,7 @@
                                 <th>Cliente</th>
                                 <th>Obra</th>
                                 <th>Material</th>
+                                <th>Pedido por</th>
                                 <th>Fecha pedido</th>
                                 </tr>
                             </thead>
@@ -48,6 +49,7 @@
                                         <td><label>{{ $order->client->name }}</label></td>
                                         <td><label>{{ $order->project->name }}</label></td>
                                         <td><label>{{ $order->material->name }}</label></td>
+                                        <td><label>{{ $order->username }}</label></td>
                                         <td><label>{{ $order->created_at }}</label></td>
                                         
                                     </tr>
