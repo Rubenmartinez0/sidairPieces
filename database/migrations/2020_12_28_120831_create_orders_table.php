@@ -26,6 +26,9 @@ class CreateOrdersTable extends Migration
             $table->index('material_id');
             $table->unsignedBigInteger('state_id');
             $table->index('state_id');
+            $table->unsignedBigInteger('manufactured_by')->nullable();
+            $table->index('manufactured_by')->nullable();
+            $table->timestamp("manufactured_at")->nullable();
             $table->timestamps();
         });
     }

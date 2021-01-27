@@ -14,6 +14,7 @@ use App\Models\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class PieceController extends Controller
 {
@@ -132,4 +133,32 @@ class PieceController extends Controller
         //dd($allOrders);getUserCurrentPreferences
         return view('pieces/myOrders', compact('allOrders', 'user'));
     }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function updatePieceState(Request $request)
+    { 
+        $allowedModifyRoles = [1,2,3,5,6];
+        $userRole = Auth::user()->role_id;
+
+        if(in_array($userRole, $allowedModifyRoles, true)){
+            if($request->newStateId && $request->pieceIdToUpdate){
+                $pieceId = $request->pieceIdToUpdate;
+                $stateId = $request->newStateId;
+                $userId = Auth::user()->id;
+
+                //manufactured by, state 
+                Piece::where('id', '=', $pieceId)->update(array('state_id' => $stateId, 'manufactured_by' => $userId,
+                'manufactured_at' => Carbon::now()));
+
+                return response('Piece state updated correctly.', 200);
+            }
+        }
+        return response('Not authorized.', 403);
+    }
+
 }

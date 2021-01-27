@@ -20,6 +20,8 @@ class Order extends Model
         'created_by',
         'material_id',
         'state_id',
+        'manufactured_by',
+        'manufactured_at',
     ];
 
     /**

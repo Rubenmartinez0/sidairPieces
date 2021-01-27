@@ -26,8 +26,9 @@ Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('i
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/piece', 'App\Http\Controllers\PieceController@choosePiece')->name('piece.index');
     Route::get('/piece/{pieceType}', 'App\Http\Controllers\PieceController@addPieceToCartView')->name('piece.addToCartView');
-    Route::post('/piece/store', 'App\Http\Controllers\PieceController@storePieceToCart')->name('piece.storeToCart');
     Route::get('{user}/pieces', 'App\Http\Controllers\PieceController@myOrderedPieces')->name('piece.myOrderedPieces');
+    Route::post('/piece/store', 'App\Http\Controllers\PieceController@storePieceToCart')->name('piece.storeToCart');
+    Route::patch('/piece/updateState', 'App\Http\Controllers\PieceController@updatePieceState')->name('piece.updateState');
 
     
 
@@ -47,10 +48,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/order/{order_id}', 'App\Http\Controllers\OrderController@showSummary')->name('order.showSummary');
     Route::get('/order/piece/{id}', 'App\Http\Controllers\OrderController@showPiece')->name('order.showPiece');
     Route::post('/order/store', 'App\Http\Controllers\OrderController@store')->name('order.store');
-    
+    Route::patch('/order/updateState', 'App\Http\Controllers\OrderController@updateOrderState')->name('order.updateState');
 
     Route::get('/order/manufacture/i', 'App\Http\Controllers\OrderController@getPendingOrders')->name('order.getPendingOrders');
-
+    
 
 
     Route::get('/projects/{client}', 'App\Http\Controllers\ProjectController@getProjectsByClient')->name('projects.getByClient');

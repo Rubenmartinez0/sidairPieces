@@ -11,22 +11,34 @@
             <div class="border border-gray rounded p-3 mb-3 mt-3">
                 <label><strong>Estado del pedido: </strong></label>
 
-                @switch($order->state_id)
-                    @case(1)
-                        <label class="bg-warning rounded-lg p-1 font-weight-bold">{{ $order->state->state }}</label>
-                        @break
-                    @case(2)
-                        <label class="bg-primary text-white rounded-lg p-1 font-weight-bold">{{ $order->state->state }}</label>
-                        @break
-                    @case(3)
-                        <label class="bg-success rounded-lg p-1 font-weight-bold">{{ $order->state->state }}</label>
-                        @break
-                    @case(4)
-                        <label class="bg-danger text-white rounded-lg p-1 font-weight-bold">{{ $order->state->state }}</label>
-                        @break
-                    @default
-                        <label class="bg-dark rounded-lg p-1 font-weight-bold">Desconocido</label>
-                @endswitch
+                @if($modifyPermissions == true)
+                    <select id="orderStateSelect" class="rounded-lg p-1 bg-white font-weight-bold">
+                        @foreach($orderStates as $state)
+                            @if($order->state->id == $state->id)
+                                <option class="font-weight-bold" selected orderId='{{$order->id}}' stateId='{{ $state->id }}'>{{ $state->state }}</option>
+                            @else
+                                <option class="font-weight-bold" orderId='{{$order->id}}' stateId='{{ $state->id }}'>{{ $state->state }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                @else
+                    @switch($piece->state->id)
+                        @case(1)
+                            <label class="bg-warning rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
+                            @break
+                        @case(2)
+                            <label class="bg-primary text-white rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
+                            @break
+                        @case(3)
+                            <label class="bg-success rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
+                            @break
+                        @case(4)
+                            <label class="bg-danger text-white rounded-lg p-1 font-weight-bold">{{ $piece->state->state }}</label>
+                            @break
+                        @default
+                            <label class="bg-dark rounded-lg p-1 font-weight-bold">Desconocido</label>
+                    @endswitch
+                @endif
 
 
                 <br>
@@ -41,6 +53,12 @@
                 <label><strong>Material de las piezas: </strong>{{ $order->material->name}}</label>
                 <br>
                 <label><strong>Número total de piezas: </strong>{{ $order->totalPieces }} piezas y {{ $order->totalNotes }} nota/s.</label>
+
+                @if($order->manufactured_at)
+                    <hr>
+                    <label class="float-right">Último cambio con fecha <strong>{{ $order->manufactured_at}}.</strong></label>
+                    <br>
+                @endif
             </div>
             <div class="border border-gray rounded p-3 mb-3">
                 @if ($order->totalPieces > 0)
@@ -61,29 +79,29 @@
                                     <tr>
                                         <td>
                                             @if($modifyPermissions == true)
-                                            {{-- @switch($piece->state->id)
-                                            @case(1)
-                                                <option class="">{{ $piece->state->state }}</option>
-                                                @break
-                                            @case(2)
-                                                <select class="bg-primary text-white rounded-lg p-1 font-weight-bold">
-                                                @break
-                                            @case(3)
-                                                <select class="bg-success rounded-lg p-1 font-weight-bold">
-                                                @break
-                                            @case(4)
-                                                <select class="bg-danger text-white rounded-lg p-1 font-weight-bold">
-                                                @break
-                                            @default
-                                                <select class="bg-dark rounded-lg p-1 font-weight-bold">
-                                        @endswitch --}}
+                                                {{-- @switch($piece->state->id)
+                                                    @case(1)
+                                                        <option class="">{{ $piece->state->state }}</option>
+                                                        @break
+                                                    @case(2)
+                                                        <select class="bg-primary text-white rounded-lg p-1 font-weight-bold">
+                                                        @break
+                                                    @case(3)
+                                                        <select class="bg-success rounded-lg p-1 font-weight-bold">
+                                                        @break
+                                                    @case(4)
+                                                        <select class="bg-danger text-white rounded-lg p-1 font-weight-bold">
+                                                        @break
+                                                    @default
+                                                        <select class="bg-dark rounded-lg p-1 font-weight-bold">
+                                                @endswitch --}}
                                                 
-                                                <select class="rounded-lg p-1 font-weight-bold">
+                                                <select id="pieceStateSelect" class="rounded-lg p-1 bg-white font-weight-bold">
                                                     @foreach($pieceStates as $state)
                                                         @if($piece->state->id == $state->id)
-                                                            <option selected>{{ $state->state }}</option>
+                                                            <option class="font-weight-bold" selected pieceId='{{$piece->id}}' stateId='{{ $state->id }}'>{{ $state->state }}</option>
                                                         @else
-                                                            <option>{{ $state->state }}</option>
+                                                            <option class="font-weight-bold" pieceId='{{$piece->id}}' stateId='{{ $state->id }}'>{{ $state->state }}</option>
                                                         @endif
                                                     @endforeach
                                                 </select>
@@ -150,6 +168,6 @@
 @endsection
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="{{ asset('js/user/cart/cart.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/order/show.js') }}" type="text/javascript"></script>
 
 @endsection

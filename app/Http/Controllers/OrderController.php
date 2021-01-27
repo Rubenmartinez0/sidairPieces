@@ -12,6 +12,7 @@ use App\Models\Material;
 use App\Models\Client;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\OrderState;
 use App\Models\Note;
 
 
@@ -113,8 +114,9 @@ class OrderController extends Controller
             }
 
             $pieceStates = PieceState::all();
+            $orderStates = OrderState::all();
 
-            return view('user/order/show', compact('order', 'orderPieces', 'orderNotes', 'modifyPermissions', 'pieceStates'));
+            return view('user/order/show', compact('order', 'orderPieces', 'orderNotes', 'modifyPermissions', 'pieceStates', 'orderStates'));
         }
         return redirect('/')->with('fail_status', "El pedido ". $order_id ." no existe.");
     }
@@ -199,6 +201,32 @@ class OrderController extends Controller
    
     }
 
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function updateOrderState(Request $request)
+    { 
+        $allowedModifyRoles = [1,2,3,5,6];
+        $userRole = Auth::user()->role_id;
+
+        if(in_array($userRole, $allowedModifyRoles, true)){
+            if($request->newStateId && $request->orderIdToUpdate){
+                $orderId = $request->orderIdToUpdate;
+                $stateId = $request->newStateId;
+                $userId = Auth::user()->id;
+
+                //manufactured by, state 
+                Order::where('id', '=', $orderId)->update(array('state_id' => $stateId, 'manufactured_by' => $userId,
+                'manufactured_at' => Carbon::now()));
+
+                return response('Piece state updated correctly.', 200);
+            }
+        }
+        return response('Not authorized.', 403);
+    }
 
     
 }
