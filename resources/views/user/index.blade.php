@@ -6,24 +6,33 @@
       <table class="table table-striped">
         <thead>
             <tr>
-              <td>ID</td>
-              <td>Usuario</td>
-              <td>Nombre y apellidos</td>
-              <td>Rol</td>
-              <td>Activo</td>
-              <td>Actions</td>
+              <td class="font-weight-bold">Usuario</td>
+              <td class="font-weight-bold">Nombre y apellidos</td>
+              <td class="font-weight-bold">Rol</td>
+              <td class="font-weight-bold">Activo</td>
+              <td class="font-weight-bold">Actions</td>
             </tr>
         </thead>
         <tbody>
             @foreach($users as $user)
             <tr>
-                <td>{{$user->id}}</td>
                 <td>{{$user->username}}</td>
                 <td>{{$user->name}} {{$user->surname}}</td>
-                <td>{{$user->role_id}}</td>
-                <td>{{$user->active}}</td>
+                <td>{{$user->role->name}}</td>
                 <td>
-                    <a href="{{ route('user.update',$user->id)}}" class="btn btn-primary">Editar</a>
+                  <div class="custom-control custom-switch switch-success" >
+                    @if($user->active)
+                      <input data-onstyle="success"checked disabled  type="checkbox" class="custom-control-input" id="userSwitch{{$user->id}}">
+                    @else
+                      <input disable type="checkbox" class="custom-control-input" id="userSwitch{{$user->id}}">
+                    @endif
+                    <label class="custom-control-label" for="userSwitch{{$user->id}}"></label>
+                  </div>
+                </td>
+      
+  
+                <td>
+                    <a href="{{ route('user.editView',$user->id)}}" value={{$user->id}} class="btn btn-warning">Editar</a>
                 </td>
                 <td>
                     <form action="{{ route('user.destroy', $user->id)}}" method="post">

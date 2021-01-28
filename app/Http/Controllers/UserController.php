@@ -21,8 +21,8 @@ class UserController extends Controller
     public function index()
     {
 
-        $users = User::all();
-        // dd($users[0]["username"]);
+        $users = User::with('role')->get();
+        //dd($users);
 
         return view('user/index', compact('users'));
     }
@@ -62,9 +62,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function editView($user_id)
     {
-        //
+        dd($user_id);
+        return redirect('/preferences');
     }
 
     /**
@@ -74,7 +75,7 @@ class UserController extends Controller
      */
     public function update()
     {
-        //
+        return view('/preferences');
     }
 
     /**
