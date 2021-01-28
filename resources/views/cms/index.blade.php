@@ -7,7 +7,7 @@
         <div class="card">
             <!-- <div class="card-header d-flex"></div> -->
         <div class="card-body m-3 justify-content-center">
-            <a class="btn btn-primary mb-3" href="#">Gestionar usuarios.</a>            
+            <a class="btn btn-primary mb-3" href="/users">Gestionar usuarios.</a>            
             <br>
             {{-- <a class="btn btn-warning mb-3" href="#">Mis pedidos.</a> --}}
             <a class="btn btn-warning mb-3" href="#">Gestionar clientes</a>

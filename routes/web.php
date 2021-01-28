@@ -51,11 +51,25 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::get('/projects/{client}', 'App\Http\Controllers\ProjectController@getProjectsByClient')->name('projects.getByClient');
 
+    
+
 
     Route::get('/preferences', 'App\Http\Controllers\UserController@showPreferencesView')->name('preferences.show');
     Route::post('/preferences', 'App\Http\Controllers\UserController@updatePreferences')->name('preferences.store');
 
 
-    Route::get('/cms', 'App\Http\Controllers\CMSController@index')->name('cms.index');
+    
+    
+    Route::group(['middleware' => ['cms.permissions']], function () {
+
+        Route::get('/cms', 'App\Http\Controllers\CMSController@index')->name('cms.index');
+
+        
+        Route::get('/users', 'App\Http\Controllers\UserController@index')->name('user.index');
+        Route::patch('/user', 'App\Http\Controllers\UserController@update')->name('user.update');
+        Route::delete('/user', 'App\Http\Controllers\UserController@destroy')->name('user.destroy');
+    });
+
+    
 });
 

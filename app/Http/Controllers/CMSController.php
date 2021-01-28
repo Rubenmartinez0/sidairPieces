@@ -30,14 +30,8 @@ class CMSController extends Controller
      */
     public function index()
     {
-        $allowedRoles = [1,2,3];
-        $userRole = Auth::user()->role_id;
-        
-        if(in_array($userRole, $allowedRoles, true)){
-            //return view('cms/index', compact('orders'));
-            return view('cms/index');
-        }
-        return redirect('/')->with('fail_status', "Acceso restringido, no tienes los permisos suficientes.");
+        return view('cms/index');
+    
     }
     
 }
