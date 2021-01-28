@@ -33,8 +33,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     
 
-
-
     Route::get('/cartItems', 'App\Http\Controllers\CartController@getCartItemsCount')->name('cart.getItems');
     Route::get('/myCart', 'App\Http\Controllers\CartController@show')->name('cart.show');
     Route::get('/myCart/{item}', 'App\Http\Controllers\CartController@cartItemView')->name('cart.showItem');
@@ -47,18 +45,17 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/myOrders', 'App\Http\Controllers\OrderController@getMyOrders')->name('order.getMyOrders');
     Route::get('/order/{order_id}', 'App\Http\Controllers\OrderController@showSummary')->name('order.showSummary');
+    Route::get('/order/manufacture/i', 'App\Http\Controllers\OrderController@getOrders')->name('order.getOrders');
     Route::post('/order/store', 'App\Http\Controllers\OrderController@store')->name('order.store');
     Route::patch('/order/updateState', 'App\Http\Controllers\OrderController@updateOrderState')->name('order.updateState');
-
-    Route::get('/order/manufacture/i', 'App\Http\Controllers\OrderController@getPendingOrders')->name('order.getPendingOrders');
     
-
-
     Route::get('/projects/{client}', 'App\Http\Controllers\ProjectController@getProjectsByClient')->name('projects.getByClient');
-
 
 
     Route::get('/preferences', 'App\Http\Controllers\UserController@showPreferencesView')->name('preferences.show');
     Route::post('/preferences', 'App\Http\Controllers\UserController@updatePreferences')->name('preferences.store');
+
+
+    Route::get('/cms', 'App\Http\Controllers\CMSController@index')->name('cms.index');
 });
 

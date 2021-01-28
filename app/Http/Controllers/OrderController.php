@@ -161,7 +161,7 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getPendingOrders()
+    public function getOrders()
     {   
         $allowedRoles = [1,2,3,5,6];
         $userRole = Auth::user()->role_id;
@@ -171,7 +171,7 @@ class OrderController extends Controller
             //$orders = Order::whereDay('created_at','27')->with('client', 'project', 'material', 'state', 'notes', 'pieces')->orderBy('created_at', 'DESC')->get();
             //$orders = Order::whereMonth('created_at','01')->with('client', 'project', 'material', 'state', 'notes', 'pieces')->orderBy('created_at', 'DESC')->get();
 
-            $orders = Order::where('state_id', '=', 1)->with('client', 'project', 'material', 'state', 'notes', 'pieces')->orderBy('created_at', 'DESC')->get();
+            $orders = Order::with('client', 'project', 'material', 'state', 'notes', 'pieces')->orderBy('created_at', 'DESC')->get();
             foreach($orders as $order){
                 $currentUser = User::where('id', '=', $order->created_by)->first();
                 $order->username = $currentUser->username; 
