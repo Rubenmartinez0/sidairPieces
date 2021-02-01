@@ -67,7 +67,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/users', 'App\Http\Controllers\UserController@index')->name('user.index');
         Route::get('/user/edit/{user_id}', 'App\Http\Controllers\UserController@editView')->name('user.editView');
         Route::patch('/user', 'App\Http\Controllers\UserController@update')->name('user.update');
-        Route::delete('/user', 'App\Http\Controllers\UserController@destroy')->name('user.destroy');
+        Route::delete('/user/{userId}', 'App\Http\Controllers\UserController@destroy')->name('user.destroy');
     });
 
     

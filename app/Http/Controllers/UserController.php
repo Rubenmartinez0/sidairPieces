@@ -83,9 +83,16 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy($id)
     {
-        //
+        $userRequestRoleId = auth()->user()->role_id;
+        $userToDelete = User::find($id);
+
+        if($userRequestRoleId < $userToDelete->role_id){
+            $userToDelete->delete();
+            return redirect('/users')->with('success', "El usuario '" . $userToDelete->username . "' ha sido eliminado.");
+        }
+        return redirect('/users')->with('fail', 'No tienes permisos suficientes para eliminar a este usuario.');
     }
 
 

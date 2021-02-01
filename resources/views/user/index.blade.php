@@ -32,17 +32,35 @@
       
   
                 <td>
-                    <a href="{{ route('user.editView',$user->id)}}" value={{$user->id}} class="btn btn-warning">Editar</a>
+                    <a href="{{ route('user.editView',$user->id)}}" class="btn btn-warning">Editar</a>
                 </td>
                 <td>
                     <form action="{{ route('user.destroy', $user->id)}}" method="post">
                       @csrf
                       @method('DELETE')
-                      <button class="btn btn-danger" type="submit">Eliminar</button>
+                      <button class="btn btn-danger" type="submit" onclick="return confirm('Eliminar usuario {{$user->username}}?')" >Eliminar</button>
+      
                     </form>
                 </td>
             </tr>
             @endforeach
+
+            <div class="col-4" style="justify-content:center;"> 
+              @if($message = Session::get('success'))
+                <div class="alert alert-success">
+                  <strong>{{ $message }}</strong> 
+                </div>
+              @endif
+                
+              @if($message = Session::get('fail'))
+                <div class="alert alert-danger">
+                  <strong>{{ $message }}</strong>
+                </div>
+              @endif
+          </div>
+
+
+            
         </tbody>
       </table>
     <div>
