@@ -1,8 +1,11 @@
 @extends('layouts.app')
 @section('content')
 <div class="row m-5">
-    <div class="col-sm-12">
-        <h1 >Lista de usuarios</h1>    
+    <div class="col-12">
+        <div class="d-flex">
+          <h1>Lista de usuarios</h1>    
+          <a class="btn btn-success m-auto" href="/user/create">Crear nuevo usuario</a>
+        </div>
       <table class="table table-striped">
         <thead>
             <tr>

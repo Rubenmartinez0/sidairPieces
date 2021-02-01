@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Client;
 use App\Models\Material;
+use App\Models\Role;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,9 +34,11 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function createView()
+    {   
+        $userRoleId = auth()->user()->role_id;
+        $roles = Role::where('id', ">=", $userRoleId)->get();
+        return view('user/create', compact('roles'));
     }
 
     /**
@@ -43,9 +46,20 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
+        //dd($request->all());
+        $data = request()->validate([
+            'username' => ['required','string', 'min:3', 'max:255', 'unique:users'],
+            'name' => ['nullable', 'regex:/^[a-zA-Z]+$/u', 'string', 'max:55'],
+            'surname' => ['nullable', 'regex:/^[a-zA-Z]+$/u', 'string', 'max:55'],
+            'roleId' => ['required', 'int', 'not_in:0'],
+            'password' => ['required', 'confirmed', 'min:1', 'max:12'],
+        ]);
+        User::create($data);
+        //$user->update($data);
+        
+        return redirect("/users")->with('success','Usuario creado correctamente.');
     }
 
     /**
