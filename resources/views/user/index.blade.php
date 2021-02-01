@@ -57,10 +57,7 @@
                   <strong>{{ $message }}</strong>
                 </div>
               @endif
-          </div>
-
-
-            
+            </div>
         </tbody>
       </table>
     <div>

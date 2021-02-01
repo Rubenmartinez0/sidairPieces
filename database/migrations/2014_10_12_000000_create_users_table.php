@@ -27,7 +27,8 @@ class CreateUsersTable extends Migration
             $table->index('project_id');
             $table->unsignedBigInteger('material_id')->nullable();
             $table->index('material_id');
-            $table->boolean('active')->default(0);
+            $table->boolean('active')->default(1);
+            $table->boolean('visible')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

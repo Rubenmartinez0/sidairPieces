@@ -26,6 +26,7 @@ class User extends Authenticatable
         'client_id',
         'project_id',
         'material_id',
+        'visible',
     ];
 
     /**

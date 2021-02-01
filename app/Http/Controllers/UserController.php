@@ -9,6 +9,7 @@ use App\Models\Material;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -21,7 +22,7 @@ class UserController extends Controller
     public function index()
     {
 
-        $users = User::with('role')->get();
+        $users = User::where('visible', "=", 1)->with('role')->get();
         //dd($users);
 
         return view('user/index', compact('users'));
@@ -62,10 +63,18 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function editView($user_id)
+    public function editView($userId)
     {
-        dd($user_id);
-        return redirect('/preferences');
+
+        $userRequestRoleId = auth()->user()->role_id;
+        $userRequestId = auth()->user()->id;
+        $user = User::where('id', '=', $userId)->with('role')->first();
+        $user->password = "";
+
+        if($userRequestRoleId < $user->role->id || $userRequestId == $user->id){
+            return view('/user/edit', compact('user'));
+        }
+        return redirect('/users')->with('fail', 'No tienes permisos suficientes para editar este usuario.');
     }
 
     /**
@@ -73,9 +82,19 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update()
+    public function update(Request $request, $userId)
     {
-        return view('/preferences');
+        //dd($request->all());
+        //dd($userId);
+        $data = request()->validate([
+            'username' => ['required','string', 'max:255', 'unique:users,username,' .$userId.',id'],
+            'name' => ['nullable', 'regex:/^[a-zA-Z]+$/u', 'string', 'max:55'],
+            'surname' => ['nullable', 'regex:/^[a-zA-Z]+$/u', 'string', 'max:55'],
+        ]);
+        $user = User::find($userId);
+        $user->update($data);
+        
+        return redirect("/user/edit/{$userId}")->with('success','Usuario actualizado correctamente.');
     }
 
     /**
