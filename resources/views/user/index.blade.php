@@ -6,14 +6,14 @@
           <h1>Lista de usuarios</h1>    
           <a class="btn btn-success m-auto" href="/user/create">Crear nuevo usuario</a>
         </div>
-      <table class="table table-striped">
+      <table class="table table-hover table-responsive-lg">
         <thead>
             <tr>
               <td class="font-weight-bold">Usuario</td>
               <td class="font-weight-bold">Nombre y apellidos</td>
               <td class="font-weight-bold">Rol</td>
               <td class="font-weight-bold">Activo</td>
-              <td class="font-weight-bold">Acciones</td>
+              <td class="font-weight-bold" colspan="2">Acciones</td>
             </tr>
         </thead>
         <tbody>
@@ -34,10 +34,9 @@
                 </td>
       
   
-                <td>
-                    <a href="{{ route('user.editView',$user->id)}}" class="btn btn-warning">Editar</a>
-                </td>
-                <td>
+                <td class="row">
+                    <a href="{{ route('user.editView',$user->id)}}" class="btn btn-warning mr-5">Editar</a>
+                
                     <form action="{{ route('user.destroy', $user->id)}}" method="post">
                       @csrf
                       @method('DELETE')
