@@ -13,7 +13,7 @@
               <td class="font-weight-bold">Nombre y apellidos</td>
               <td class="font-weight-bold">Rol</td>
               <td class="font-weight-bold">Activo</td>
-              <td class="font-weight-bold">Actions</td>
+              <td class="font-weight-bold">Acciones</td>
             </tr>
         </thead>
         <tbody>
