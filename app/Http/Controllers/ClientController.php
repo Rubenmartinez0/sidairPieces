@@ -8,6 +8,7 @@ use App\Models\Material;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ClientController extends Controller
 {
@@ -19,7 +20,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::all();
+        $clients = Client::withCount('project')->get();
         return view('client/index', compact('clients'));
     }
 
@@ -38,9 +39,28 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
+
+
+        $validator = Validator::make($request->all(), [
+            'name' => ['required','regex:/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/', 'min:3', 'max:55', 'unique:clients'],
+        ]);
+        if ($validator->passes()) {
+            // $data = request()->validate([
+            //     'name' => ['required','regex:/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/', 'min:3', 'max:55', 'unique:clients'],
+            // ]);
+            $values = ['name' => $request->name, 'visible' => False];
+            if($request->visible){
+                $values['visible'] = True;
+            }
+
+            Client::create($values);
+
+            return redirect("/clients")->with('success',"Cliente '" . $values['name'] . "' creado correctamente.");
+        }
+        return redirect("/clients")->with('fail',"El nombre '" . $request->name . "' ya está en uso o no está permitido.");
+     
     }
 
     /**
