@@ -98,8 +98,14 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy($id)
     {
-        //
+        $clientToDelete = Client::where('id', '=', $id)->withCount('project')->first();
+        
+        if($clientToDelete->project_count == 0){
+            $clientToDelete->delete();
+            return redirect('/clients')->with('success', "El cliente '" . $clientToDelete->name . "' ha sido eliminado.");
+        }
+        return redirect('/clients')->with('fail', 'No se puede eliminar al cliente porque tiene datos relacionados con obras.');
     }
 }

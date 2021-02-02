@@ -43,10 +43,19 @@
                 </td>
                 <td>{{$client->created_at}}</td>
   
-                <td class="row">
-                    <a href="{{ route('client.editView',$client->id)}}" class="btn btn-warning mr-5">Editar</a>
+                {{-- <td><a class="btn btn-warning" data-toggle="modal" data-target="#editModal">Editar</a></td> --}}
+                {{-- <a href="{{ route('client.editView',$client->id)}}" class="btn btn-warning">Editar</a> --}}
+                <td>
+                    @if($client->project_count == 0)
+                        <form action="{{ route('client.destroy', $client->id)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" type="submit" onclick="return confirm('Eliminar cliente {{$client->name}}?')" >Eliminar</button>
+                        </form>
+                    @endif
                 </td>
             </tr>
+            
             @endforeach
 
             <div class="col-4" style="justify-content:center;"> 
@@ -67,7 +76,7 @@
     <a class="btn btn-primary float-left" href="/users">Atrás</a>
     
     @include('client.create')
-    
+    {{-- @include('client.edit') --}}
 
 </div>
 
