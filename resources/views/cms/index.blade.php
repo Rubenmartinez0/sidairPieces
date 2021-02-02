@@ -10,9 +10,9 @@
             <a class="btn btn-primary mb-3" href="/users">Gestionar usuarios.</a>            
             <br>
             {{-- <a class="btn btn-warning mb-3" href="#">Mis pedidos.</a> --}}
-            <a class="btn btn-warning mb-3" href="#">Gestionar clientes</a>
+            <a class="btn btn-warning mb-3" href="/clients">Gestionar clientes</a>
             <br>
-            <a class="btn btn-success mb-3" href="#">Gestionar obras</a>
+            <a class="btn btn-success mb-3" href="/projects">Gestionar obras</a>
             <br>
         </div>
     </div>
