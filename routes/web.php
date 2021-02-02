@@ -72,6 +72,16 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/user', 'App\Http\Controllers\UserController@store')->name('user.store');
         Route::patch('/user/{userId}', 'App\Http\Controllers\UserController@update')->name('user.update');
         Route::delete('/user/{userId}', 'App\Http\Controllers\UserController@destroy')->name('user.destroy');
+
+
+        Route::get('/clients', 'App\Http\Controllers\ClientController@index')->name('client.index');
+        Route::get('/client/create', 'App\Http\Controllers\ClientController@createView')->name('client.create');
+        Route::get('/client/edit/{clientId}', 'App\Http\Controllers\ClientController@editView')->name('client.editView');
+        Route::post('/client', 'App\Http\Controllers\ClientController@store')->name('client.store');
+        Route::patch('/client/{clientId}', 'App\Http\Controllers\ClientController@update')->name('client.update');
+        Route::delete('/client/{clientId}', 'App\Http\Controllers\ClientController@destroy')->name('client.destroy');
+
+
     });
 
     
