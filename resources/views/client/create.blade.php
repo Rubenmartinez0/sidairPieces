@@ -16,7 +16,7 @@
                         <label for="name" class="col-md-4 col-form-label text-md-right"><strong>Nombre:</strong></label>
         
                         <div class="col-md-6">
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"/>
+                            <input id="nameInput" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autofocus/>
 
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -42,5 +42,3 @@
         </div>
     </div> 
 </div>
-
-

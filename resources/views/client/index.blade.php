@@ -6,14 +6,14 @@
             <h1>Lista de clientes</h1>
 
             <div class="form-outline d-flex m-auto">
-                <input type="search" id="form1" class="form-control" placeholder="Buscar"/>
+                <input type="search" id="searchbar" class="form-control" autofocus placeholder="Buscar"/>
                 <button type="button" class="btn btn-primary">
                 <i class="fas fa-search"></i>
                 </button>
             </div>
             
 
-            <a class="btn btn-success m-auto" data-toggle="modal" data-target="#createModal">Crear nuevo cliente</a>
+            <a class="btn btn-success m-auto" data-toggle="modal" data-target="#createModal" id="createClientButton">Crear nuevo cliente</a>
             {{-- <a id="createUserButton" class="btn btn-success m-auto" href="/client/create">Crear nuevo cliente</a> --}}
         </div>
       <table class="table table-hover table-responsive-lg">
@@ -73,7 +73,7 @@
             </div>
         </tbody>
     </table>
-    <a class="btn btn-primary float-left" href="/users">Atrás</a>
+    <a class="btn btn-primary float-left" href="/cms">Atrás</a>
     
     @include('client.create')
     {{-- @include('client.edit') --}}
@@ -84,5 +84,5 @@
 @endsection
 @section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    {{-- <script src="{{ asset('js/client/index.js') }}" type="text/javascript"></script> --}}
+    <script src="{{ asset('js/client/index.js') }}" type="text/javascript"></script>
 @endsection

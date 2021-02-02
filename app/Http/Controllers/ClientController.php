@@ -18,8 +18,9 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(Request $request)
+    {  
+     
         $clients = Client::withCount('project')->get();
         return view('client/index', compact('clients'));
     }
