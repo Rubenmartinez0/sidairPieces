@@ -62,6 +62,7 @@
             </div>
         </tbody>
       </table>
+      <a class="btn btn-primary float-left" href="/cms">Atrás</a>
     <div>
 </div>
 
