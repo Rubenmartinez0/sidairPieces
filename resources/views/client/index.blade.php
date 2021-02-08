@@ -44,7 +44,7 @@
                 <td>{{$client->created_at}}</td>
   
                 {{-- <td><a class="btn btn-warning" data-toggle="modal" data-target="#editModal">Editar</a></td> --}}
-                {{-- <a href="{{ route('client.editView',$client->id)}}" class="btn btn-warning">Editar</a> --}}
+                <td><a href="{{ route('client.editView',$client->id)}}" class="btn btn-warning">Editar</a></td>
                 <td>
                     @if($client->project_count == 0)
                         <form action="{{ route('client.destroy', $client->id)}}" method="post">

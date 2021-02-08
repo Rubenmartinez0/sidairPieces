@@ -77,9 +77,13 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function editView($clientId)
     {
-        //
+
+        $client = Client::where('id', '=', $clientId)->withCount('project')->first();
+        return view('/client/edit', compact('client'));
+        
+        
     }
 
     /**
