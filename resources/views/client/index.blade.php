@@ -36,7 +36,7 @@
                     @if($client->visible)
                       <input data-onstyle="success"checked disabled  type="checkbox" class="custom-control-input" id="clientSwitch{{$client->id}}">
                     @else
-                      <input disable type="checkbox" class="custom-control-input" id="clientSwitch{{$client->id}}">
+                      <input disabled type="checkbox" class="custom-control-input" id="clientSwitch{{$client->id}}">
                     @endif
                     <label class="custom-control-label" for="clientSwitch{{$client->id}}"></label>
                   </div>
