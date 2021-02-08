@@ -46,4 +46,9 @@ class Project extends Model
     {
         return $this->belongsTo(ProjectState::class);
     }
+
+    public function pieces()
+    {
+        return $this->hasMany(Piece::class);
+    }
 }

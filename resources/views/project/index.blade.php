@@ -34,6 +34,15 @@
                 <td>{{$project->state->state}}</td>
                 <td>{{$project->created_at}}</td>
                 <td><a href="{{ route('project.editView',$project->id)}}" class="btn btn-warning mr-5">Editar</a></td>
+                <td>
+                  @if($project->pieces_count == 0)
+                      <form action="{{ route('project.destroy', $project->id)}}" method="post">
+                          @csrf
+                          @method('DELETE')
+                          <button class="btn btn-danger" type="submit" onclick="return confirm('Eliminar obra {{$project->name}}?')" >Eliminar</button>
+                      </form>
+                  @endif
+              </td>
             </tr>
             
             @endforeach
