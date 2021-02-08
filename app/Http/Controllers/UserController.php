@@ -86,7 +86,8 @@ class UserController extends Controller
         $user->password = "";
 
         if($userRequestRoleId < $user->role->id || $userRequestId == $user->id){
-            return view('/user/edit', compact('user'));
+            $roles = Role::where('id', ">=", $userRequestRoleId)->get();
+            return view('/user/edit', compact('user', 'roles'));
         }
         return redirect('/users')->with('fail', 'No tienes permisos suficientes para editar este usuario.');
     }
@@ -104,11 +105,12 @@ class UserController extends Controller
             'username' => ['required','string', 'max:255', 'unique:users,username,' .$userId.',id'],
             'name' => ['nullable', 'regex:/^[a-zA-Z]+$/u', 'string', 'max:55'],
             'surname' => ['nullable', 'regex:/^[a-zA-Z]+$/u', 'string', 'max:55'],
+            'role_id' => ['required', 'int', 'max:7','min:1'],
         ]);
         $user = User::find($userId);
         $user->update($data);
         
-        return redirect("/user/edit/{$userId}")->with('success','Usuario actualizado correctamente.');
+        return redirect("/users")->with('success',"El usuario '" . $user->username . "' ha sido actualizado correctamente.");
     }
 
     /**

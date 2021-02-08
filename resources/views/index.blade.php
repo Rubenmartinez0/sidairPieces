@@ -10,11 +10,13 @@
             <a class="btn btn-primary mb-3" href="{{ url('/piece') }}">Encargar nueva pieza.</a>            
             <br>
             {{-- <a class="btn btn-warning mb-3" href="{{ Auth::user()->id }}/order">Mis pedidos.</a> --}}
-            <a class="btn btn-warning mb-3" href="/myOrders">Mis pedidos.</a>
+            <a class="btn mb-3" style="background-color: #bf00ff; color: white" href="/myOrders">Mis pedidos.</a>
             <br>
-            <a class="btn btn-success mb-3" href="/order/manufacture/i">Fabricar piezas.</a>
+            <a class="btn mb-3" style="background-color: #ff00bf; color: white" href="/preferences">Mis preferencias.</a>
             <br>
-            <a class="btn btn-info" href="/cms">CMS</a>
+            <a class="btn mb-3" style="background-color: #ffff00; color: black" href="/order/manufacture/i">Fabricar piezas.</a>
+            <br>
+            <a class="btn" style="background-color: #80ff00; color: black" href="/cms">CMS</a>
         </div>
     </div>
 

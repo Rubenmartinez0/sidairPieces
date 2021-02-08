@@ -27,7 +27,7 @@
                     @if($user->active)
                       <input data-onstyle="success"checked disabled  type="checkbox" class="custom-control-input" id="userSwitch{{$user->id}}">
                     @else
-                      <input disable type="checkbox" class="custom-control-input" id="userSwitch{{$user->id}}">
+                      <input disabled type="checkbox" class="custom-control-input" id="userSwitch{{$user->id}}">
                     @endif
                     <label class="custom-control-label" for="userSwitch{{$user->id}}"></label>
                   </div>

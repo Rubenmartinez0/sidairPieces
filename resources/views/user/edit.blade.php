@@ -39,7 +39,20 @@
 
         <div class="form-group">
             <label for="role"><strong>Rol:</strong></label>
-            <input disabled type="text" class="form-control" name="role" value="{{ $user->role->name }}"/>
+            <select name="role_id" class="form-control @error('role_id') is-invalid @enderror">
+                @foreach($roles as $role)
+                    @if($user->role_id == $role->id)
+                    <option selected value="{{$role->id}}">{{$role->name}}</option>
+                    @else
+                        <option value="{{$role->id}}">{{$role->name}}</option>
+                    @endif
+                @endforeach
+            </select>
+            @error('role')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
 
         <div class="form-group">
