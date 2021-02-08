@@ -14,10 +14,10 @@ class ClientSeeder extends Seeder
     public function run()
     {
         $clients = [
-            ['name' => 'cliente1', 'visible' => True],
-            ['name' => 'cliente2', 'visible' => False],
-            ['name' => 'cliente3', 'visible' => True],
-            ['name' => 'cliente4', 'visible' => True],
+            ['name' => 'Esclat', 'visible' => True],
+            ['name' => 'BonArea', 'visible' => False],
+            ['name' => 'Consum', 'visible' => True],
+            ['name' => 'Dia', 'visible' => True],
         ];
         foreach($clients as $client){
             \App\Models\Client::create($client);
