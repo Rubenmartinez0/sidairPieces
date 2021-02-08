@@ -106,10 +106,16 @@ class UserController extends Controller
             'name' => ['nullable', 'regex:/^[a-zA-Z]+$/u', 'string', 'max:55'],
             'surname' => ['nullable', 'regex:/^[a-zA-Z]+$/u', 'string', 'max:55'],
             'role_id' => ['required', 'int', 'max:7','min:1'],
+            'active' => ['sometimes'],
         ]);
         $user = User::find($userId);
+        //dd($data);
+        if(isset($data['active'])){
+            $data['active'] = 1;
+        }else{
+            $data['active'] = 0;
+        }
         $user->update($data);
-        
         return redirect("/users")->with('success',"El usuario '" . $user->username . "' ha sido actualizado correctamente.");
     }
 

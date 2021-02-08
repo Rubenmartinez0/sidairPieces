@@ -38,6 +38,20 @@
         </div>
 
         <div class="form-group">
+            <label for="active"><strong>Activo:</strong></label>
+            <div class="custom-control custom-switch switch-success">
+                @if($user->active)
+                    <input name="active" data-onstyle="success" checked  type="checkbox" class="custom-control-input" id="userSwitch{{$user->id}}">
+                @else
+                    <input name="active" type="checkbox" class="custom-control-input" id="userSwitch{{$user->id}}">
+                @endif
+                <label class="custom-control-label" for="userSwitch{{$user->id}}"></label>
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
             <label for="role"><strong>Rol:</strong></label>
             <select name="role_id" class="form-control @error('role_id') is-invalid @enderror">
                 @foreach($roles as $role)
