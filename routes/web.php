@@ -82,6 +82,17 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/client/{clientId}', 'App\Http\Controllers\ClientController@destroy')->name('client.destroy');
 
 
+
+        Route::get('/projects', 'App\Http\Controllers\ProjectController@index')->name('project.index');
+        Route::get('/project/create', 'App\Http\Controllers\ProjectController@createView')->name('project.create');
+        Route::get('/project/edit/{projectId}', 'App\Http\Controllers\ProjectController@editView')->name('project.editView');
+        Route::post('/project', 'App\Http\Controllers\ProjectController@store')->name('project.store');
+        Route::patch('/project/{projectId}', 'App\Http\Controllers\ProjectController@update')->name('project.update');
+        Route::delete('/project/{projectId}', 'App\Http\Controllers\ProjectController@destroy')->name('project.destroy');
+
+
+
+
     });
 
     

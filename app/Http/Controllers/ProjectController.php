@@ -20,8 +20,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
-        return view('project/index', compact('projects'));
+        $projects = Project::with('client', 'state')->get();
+        $clients = Client::where('visible', '=', '1')->get();
+        return view('project/index', compact('projects', 'clients'));
     }
 
     /**
@@ -39,9 +40,9 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

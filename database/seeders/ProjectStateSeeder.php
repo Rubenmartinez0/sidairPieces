@@ -14,12 +14,12 @@ class ProjectStateSeeder extends Seeder
     public function run()
     {
         $states = [
-            ['state' => 'Obra en construcción'],
-            ['state' => 'Obra finalizada'],
-            ['state' => 'Obra parada'],
-            ['state' => 'Obra denegada'],
-            ['state' => 'Obra cancelada'],
-            ['state' => 'Obra pendiente'],
+            ['state' => 'En construcción'],
+            ['state' => 'Finalizada'],
+            ['state' => 'Parada'],
+            ['state' => 'Denegada'],
+            ['state' => 'Cancelada'],
+            ['state' => 'Pendiente'],
         ];
         foreach($states as $state){
             \App\Models\ProjectState::create($state);

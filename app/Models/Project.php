@@ -44,6 +44,6 @@ class Project extends Model
 
     public function state()
     {
-        return $this->hasOne(ProjectState::class);
+        return $this->belongsTo(ProjectState::class);
     }
 }
