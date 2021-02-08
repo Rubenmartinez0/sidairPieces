@@ -83,7 +83,7 @@
             <div class="form-group row">
                 <label class="col-md-5 col-form-label text-md-right"><strong>Fecha de finalización:</strong></label>
                 <div class="col-md-6">
-                    <input disabled type="text" class="form-control" value="{{ $project->created_at }}"/>
+                    <input disabled type="text" class="form-control" value="{{ $project->finished_at }}"/>
                 </div>
             </div>
         @endif

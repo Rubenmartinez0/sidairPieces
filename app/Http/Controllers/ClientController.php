@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\Material;
+use App\Models\Project;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -133,4 +134,20 @@ class ClientController extends Controller
         }
         return redirect('/clients')->with('fail', 'No se puede eliminar al cliente porque tiene datos relacionados con obras.');
     }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function ProjectsView($id)
+    {
+        
+        $client = Client::where('id', '=', $id)->withCount('project')->first();
+        $projects = Project::where('client_id', '=', $id)->with( 'state')->withCount('pieces')->get();
+        
+        return view('/client/projects', compact('client', 'projects'));
+    }
+    
 }

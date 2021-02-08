@@ -112,7 +112,7 @@ class ProjectController extends Controller
             }else{
                 $values['state_id'] = $request->state_id;
             }
-            //dd($values);
+            
             $project->update($values);
             return redirect("/projects")->with('success',"La obra '" . $values['name'] . "' ha sido actualizada.");
             
