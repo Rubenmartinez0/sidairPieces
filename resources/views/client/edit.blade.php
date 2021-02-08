@@ -46,7 +46,11 @@
         
         <div class="form-group">
             <label for="visible" class="col-md-4 col-form-label text-md-right"><strong>Visible:</strong></label>
-            <input name="visible" type="checkbox" checked data-toggle="toggle">
+            @if($client->visible)
+                <input name="visible" type="checkbox" checked data-toggle="toggle">
+            @else
+                <input name="visible" type="checkbox" data-toggle="toggle">
+            @endif
         </div>
         <a class="btn btn-primary float-left" href="/clients">Atrás</a>
         <button type="submit" class="btn btn-success float-right">Guardar cambios</button>

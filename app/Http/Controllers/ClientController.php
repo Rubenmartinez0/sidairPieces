@@ -79,11 +79,8 @@ class ClientController extends Controller
      */
     public function editView($clientId)
     {
-
         $client = Client::where('id', '=', $clientId)->withCount('project')->first();
         return view('/client/edit', compact('client'));
-        
-        
     }
 
     /**
@@ -91,9 +88,34 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update()
+    public function update(Request $request, $clientId)
     {
-        //
+        //dd($request->all());
+        //dd($clientId);
+        
+        $validator = Validator::make($request->all(), [
+            'name' => ['required','string' ,'regex:/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/', 'min:3','max:55', 'unique:clients,name,' .$clientId.',id'],
+            // 'name' => ['required','regex:/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/', 'min:3', 'max:55', 'unique:clients'],
+        ]);
+        if ($validator->passes()) {
+            
+            $values = ['name' => $request->name, 'visible' => False];
+            if($request->visible){
+                $values['visible'] = True;
+            }
+
+            $client = Client::find($clientId);
+            //dd($client);
+            //dd($values["name"]);
+            if($client->name != $values["name"] || $client->visible != $values["visible"] ){
+                $client->update($values);
+                return redirect("/clients")->with('success',"Cliente '" . $values['name'] . "' actualizado correctamente.");
+            }
+
+            return redirect("/clients")->with('success',"El cliente '" . $values['name'] . "' no ha sufrido ningún cambio.");
+            
+        }
+        return redirect("/clients")->with('fail',"El nombre '" . $request->name . "' ya está en uso o no está permitido.");
     }
 
     /**
