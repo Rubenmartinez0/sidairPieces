@@ -3,7 +3,15 @@
 <div class="row m-5">
     <div class="col-12">
         <div class="d-flex">
-          <h1>Lista de usuarios</h1>    
+          <h1>Lista de usuarios</h1>
+          
+          <div class="form-outline d-flex m-auto">
+            <input type="search" id="searchbar" class="form-control" autofocus placeholder="Buscar"/>
+            <button type="button" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+            </button>
+          </div>
+
           <a class="btn btn-success m-auto" href="/user/create">Crear nuevo usuario</a>
         </div>
       <table class="table table-hover table-responsive-lg">
