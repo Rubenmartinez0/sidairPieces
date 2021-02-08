@@ -19,7 +19,9 @@ Route::get('/', function () {
     return view('index');
 });
 
-Auth::routes();
+Auth::routes([
+    'register' => false
+]);
 Route::get('/index', [App\Http\Controllers\IndexController::class, 'index'])->name('index');
 Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('index');
 
