@@ -6,9 +6,9 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\Client;
 
-
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class ProjectController extends Controller
 {
@@ -42,7 +42,23 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
+
+        $validator = Validator::make($request->all(), [
+            'name' => ['required','regex:/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/', 'min:3', 'max:55', 'unique:projects'],
+            'client_id' => ['required', 'int', 'not_in:0']
+        ]);
+        if ($validator->passes()) {
+
+            $values = ['name' => $request->name, 'client_id' => $request->client_id, 'state_id' => 6, 'started_at' => Carbon::now()];
+
+            Project::create($values);
+
+            return redirect("/projects")->with('success',"Obra '" . $values['name'] . "' creado correctamente.");
+        }else if($request->client_id == 0){
+            return redirect("/projects")->with('fail',"Se debe elegir un cliente a la hora de crear una nueva obra.");
+        }
+        return redirect("/projects")->with('fail',"El nombre '" . $request->name . "' ya está en uso o no está permitido.");
     }
 
     /**

@@ -2,6 +2,7 @@
 @section('content')
 <div class="container col-8 col-sm-8 col-md-6 col-lg-3 mt-5">
     <h3>Editar cliente</h3>
+    <hr>
     @if ($errors->any())
         <div class="col-12 alert alert-danger" style="justify-content:center;">
             <ul>
@@ -52,6 +53,7 @@
                 <input name="visible" type="checkbox" data-toggle="toggle">
             @endif
         </div>
+        <hr>
         <a class="btn btn-primary float-left" href="/clients">Atrás</a>
         <button type="submit" class="btn btn-success float-right">Guardar cambios</button>
     </form>

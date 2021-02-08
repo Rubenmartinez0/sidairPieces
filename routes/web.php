@@ -75,6 +75,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
         Route::get('/clients', 'App\Http\Controllers\ClientController@index')->name('client.index');
+        //Route::get('/client/{clientId}/projects', 'App\Http\Controllers\ClientController@ProjectsView')->name('client.projectsView');
         Route::get('/client/create', 'App\Http\Controllers\ClientController@createView')->name('client.create');
         Route::get('/client/edit/{clientId}', 'App\Http\Controllers\ClientController@editView')->name('client.editView');
         Route::post('/client', 'App\Http\Controllers\ClientController@store')->name('client.store');

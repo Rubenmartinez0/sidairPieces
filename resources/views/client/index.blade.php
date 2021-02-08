@@ -30,7 +30,7 @@
             @foreach($clients as $client)
             <tr>
                 <td>{{$client->name}}</td>
-                <td>{{$client->project_count}}</td>
+                <td><a href="#" class="btn btn-primary">{{$client->project_count}}</a></td>
                 <td>
                   <div class="custom-control custom-switch switch-success">
                     @if($client->visible)
