@@ -24,11 +24,12 @@
           <table class="table table-hover table-responsive-lg">
             <thead>
                 <tr>
-                  <th class="font-weight-bold">Usuario</th>
+                  <th class="font-weight-bold">@sortablelink('Id')</th>
+                  <th class="font-weight-bold">@sortablelink('Usuario')</th>
                   <td class="font-weight-bold">Nombre y apellidos</td>
-                  <td class="font-weight-bold">Rol</td>
-                  <td class="font-weight-bold">Activo</td>
-                  <td class="font-weight-bold row">Creación
+                  <td class="font-weight-bold">@sortablelink('Rol')</td>
+                  <td class="font-weight-bold">@sortablelink('Activo')</td>
+                  <td class="font-weight-bold row">@sortablelink('Creación')
                   </td>
                   <td class="font-weight-bold" colspan="2">Acciones</td>
                 </tr>
@@ -36,6 +37,7 @@
             <tbody>
                 @foreach($users as $user)
                 <tr>
+                  <td>{{$user->id}}</td>
                     <td>{{$user->username}}</td>
                     <td>{{$user->name}} {{$user->surname}}</td>
                     <td>{{$user->role->name}}</td>
@@ -78,7 +80,10 @@
                   @endif
                 </div>
             </tbody>
-          </table>     
+          </table>
+          
+          {!! $users->appends(\Request::except('page'))->render() !!}
+         
         @else
           <div>
             <div id="status_message" class="alert alert-danger alert-block col-4">
