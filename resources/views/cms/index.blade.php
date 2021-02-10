@@ -14,6 +14,8 @@
             <br>
             <a class="btn btn-success mb-3" href="/projects">Gestionar obras</a>
             <br>
+            <a class="btn btn-info mb-3" href="/pieces">Gestionar Piezas</a>
+            <br>
         </div>
     </div>
 
