@@ -25,7 +25,6 @@
           <table id="usersTable" class="table table-hover table-responsive-lg">
             <thead>
                 <tr>
-                  <th class="font-weight-bold">Id</th>
                   <th class="font-weight-bold">Usuario</th>
                   <th class="font-weight-bold">Nombre y apellidos</th>
                   <th class="font-weight-bold">Rol</th>
@@ -37,7 +36,6 @@
             <tbody>
                 @foreach($users as $user)
                   <tr>
-                    <td>{{$user->id}}</td>
                       <td>{{$user->username}}</td>
                       <td>{{$user->name}} {{$user->surname}}</td>
                       <td>{{$user->role->name}}</td>
