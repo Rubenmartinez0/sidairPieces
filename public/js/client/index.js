@@ -11,7 +11,7 @@ $("document").ready(function(){
     });
 });
 $(document).ready(function() {
-    $('#clientsTable').DataTable( {
+    $('#clientsTable, #projectsByClientTable').DataTable( {
         language: {
             search: "Buscar:",
             paginate: {
