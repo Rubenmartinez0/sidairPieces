@@ -22,7 +22,6 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-
         if($request["search"]){
             $search =  $request["search"];
             $users = User::where('visible', "=", 1)->where('username','LIKE',"%{$search}%")->with('role')->get();

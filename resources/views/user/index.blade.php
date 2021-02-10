@@ -24,10 +24,12 @@
           <table class="table table-hover table-responsive-lg">
             <thead>
                 <tr>
-                  <td class="font-weight-bold">Usuario</td>
+                  <th class="font-weight-bold">Usuario</th>
                   <td class="font-weight-bold">Nombre y apellidos</td>
                   <td class="font-weight-bold">Rol</td>
                   <td class="font-weight-bold">Activo</td>
+                  <td class="font-weight-bold row">Creación
+                  </td>
                   <td class="font-weight-bold" colspan="2">Acciones</td>
                 </tr>
             </thead>
@@ -47,7 +49,7 @@
                         <label class="custom-control-label" for="userSwitch{{$user->id}}"></label>
                       </div>
                     </td>
-          
+                    <td>{{$user->created_at}}</td>
       
                     <td class="row">
                         <a href="{{ route('user.editView',$user->id)}}" class="btn btn-warning mr-5">Editar</a>
@@ -100,5 +102,5 @@
 @endsection
 @section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    {{-- <script src="{{ asset('js/index.js') }}" type="text/javascript"></script> --}}
+    {{-- <script src="{{ asset('js/user/index.js') }}" type="text/javascript"></script> --}}
 @endsection
