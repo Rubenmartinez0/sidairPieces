@@ -32,8 +32,8 @@ class UserController extends Controller
             return view('user/index', compact('users'))->with('successMsg', 'User/s found');
 
         }else{
-            //$users = User::sortable()->where('visible', "=", 1)->with('role')->get();
-            $users = User::sortable(['id'=>'desc'])->where('visible', "=", 1)->with('role')->paginate(5);
+            $users = User::where('visible', "=", 1)->with('role')->get();
+            //$users = User::sortable(['id'=>'desc'])->where('visible', "=", 1)->with('role')->paginate(5);
             return view('user/index', compact('users'));
         }
         
