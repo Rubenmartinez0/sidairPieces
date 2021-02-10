@@ -22,6 +22,6 @@ $(document).ready(function() {
                 sortDescending: ": activar para ordenar la columna en orden descendente"
             }
             
-        }
-    } );
-} )
+        },
+    });
+})

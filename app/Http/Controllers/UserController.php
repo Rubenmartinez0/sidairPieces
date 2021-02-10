@@ -20,23 +20,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if($request["search"]){
-            $search =  $request["search"];
-            $users = User::where('visible', "=", 1)->where('username','LIKE',"%{$search}%")->with('role')->get();
-
-            if(count($users) == 0){
-                return view('user/index');
-            }
-            return view('user/index', compact('users'))->with('successMsg', 'User/s found');
-
-        }else{
-            $users = User::where('visible', "=", 1)->with('role')->get();
-            //$users = User::sortable(['id'=>'desc'])->where('visible', "=", 1)->with('role')->paginate(5);
-            return view('user/index', compact('users'));
-        }
-        
+        $users = User::where('visible', "=", 1)->with('role')->get();
+        return view('user/index', compact('users'));
     }
 
     /**
