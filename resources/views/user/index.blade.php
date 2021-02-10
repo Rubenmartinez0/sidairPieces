@@ -67,6 +67,17 @@
 
 @endsection
 @section('scripts')
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js" defer></script>
+  <!-- CDN datatables -->
+  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.js" defer></script>
+
+  <!-- CDN datatables searchpanes-->
+  <script type="text/javascript" src="https://cdn.datatables.net/searchpanes/1.2.1/js/dataTables.searchPanes.min.js" defer></script>
+  
+  <!-- CDN datatables select-->
+  <script type="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js" defer></script>
+  
+  <!-- CDN buttons select-->
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js" defer></script>
+  
   <script src="{{ asset('js/user/index.js') }}" type="text/javascript"></script>
 @endsection

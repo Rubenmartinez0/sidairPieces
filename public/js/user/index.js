@@ -9,7 +9,7 @@ $(document).ready(function() {
                 last:       "Última"
             },
             info: "Mostrando del _START_ al _END_ de _TOTAL_ resultados.",
-            processing:     "Traitement en cours...",
+            processing:     "Procesando petición...",
             lengthMenu:    "Mostrar _MENU_ resultados.",
             infoEmpty:      "",
             infoFiltered:   "(Filtrando entre un total de _MAX_ resultados)",
@@ -22,6 +22,7 @@ $(document).ready(function() {
                 sortDescending: ": activar para ordenar la columna en orden descendente"
             }
             
-        },
+        },    
     });
 })
+
