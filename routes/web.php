@@ -63,6 +63,8 @@ Route::group(['middleware' => ['auth']], function () {
 
 
             Route::get('/users', 'App\Http\Controllers\UserController@index')->name('user.index');
+            //Route::post('/users', 'App\Http\Controllers\UserController@index')->name('user.search');
+
             Route::get('/user/create', 'App\Http\Controllers\UserController@createView')->name('user.create');
             Route::get('/user/edit/{userId}', 'App\Http\Controllers\UserController@editView')->name('user.editView');
             Route::post('/user', 'App\Http\Controllers\UserController@store')->name('user.store');
