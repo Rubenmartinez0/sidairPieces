@@ -1,5 +1,5 @@
 $("document").ready(function(){
-    $('#createClientButton').click(function() {
+    $('#createProjectButton').click(function() {
         setTimeout(function(){
             $("#nameInput").focus(); // fade out during 2 secs.
         }, 250 ); // Wait 2 secs
@@ -7,7 +7,7 @@ $("document").ready(function(){
     });
 });
 $(document).ready(function() {
-    $('#clientsTable, #projectsByClientTable').DataTable( {
+    $('#projectsTable').DataTable( {
         language: {
             search: "Buscar:",
             paginate: {

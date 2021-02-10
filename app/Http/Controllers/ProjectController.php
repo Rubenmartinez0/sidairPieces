@@ -57,7 +57,7 @@ class ProjectController extends Controller
 
             Project::create($values);
 
-            return redirect("/projects")->with('success',"Obra '" . $values['name'] . "' creado correctamente.");
+            return redirect("/projects")->with('success',"Obra '" . $values['name'] . "' creada correctamente.");
         }else if($request->client_id == 0){
             return redirect("/projects")->with('fail',"Se debe elegir un cliente a la hora de crear una nueva obra.");
         }
@@ -131,7 +131,7 @@ class ProjectController extends Controller
         
         if($projectToDelete->pieces_count == 0){
             $projectToDelete->delete();
-            return redirect('/projects')->with('success', "La obra '" . $projectToDelete->name . "' ha sido eliminado.");
+            return redirect('/projects')->with('success', "La obra '" . $projectToDelete->name . "' ha sido eliminada.");
         }
         return redirect('/projects')->with('fail', "No se puede eliminar la obra '" . $projectToDelete->name . " porque tiene piezas creadas.'");
     }

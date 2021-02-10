@@ -64,8 +64,6 @@
     <a class="btn btn-primary float-left" href="/cms">Atrás</a>
     
     @include('client.create')
-    {{-- @include('client.edit') --}}
-
 </div>
 @endsection
 @section('scripts')
