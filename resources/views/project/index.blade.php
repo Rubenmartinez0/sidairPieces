@@ -32,10 +32,11 @@
         <tbody>
             @foreach($projects as $project)
             <tr>
-                <td>{{$project->name}}</td>
+                <td><a href="{{ route('project.show',$project->id)}}">{{$project->name}}</a></td>
                 <td>{{$project->client->name}}</td>
                 <td>{{$project->state->state}}</td>
                 <td>{{$project->created_at}}</td>
+                {{-- <td><a href="{{ route('project.show',$project->id)}}" class="btn btn-primary mr-5">Ver detalle</a></td> --}}
                 <td><a href="{{ route('project.editView',$project->id)}}" class="btn btn-warning mr-5">Editar</a></td>
                 {{-- <td>
                   @if($project->pieces_count == 0)
