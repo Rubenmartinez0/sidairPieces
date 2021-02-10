@@ -4,6 +4,7 @@
     <div class="col-12">
         <h1>Lista de usuarios</h1>
         <a class="btn btn-success mb-3" href="/user/create">Crear nuevo usuario</a>
+        
         <div class="col-4" style="justify-content:center;"> 
           @if($message = Session::get('success'))
             <div class="alert alert-success">
