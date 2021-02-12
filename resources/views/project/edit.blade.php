@@ -91,9 +91,6 @@
         <a class="btn btn-primary float-left" href="/projects">Atrás</a>
         <button type="submit" class="btn btn-success float-right">Guardar cambios</button>
     </form>
-
-    
-    
 </div>
 
 @endsection

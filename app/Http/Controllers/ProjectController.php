@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\User;
+use App\Models\Material;
 use App\Models\Project;
 use App\Models\Client;
 use App\Models\Piece;
+use App\Models\Note;
 use App\Models\ProjectState;
+use App\Models\OrderState;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -71,7 +75,63 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        dd($id);
+        $project = Project::where('id', '=', $id)->with('client', 'state', 'orders')->withCount('pieces', 'notes')->first();
+        
+        if($project){
+            
+
+            //dd($project);
+            // $orderPieces = Piece::where('order_id', '=', $order->id)->with('state', 'type')->get();
+            // $orderNotes = Note::where('order_id', '=', $order->id)->get();
+            // $created_by = User::where('id', '=', $order->created_by)->first();
+            // $order->ordered_by = $created_by->username;
+            // $order->totalPieces = 0;
+            // foreach($orderPieces as $piece){
+            //     $order->totalPieces += $piece->quantity;
+            // }
+            // $order->totalNotes = count($orderNotes);
+
+            // $modifyPermissions = false;
+            // if(in_array($userRole, $allowedModifyRoles, true)){
+            //     $modifyPermissions = true;
+            // }
+
+            // $pieceStates = PieceState::all();
+            //return view('user/order/show', compact('order', 'orderPieces', 'orderNotes', 'modifyPermissions', 'pieceStates', 'orderStates'));
+
+            ////////////////////////////////////////////////////////////////
+            // $project->totalPieces = 0;
+            // foreach($project->orders as $order){
+            //     $order->totalPieces += $piece->quantity;
+            // }
+            // $order->totalNotes = count($orderNotes);
+
+            $projectStates = ProjectState::all();
+            $orderStates = OrderState::all();
+            
+            $project->piecesCount = 0;
+            $project->notesCount = 0;
+            foreach($project->orders as $order){
+                $order->state = OrderState::where('id', '=', $order->state_id)->first();
+                $order->material = Material::where('id', '=', $order->material_id)->first();
+                $order->created_by = User::where('id', '=', $order->created_by)->first();
+                $order->created_by->password = null;
+                $piecesInCurrentOrder = Piece::where('order_id', '=', $order->id)->get();
+               
+                $piecesCountInCurrentOrder = 0;
+                foreach($piecesInCurrentOrder as $piece){
+                    $piecesCountInCurrentOrder += $piece->quantity;
+                    $project->piecesCount += $piece->quantity;
+                }
+                $order->piecesCount = $piecesCountInCurrentOrder;
+                $order->notesCount = Note::where('order_id', '=', $order->id)->count();
+                $project->notesCount += $order->notesCount;
+            }
+            //dd($project);
+            return view('project/show', compact('project', 'projectStates', 'orderStates'));
+            
+        }
+        return redirect('/')->with('fail_status', "El pedido ". $order_id ." no existe.");
     }
 
     /**
@@ -92,9 +152,8 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $projectId)
+    public function updateProject(Request $request, $projectId)
     {
-        //dd($request->all());
         
         $validator = Validator::make($request->all(), [
             'name' => ['required','string' ,'regex:/^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/', 'min:3','max:55', 'unique:projects,name,' .$projectId.',id'],
@@ -119,6 +178,36 @@ class ProjectController extends Controller
         }
         return redirect("/project/edit/".$projectId)->with('fail',"El nombre de obra '" . $request->name . "' ya está en uso o no está permitido.");
 
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function updateProjectState(Request $request, $projectId)
+    {
+        
+        $validator = Validator::make($request->all(), [
+            'newStateId' => ['required', 'int', 'not_in:0'],
+        ]);
+        if ($validator->passes()) {
+            
+            $values = ['state_id' => $request->newStateId];
+
+            $project = Project::find($projectId);
+            
+            if($project->finished_at == null && $request->newStateId == 2 ){
+                $values['finished_at'] = Carbon::now();
+                $values['state_id'] = 2;
+            }else{
+                $values['state_id'] = $request->state_id;
+            }
+            
+            $project->update($values);
+    
+            return response('Project state updated correctly', 200);
+        }
+        return response("Could not update project state's", 500);
     }
     /**
      * Display a listing of the resource.

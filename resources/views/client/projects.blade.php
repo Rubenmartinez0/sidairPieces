@@ -31,7 +31,7 @@
         <tbody>
             @foreach($projects as $project)
             <tr>
-                <td>{{$project->name}}</td>
+                <td><a href="{{ route('project.show',$project->id)}}">{{$project->name}}</a></td>
                 <td>{{$project->pieces_count}}</td>
                 <td>{{$project->state->state}}</td>
                 <td>{{$project->created_at}}</td>

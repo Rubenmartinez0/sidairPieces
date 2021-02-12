@@ -68,7 +68,8 @@ class OrderController extends Controller
             //create each note
             foreach($currentCartNotes as $note){
                 if($note->content != ''){
-                    $noteToCreate = ['order_id' => $order->id, 'user_id' => $userId, 'content' => $note->content ];
+                    $noteToCreate = ['order_id' => $order->id, 'user_id' => $userId, 'content' => $note->content,
+                    'project_id' => $currentPreferences['project']['id'] ];
                     Note::create($noteToCreate);
                 }else if($note->content == '' && count($currentCartNotes) == 1 ){
                     return redirect('/myCart')->with('status_fail', 'Se deben añadir piezas o notas para poder hacer un pedido.');

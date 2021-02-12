@@ -87,7 +87,8 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/project/{projectId}', 'App\Http\Controllers\ProjectController@show')->name('project.show');
             Route::get('/project/edit/{projectId}', 'App\Http\Controllers\ProjectController@editView')->name('project.editView');
             Route::post('/project', 'App\Http\Controllers\ProjectController@store')->name('project.store');
-            Route::patch('/project/{projectId}', 'App\Http\Controllers\ProjectController@update')->name('project.update');
+            Route::patch('/project/{projectId}', 'App\Http\Controllers\ProjectController@updateProject')->name('project.update');
+            Route::patch('/project/u/{projectId}', 'App\Http\Controllers\ProjectController@updateProjectState');
             Route::delete('/project/{projectId}', 'App\Http\Controllers\ProjectController@destroy')->name('project.destroy');
         });
     });

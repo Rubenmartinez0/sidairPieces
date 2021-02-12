@@ -22,8 +22,8 @@
         <thead>
             <tr>
                 <th class="font-weight-bold">Nombre de obra</th>
+                <th class="font-weight-bold">Piezas totales</th>
                 <th class="font-weight-bold">Cliente</th>
-
                 <th class="font-weight-bold">Estado de la obra</th>
                 <th class="font-weight-bold">Fecha de inicio</th>
                 <th class="font-weight-bold">Acciones</th>
@@ -33,6 +33,7 @@
             @foreach($projects as $project)
             <tr>
                 <td><a href="{{ route('project.show',$project->id)}}">{{$project->name}}</a></td>
+                <td>{{$project->pieces_count}}</td>
                 <td>{{$project->client->name}}</td>
                 <td>{{$project->state->state}}</td>
                 <td>{{$project->created_at}}</td>

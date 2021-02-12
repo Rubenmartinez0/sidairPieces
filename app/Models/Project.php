@@ -51,4 +51,14 @@ class Project extends Model
     {
         return $this->hasMany(Piece::class);
     }
+
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
 }
