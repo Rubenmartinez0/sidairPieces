@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-8">
-            <a class="btn btn-primary m-auto float-right" onclick="history.back()">Atras</a>
+            <a class="btn btn-primary m-auto float-right" href="/order/manufacture/i">Atras</a>
             <h3>Resumen del pedido: <strong>{{ $order->order_id }}</strong></h3>
             
             
@@ -167,7 +167,6 @@
 </div>
 @endsection
 @section('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="{{ asset('js/order/show.js') }}" type="text/javascript"></script>
 
 @endsection

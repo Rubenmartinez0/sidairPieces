@@ -12,7 +12,7 @@
                 <!-- All pieces !-->
                 <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
                     @if (count($orders) > 0)
-                        <table class="table">
+                    <table id="ordersTable" class="table table-hover table-responsive-lg">
                             <thead>
                                 <tr>
                                 <th>Estado</th>
@@ -57,13 +57,26 @@
                             </tbody>
                         </table>
                     @else
-                        <h4 class="mt-3">Este usuario aún no ha realizado ningún pedido.</h4>
+                        <h4 class="mt-3">No hay pedidos.</h4>
                     @endif
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+  <!-- CDN datatables -->
+  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.js" defer></script>
 
-
+  <!-- CDN datatables searchpanes-->
+  <script type="text/javascript" src="https://cdn.datatables.net/searchpanes/1.2.1/js/dataTables.searchPanes.min.js" defer></script>
+  
+  <!-- CDN datatables select-->
+  <script type="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js" defer></script>
+  
+  <!-- CDN buttons select-->
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js" defer></script>
+  
+  <script src="{{ asset('js/order/index.js') }}" type="text/javascript"></script>
 @endsection

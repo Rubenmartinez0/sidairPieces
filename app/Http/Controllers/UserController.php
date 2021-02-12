@@ -127,7 +127,10 @@ class UserController extends Controller
         $userToDelete = User::find($id);
 
         if($userRequestRoleId < $userToDelete->role_id){
-            $userToDelete->delete();
+            //SOFT DELETE BECAUSE USER COULD BE RELATED WITH PIECES AND ORDERS.
+            $userToDelete->visible = 0;
+            $userToDelete->active = 0;
+            $userToDelete->save();
             return redirect('/users')->with('success', "El usuario '" . $userToDelete->username . "' ha sido eliminado.");
         }
         return redirect('/users')->with('fail', 'No tienes permisos suficientes para eliminar a este usuario.');
