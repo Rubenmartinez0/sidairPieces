@@ -14,6 +14,7 @@ class Note extends Model
      * @var array
      */
     protected $fillable = [
+        'project_id',
         'order_id',
         'user_id', 
         'content',
@@ -40,6 +41,10 @@ class Note extends Model
     public function order()
     {
         return $this->belongsTo(Order::class);
+    }
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
     }
     public function user()
     {
