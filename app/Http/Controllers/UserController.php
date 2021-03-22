@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Client;
 use App\Models\Material;
 use App\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -53,6 +54,7 @@ class UserController extends Controller
             'roleId' => ['required', 'int', 'not_in:0'],
             'password' => ['required', 'confirmed', 'min:1', 'max:12'],
         ]);
+        $data["password"] = Hash::make($data["password"]);
         User::create($data);
         //$user->update($data);
         

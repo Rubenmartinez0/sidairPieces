@@ -9,6 +9,7 @@ use App\Models\PieceState;
 use App\Models\Project;
 use App\Models\Material;
 use App\Models\Client;
+use App\Models\PieceIsolation;
 use App\Models\User;
 //use App\Models\Image;
 
@@ -120,7 +121,8 @@ class PieceController extends Controller
         $id = Auth::user()->id;
 
         $currentPreferences = UserController::getUserCurrentPreferences($id);
-
+        $isolationList = PieceIsolation::all();
+        dd($isolationList);
         return view('pieces/addToCart', compact('pieceType', 'measurements' , 'currentPreferences'));
     }
     /**

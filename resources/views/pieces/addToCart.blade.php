@@ -104,7 +104,7 @@
                                     @foreach($measurements as $measurement)
                                         <div class="d-flex col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 mb-3">
                                             <label for="{{ $measurement }}" class="col-md-6 col-form-label text-md-right ">{{ $measurement }}</label>
-                                            <input required="required" id="{{ $measurement }}" type="number" min="1" max="5000" pattern="\d+" class="col-md-6 form-control @error('{{ $measurement }}') is-invalid @enderror" name="{{ $measurement }}" value="{{ old('.$measurement.')}}" autocomplete="{{ $measurement }}">
+                                            <input required="required" id="{{ $measurement }}" type="number" min="0" max="5000" pattern="\d+" class="col-md-6 form-control @error('{{ $measurement }}') is-invalid @enderror" name="{{ $measurement }}" value="{{ old('.$measurement.')}}" autocomplete="{{ $measurement }}">
                                         </div>
                                     @endforeach
                                 </div>
