@@ -15,6 +15,10 @@ class CreateIsolationThicknessesTable extends Migration
     {
         Schema::create('isolation_thicknesses', function (Blueprint $table) {
             $table->id();
+            $table->integer('thickness');
+            $table->string('unit');
+            $table->unsignedBigInteger('type_id');
+            $table->index('type_id');
             $table->timestamps();
         });
     }

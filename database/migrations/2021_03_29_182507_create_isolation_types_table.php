@@ -15,6 +15,7 @@ class CreateIsolationTypesTable extends Migration
     {
         Schema::create('isolation_types', function (Blueprint $table) {
             $table->id();
+            $table->string('type');
             $table->timestamps();
         });
     }

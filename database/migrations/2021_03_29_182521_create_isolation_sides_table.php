@@ -15,6 +15,7 @@ class CreateIsolationSidesTable extends Migration
     {
         Schema::create('isolation_sides', function (Blueprint $table) {
             $table->id();
+            $table->string('side');
             $table->timestamps();
         });
     }
