@@ -34,7 +34,8 @@
             <tr>
                 <td><a href="{{ route('project.show',$project->id)}}">{{$project->name}}</a></td>
                 <td>{{$project->pieces_count}}</td>
-                <td>{{$project->client->name}}</td>
+                <td><a href="{{ route('client.projectsView', $project->client->id) }}">{{ $project->client->name}}</a></td>
+
                 <td>{{$project->state->state}}</td>
                 <td>{{$project->created_at}}</td>
                 {{-- <td><a href="{{ route('project.show',$project->id)}}" class="btn btn-primary mr-5">Ver detalle</a></td> --}}

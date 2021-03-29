@@ -200,7 +200,7 @@ class ProjectController extends Controller
                 $values['finished_at'] = Carbon::now();
                 $values['state_id'] = 2;
             }else{
-                $values['state_id'] = $request->state_id;
+                $values['state_id'] = $request->newStateId;
             }
             
             $project->update($values);

@@ -24,7 +24,9 @@
         
                 <br>
                 <label hidden id="clientId">{{ $project->client_id }}</label>
-                <label><strong>Cliente: </strong>{{ $project->client->name}}</label>
+                <label><strong>Cliente: </strong><a href="{{ route('client.projectsView', $project->client->id) }}">{{ $project->client->name}}</a></label>
+
+                
                 <br>
                 <label><strong>Obra creada el: </strong>{{ $project->created_at }}</label>
                 <br>

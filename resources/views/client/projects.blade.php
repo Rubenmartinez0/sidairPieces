@@ -45,7 +45,7 @@
             @endforeach
         </tbody>
     </table>
-    <a class="btn btn-primary float-left" href="/clients">Atrás</a>
+    <a class="btn btn-primary float-left" onclick="history.back()">Atrás</a>
 
 </div>
 
