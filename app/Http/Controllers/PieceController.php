@@ -121,10 +121,9 @@ class PieceController extends Controller
         $id = Auth::user()->id;
 
         $currentPreferences = UserController::getUserCurrentPreferences($id);
-        $isolationsList = PieceIsolation::all();
-        $isolationsTypeList = PieceIsolation::select('type')->groupBy('type')->get();
         
-        return view('pieces/addToCart', compact('pieceType', 'measurements' , 'currentPreferences', 'isolationsList', 'isolationsTypeList'));
+        
+        return view('pieces/addToCart', compact('pieceType', 'measurements' , 'currentPreferences'));
     }
     /**
      * Display a listing of the resource.

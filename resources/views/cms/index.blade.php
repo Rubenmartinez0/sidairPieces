@@ -13,9 +13,9 @@
             <a class="btn btn-warning mb-3" href="/clients">Gestionar clientes</a>
             <br>
             <a class="btn btn-success mb-3" href="/projects">Gestionar obras</a>
-            <br>
+            {{-- <br>
             <a class="btn btn-info mb-3" href="/pieces">Gestionar Piezas</a>
-            <br>
+            <br> --}}
         </div>
     </div>
 

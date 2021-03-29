@@ -69,13 +69,7 @@
                                                 <label for="isolation-type" class="col-form-label text-md-right">{{ __('Tipo de aislamiento') }}</label>
                                                 <select id="isolation-type" class="col-md-6 col-lg-6 col-xl-6 form-control @error('isolation-type') is-invalid @enderror" name="isolation-type_id" value="{{ old('isolation-type_id') }}">
                                                     <option disabled selected value=""> -- </option>
-                                                    @forelse($isolationsTypeList as $type)
-                                                        <option value="{{ $type->type }}">
-                                                            {{ $type->type }}
-                                                        </option>
-                                                    @empty
-                                                        <option>There are no available isolations</option>       
-                                                    @endforelse
+                                                    
                                                 </select>
                                                 @error('material')
                                                     <span class="invalid-feedback" role="alert">
@@ -98,13 +92,7 @@
                                             <label for="isolation-type" class="col-form-label text-md-right">{{ __('Cara') }}</label>
                                             <select id="isolation-type" class="col-md-6 col-lg-6 col-xl-6 form-control @error('isolation-type') is-invalid @enderror" name="isolation-type_id" value="{{ old('isolation-type_id') }}">
                                                 <option disabled selected value=""> -- </option>
-                                                @forelse($isolationsList as $side)
-                                                    <option value="{{ $side->side }}">
-                                                        {{ $side->side }}
-                                                    </option>
-                                                @empty
-                                                    <option>There are no available sides</option>       
-                                                @endforelse
+                                                
                                             </select>
                                             @error('material')
                                                 <span class="invalid-feedback" role="alert">

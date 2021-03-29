@@ -30,7 +30,6 @@ class DatabaseSeeder extends Seeder
             OrderStateSeeder::class,
             CartItemSeeder::class,
             CartNoteSeeder::class,
-            PieceIsolation::class,
         ]);
     }
 }
