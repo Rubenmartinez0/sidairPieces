@@ -51,7 +51,7 @@ class UserController extends Controller
             'username' => ['required','string', 'min:3', 'max:255', 'unique:users'],
             'name' => ['nullable', 'regex:/^[a-zA-Z]+$/u', 'string', 'max:55'],
             'surname' => ['nullable', 'regex:/^[a-zA-Z]+$/u', 'string', 'max:55'],
-            'roleId' => ['required', 'int', 'not_in:0'],
+            'role_id' => ['required', 'int', 'max:7', 'min:1','not_in:0'],
             'password' => ['required', 'confirmed', 'min:1', 'max:12'],
         ]);
         $data["password"] = Hash::make($data["password"]);
@@ -98,8 +98,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $userId)
     {
-        //dd($request->all());
-        //dd($userId);
+
         $data = request()->validate([
             'username' => ['required','string', 'max:255', 'unique:users,username,' .$userId.',id'],
             'name' => ['nullable', 'regex:/^[a-zA-Z]+$/u', 'string', 'max:55'],
@@ -108,7 +107,7 @@ class UserController extends Controller
             'active' => ['sometimes'],
         ]);
         $user = User::find($userId);
-        //dd($data);
+ 
         if(isset($data['active'])){
             $data['active'] = 1;
         }else{

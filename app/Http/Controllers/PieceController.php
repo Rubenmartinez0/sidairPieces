@@ -121,9 +121,10 @@ class PieceController extends Controller
         $id = Auth::user()->id;
 
         $currentPreferences = UserController::getUserCurrentPreferences($id);
-        $isolationList = PieceIsolation::all();
-        dd($isolationList);
-        return view('pieces/addToCart', compact('pieceType', 'measurements' , 'currentPreferences'));
+        $isolationsList = PieceIsolation::all();
+        $isolationsTypeList = PieceIsolation::select('type')->groupBy('type')->get();
+        
+        return view('pieces/addToCart', compact('pieceType', 'measurements' , 'currentPreferences', 'isolationsList', 'isolationsTypeList'));
     }
     /**
      * Display a listing of the resource.
@@ -132,7 +133,7 @@ class PieceController extends Controller
      */
     public function storePieceToCart(Request $request)
     {
-        
+        dd($request->all());
         $data = $request->validate([
             'type_id' => 'required|int',
             'quantity' => 'required|int',

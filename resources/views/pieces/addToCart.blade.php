@@ -59,8 +59,64 @@
                                                     </span>
                                                 @enderror --}}
                                             </div>
+
+                                            
                                         </div>
+
+                                        <!-- Isolation Type -->
+                                        <div class="border border-gray rounded p-3 mb-3 mt-3">
+                                            <div class="d-flex">
+                                                <label for="isolation-type" class="col-form-label text-md-right">{{ __('Tipo de aislamiento') }}</label>
+                                                <select id="isolation-type" class="col-md-6 col-lg-6 col-xl-6 form-control @error('isolation-type') is-invalid @enderror" name="isolation-type_id" value="{{ old('isolation-type_id') }}">
+                                                    <option disabled selected value=""> -- </option>
+                                                    @forelse($isolationsTypeList as $type)
+                                                        <option value="{{ $type->type }}">
+                                                            {{ $type->type }}
+                                                        </option>
+                                                    @empty
+                                                        <option>There are no available isolations</option>       
+                                                    @endforelse
+                                                </select>
+                                                @error('material')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        
+
+                                        <!-- Isolation thickness -->
+                                        <div class="d-flex">
+                                            <label for="isolation-type" class="col-form-label text-md-right">{{ __('Grosor') }}</label>
+                                            <select id="isolation-side" name="isolation-type_id" disabled id="projects" class="form-control @error('projects') is-invalid @enderror" name="project_id" value="{{ old('project_id') }}">
+                                                <option disabled selected value>-- Tipo --</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- Isolation side -->
+                                        <div class="d-flex">
+                                            <label for="isolation-type" class="col-form-label text-md-right">{{ __('Cara') }}</label>
+                                            <select id="isolation-type" class="col-md-6 col-lg-6 col-xl-6 form-control @error('isolation-type') is-invalid @enderror" name="isolation-type_id" value="{{ old('isolation-type_id') }}">
+                                                <option disabled selected value=""> -- </option>
+                                                @forelse($isolationsList as $side)
+                                                    <option value="{{ $side->side }}">
+                                                        {{ $side->side }}
+                                                    </option>
+                                                @empty
+                                                    <option>There are no available sides</option>       
+                                                @endforelse
+                                            </select>
+                                            @error('material')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+
                                     </div>
+
+                                    
                                     
                                     <!-- Client -->
                                     <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 float-right mb-3">

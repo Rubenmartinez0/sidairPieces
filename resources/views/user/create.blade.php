@@ -44,7 +44,7 @@
 
         <div class="form-group">
             <label for="role"><strong>Rol*:</strong></label>
-            <select name="roleId" class="form-control @error('roleId') is-invalid @enderror">
+            <select name="role_id" class="form-control @error('role_id') is-invalid @enderror">
                 <option selected value=0>Seleccionar rol</option>
                 @foreach($roles as $role)
                     <option  value="{{$role->id}}">{{$role->name}}</option>
