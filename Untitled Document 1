@@ -1,0 +1,67 @@
+CREATE DATABASE IF NOT EXISTS NPAW;
+USE NPAW;
+
+DROP TABLE IF EXISTS User CASCADE;
+DROP TABLE IF EXISTS Account CASCADE;
+DROP TABLE IF EXISTS Metric CASCADE;
+DROP TABLE IF EXISTS Dimension CASCADE;
+
+CREATE TABLE User(
+id SERIAL,
+first_name VARCHAR(50),
+last_name VARCHAR(50),
+username VARCHAR(50),
+email VARCHAR(255),
+PRIMARY KEY(id)
+);
+
+INSERT INTO User(first_name, last_name, username, email) VALUES
+('Jordi', 'Garcia', 'jgarcia12', 'jordi.garcia@gmail.com'),
+('Mireia', 'Fernandez', 'Miri76', 'm.fernandezlopez@gmail.com'),
+('Ana', 'Hidalgo', 'Anhi', 'ana.hidalgo@protonmail.com'),
+('Josep', 'Blanch', 'Staircase', 'josep.contact@outlook.com');
+
+CREATE TABLE Account(
+id SERIAL,
+name VARCHAR(50),
+code VARCHAR(24),
+date_created DATE,
+PRIMARY KEY(id)
+);
+
+INSERT INTO Account(name, code, date_created) VALUES
+('KPMG-1147', 'Account_1', '2018-12-19'),
+('XLSM-1902', 'Account_2', '2019-03-15'),
+('JMAS-2311', 'Account_3', '2021-08-14'),
+('JMAS-2677', 'Account_4', '2021-10-10');
+
+CREATE TABLE Metric(
+id SERIAL,
+name VARCHAR(50),
+code VARCHAR(24),
+magnitude VARCHAR(50),
+PRIMARY KEY(id)
+);
+
+INSERT INTO Metric(name, code, magnitude) VALUES
+('Buffer Health', 'BFFH', 'Second'),
+('Connection Speed', 'CNNS', 'Kbps'),
+('Connection Speed', 'CONNS', 'Mbps'),
+('Network Activity', 'NETA', 'KB'),
+('Video Bitrate', 'BR', 'Kbps'),
+('Bitrate', 'BR', 'Kbps');
+
+CREATE TABLE Dimension(
+id SERIAL,
+name VARCHAR(50),
+code VARCHAR(24),
+magnitude VARCHAR(50),
+PRIMARY KEY(id)
+);
+
+INSERT INTO Dimension(name, code, magnitude) VALUES
+('Age', 'age', 'Year'),
+('Live', 'live', 'Boolean'),
+('On Demand', 'onDemand', 'Boolean');
+
+
